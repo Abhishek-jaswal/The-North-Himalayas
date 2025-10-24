@@ -36,6 +36,7 @@ export default function FullScreenCarousel() {
           </SwiperSlide>
         ))}
       </Swiper>
+      
     </div>
   );
 }
