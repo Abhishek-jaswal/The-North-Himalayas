@@ -5,6 +5,7 @@ import ContactForm from "./components/ContactForm";
 import FullScreenCarousel from "./components/FullScreenCarousel";
 import Navbar from "./components/Navbar";
 import PlanYourTrip from "./components/PlanYourTrip";
+import ImageMarquee from "./components/ImageMarquee";
 
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       <Navbar />
       <FullScreenCarousel />
       <PlanYourTrip />
+      <ImageMarquee />
       <ContactForm />
       <WhatsAppButton />
      <Footer />

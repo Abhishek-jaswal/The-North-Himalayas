@@ -34,16 +34,16 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="flex flex-col mt-10 items-center justify-center p-6 min-h-screen bg-gradient-to-b from-gray-900 to-black">
+    <div className="flex flex-col mt-10 items-center justify-center p-6 min-h-screen  ">
      <div className="text-center " id='contact'>
   <h2 className="text-4xl font-bold">Contact</h2>
   <p className="text-gray-400 mt-2">
   Feel free to reach out to me for any questions or opportunities!
   </p>
 </div>
-    <div className="bg-gray-900 p-6 rounded-xl shadow-xl mt-10 w-full max-w-md ">
+    <div className=" p-6 rounded-xl shadow-xl mt-10 w-full max-w-md ">
       <h2 className="text-white text-2xl font-bold  mb-4">
-        Email Me 🚀
+        Email Me 
       </h2>
         <form onSubmit={handleSubmit} className="mt-4">
           <input
@@ -53,7 +53,7 @@ export default function ContactForm() {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full p-2 mb-3 rounded-lg bg-gray-900 border border-purple-500 text-white"
+            className="w-full p-2 mb-3 rounded-lg  bg-gray-400 border border-gray-900 text-gray-800"
           />
           <input
             type="text"
@@ -62,7 +62,7 @@ export default function ContactForm() {
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full p-2 mb-3 rounded-lg  bg-gray-900 border border-purple-500 text-white"
+            className="w-full p-2 mb-3 rounded-lg  bg-gray-400 border border-gray-900 text-gray-800"
           />
           <input
             type="text"
@@ -71,7 +71,7 @@ export default function ContactForm() {
             value={formData.subject}
             onChange={handleChange}
             required
-            className="w-full p-2 mb-3 rounded-lg  bg-gray-900 border border-purple-500 text-white"
+            className="w-full p-2 mb-3 rounded-lg  bg-gray-400 border border-gray-900 text-gray-800"
           />
           <textarea
             name="message"
@@ -79,11 +79,11 @@ export default function ContactForm() {
             value={formData.message}
             onChange={handleChange}
             required
-            className="w-full p-2 mb-3 rounded-lg  bg-gray-900 border border-purple-500 text-white h-24"
+            className="w-full p-2 mb-3 rounded-lg  bg-gray-400 border border-gray-900 text-gray-800"
           />
           <button
             type="submit"
-            className="w-full bg-purple-600 text-white p-2 rounded-lg  hover:bg-purple-700 transition"
+            className="w-full p-2 mb-3 rounded-lg  bg-gray-400 border border-gray-900 text-gray-800"
           >
             Send
           </button>
