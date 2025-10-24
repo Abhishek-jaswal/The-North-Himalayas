@@ -6,6 +6,7 @@ import Image from "next/image";
 import "swiper/css";
 
 const images = [
+  "/images/packages/ladakh.jpg",
   "/images/packages/dharamshala5.jpg",
   "/images/crousal2.jpg",
   "/images/packages/kashmir2.jpg",
