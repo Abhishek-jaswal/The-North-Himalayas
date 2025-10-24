@@ -5,7 +5,7 @@ export const tripsData = [
     duration: "4 Nights / 5 Days",
     location: "Manali, Solang Valley",
     price: "INR 8000",
-    image: "/images/manali.jpg",
+    image: "/images/packages/package7.jpg",
   },
   {
     id: 2,
@@ -14,7 +14,7 @@ export const tripsData = [
     location:
       "Srinagar, Pahalgam, Gulmarg, Shalimar Garden, Nishat Garden, Sonmarg",
     price: "INR 15000",
-    image: "/images/kashmir.jpg",
+    image: "/images/packages/package6.jpg",
   },
   {
     id: 3,
@@ -22,7 +22,7 @@ export const tripsData = [
     duration: "1 Nights / 2 Days",
     location: "Kufri, Shimla, Kufri",
     price: "INR 6999",
-    image: "/images/shimla.jpg",
+    image: "/images/packages/package2.jpg",
   },
     {
     id: 4,
@@ -30,7 +30,7 @@ export const tripsData = [
     duration: "4 Nights / 5 Days",
     location: "Manali, Solang Valley",
     price: "INR 8000",
-    image: "/images/manali.jpg",
+    image: "/images/packages/package4.jpg",
   },
   {
     id: 5,
@@ -39,7 +39,7 @@ export const tripsData = [
     location:
       "Srinagar, Pahalgam, Gulmarg, Shalimar Garden, Nishat Garden, Sonmarg",
     price: "INR 15000",
-    image: "/images/kashmir.jpg",
+    image: "/images/packages/package3.jpg",
   },
   {
     id: 6,
@@ -47,6 +47,6 @@ export const tripsData = [
     duration: "1 Nights / 2 Days",
     location: "Kufri, Shimla, Kufri",
     price: "INR 6999",
-    image: "/images/shimla.jpg",
+    image: "/images/packages/package.jpg",
   },
 ];

@@ -3,33 +3,32 @@
 import Image from "next/image";
 
 const images = [
-  "/packages/package.jpg",
-  "/images/packages/package1.jpg",
-  "/images/package3.jpg",
-  "/images/package4.jpg",
-  "/images/package5.jpg",
-  "/images/package6.jpg",
-  "/images/package7.jpg",
-  "/images/package8.jpg",
+  "/images/packages/package1.png",
+  "/images/packages/package.jpg",
+  "/images/packages/package2.jpg",
+  "/images/packages/package3.jpg",
+  "/images/packages/package4.jpg",
+  "/images/packages/package5.jpg",
+  "/images/packages/package6.jpg",
+  "/images/packages/package7.jpg",
 ];
 
 export default function ImageMarquee() {
   return (
-    <div className="relative w-full overflow-hidden ">
-      <div className="flex animate-marquee whitespace-nowrap">
+    <div className="relative w-full overflow-hidden mt-8 mb-8">
+      <div className="flex animate-marquee whitespace-nowrap gap-4">
         {images.concat(images).map((src, idx) => (
-          <div
+          <Image
             key={idx}
-            className="relative w-[150px] h-[90px] sm:w-[180px] sm:h-[110px] md:w-[250px] md:h-[150px] lg:w-[300px] lg:h-[180px] mx-2 flex-shrink-0"
-          >
-            <Image
-              src={src}
-              alt={`Marquee ${idx}`}
-              fill
-              className="object-contain rounded-xl"
-              sizes="(max-width: 640px) 150px, (max-width: 768px) 180px, (max-width: 1024px) 250px, 300px"
-            />
-          </div>
+            src={src}
+            alt={`Marquee ${idx}`}
+            width={300} // default width, responsive handled below
+            height={250} // default height
+            className="object-contain rounded-xl shadow-lg
+              w-[150px] h-[90px] sm:w-[180px] sm:h-[110px]
+              md:w-[250px] md:h-[150px] lg:w-[300px] lg:h-[250px]"
+            sizes="(max-width: 640px) 150px, (max-width: 768px) 180px, (max-width: 1024px) 250px, 300px"
+          />
         ))}
       </div>
 
