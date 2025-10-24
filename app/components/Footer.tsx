@@ -26,15 +26,15 @@ export default function Footer() {
 
       {/* Social Icons */}
       <div className="mt-6 flex justify-center gap-6 text-lg">
-        <a href="#" className="hover:text-gray-200"><FaFacebookF /></a>
-        <a href="#" className="hover:text-gray-200"><FaTwitter /></a>
-        <a href="#" className="hover:text-gray-200"><FaInstagram /></a>
-        <a href="#" className="hover:text-gray-200"><FaYoutube /></a>
+        <a href="https://www.facebook.com/share/17TPLZdctu/" className="hover:text-gray-200"><FaFacebookF /></a>
+        <a href="https://www.youtube.com/@thenorthhimalayas" className="hover:text-gray-200"><FaTwitter /></a>
+        <a href="https://www.instagram.com/thenorthhimalayas?igsh=NW14aTk1d3hvbHhl" className="hover:text-gray-200"><FaInstagram /></a>
+        <a href="https://www.youtube.com/@thenorthhimalayas" className="hover:text-gray-200"><FaYoutube /></a>
       </div>
 
       {/* Bottom - Optional Small Text */}
       <p className="mt-6 text-center text-xs md:text-sm opacity-80">
-        © {new Date().getFullYear()} YourCompanyName. All rights reserved.
+        © {new Date().getFullYear()} The North Himalayas. All rights reserved.
       </p>
     </footer>
   );
