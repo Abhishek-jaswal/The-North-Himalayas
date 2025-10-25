@@ -38,11 +38,15 @@ export default function ContactForm() {
   return (
     <section
       id="contact"
-      className="relative w-full flex flex-col items-center justify-center py-10 px-4 sm:px-6 lg:px-8"
+      className="relative w-full flex flex-col items-center justify-center px-4  bg-black"
     >
+          <h1 className=" text-[3rem] sm:text-[11rem] -mt-[30rem] items-center justify-center font-bold pl-14 sm:pl-40 text-gray-300/60 select-none pointer-events-none z-10">
+    THE NORTH HIMALAYAS
+  </h1> 
       {/* Title */}
-      <div className="w-full sm:w-[90%] max-w-6xl rounded-md bg-gradient-to-r from-[#7a004d] via-[#a0004d] to-[#3a005f] text-white shadow-lg p-6 sm:p-8 flex flex-col items-center justify-center">
-          <div className="text-center mb-6">
+      <div className="w-full sm:w-[90%] max-w-5xl rounded-2xl bg-black text-white shadow-2xl p-6 pt-2 sm:p-2 flex flex-col items-center justify-center  z-10 bg-black/50">
+   
+          <div className="text-center  h-10">
           <h2 className="text-base sm:text-lg md:text-xl font-semibold tracking-wide">
             Get Best Holiday Planned by Experts!
           </h2>
@@ -54,8 +58,8 @@ export default function ContactForm() {
       {/* Form */}
     
 
-        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-5xl">
-        <div className="flex flex-col sm:flex-row items-center  justify-center gap-4 w-full">
+        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-4xl mt-10">
+       
           <input
               type="text"
               name="name"
@@ -63,7 +67,7 @@ export default function ContactForm() {
               value={formData.name}
               onChange={handleChange}
               required
-              className="flex-1 border-b border-pink-200 bg-transparent text-white placeholder-pink-200 focus:outline-none focus:border-pink-400 py-1 text-sm sm:text-base w-full sm:w-auto"
+              className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 rounded-full bg-transparent border border-pink-200 text-white placeholder-pink-200 focus:outline-none focus:ring-1 focus:ring-pink-400 text-sm sm:text-base"
             />
             <input
               type="text"
@@ -72,7 +76,7 @@ export default function ContactForm() {
               value={formData.subject}
               onChange={handleChange}
               required
-              className="flex-1 border-b border-pink-200 bg-transparent text-white placeholder-pink-200 focus:outline-none focus:border-pink-400 py-1 text-sm sm:text-base w-full sm:w-auto"
+              className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 rounded-full bg-transparent border border-pink-200 text-white placeholder-pink-200 focus:outline-none focus:ring-1 focus:ring-pink-400 text-sm sm:text-base"
             />
             <input
               type="email"
@@ -81,25 +85,17 @@ export default function ContactForm() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="flex-1 border-b border-pink-200 bg-transparent text-white placeholder-pink-200 focus:outline-none focus:border-pink-400 py-1 text-sm sm:text-base w-full sm:w-auto"
+              className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 rounded-full bg-transparent border border-pink-200 text-white placeholder-pink-200 focus:outline-none focus:ring-1 focus:ring-pink-400 text-sm sm:text-base"
             />
-          <textarea
-            name="message"
-            placeholder="Destination Preferences"
-            value={formData.message}
-            onChange={handleChange}
-            required
-            rows={3}
-            className="flex-1 border-b border-pink-200 bg-transparent text-white placeholder-pink-200 focus:outline-none focus:border-pink-400 py-1 text-sm sm:text-base w-full sm:w-auto"
-          />
+     
 
           <button
             type="submit"
-            className="mt-3 sm:mt-0 px-6 sm:px-8 py-2 bg-[#ff0055] hover:bg-[#ff2a6f] rounded-md font-semibold text-white transition-all text-sm sm:text-base"
+            className="px-6 sm:px-8 py-2 sm:py-2.5 bg-gray-100  rounded-full font-semibold text-black transition-all text-sm sm:text-base"
           >
             Submit
           </button>
-          </div>
+         
         </form>
 
         {status && (

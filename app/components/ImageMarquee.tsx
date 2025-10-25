@@ -15,6 +15,8 @@ const images = [
 
 export default function ImageMarquee() {
   return (
+    <>
+    <h1 className="text-red text-4xl z-10">The North Himalayas</h1>
     <div className="relative w-full overflow-hidden mt-8 mb-8">
       <div className="flex animate-marquee whitespace-nowrap gap-4">
         {images.concat(images).map((src, idx) => (
@@ -48,5 +50,6 @@ export default function ImageMarquee() {
         }
       `}</style>
     </div>
+    </>
   );
 }
