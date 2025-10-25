@@ -40,7 +40,7 @@ export default function ContactForm() {
       id="contact"
       className="relative w-full flex flex-col items-center justify-center px-4  bg-black"
     >
-          <h1 className=" text-[3rem] sm:text-[11rem] -mt-[30rem] items-center justify-center font-bold pl-14 sm:pl-40 text-gray-300/60 select-none pointer-events-none z-10">
+          <h1 className=" text-[3rem] sm:text-[11rem] -mt-[30rem] items-center justify-center font-bold pl-14 sm:pl-40 text-black/60 select-none pointer-events-none z-10">
     THE NORTH HIMALAYAS
   </h1> 
       {/* Title */}

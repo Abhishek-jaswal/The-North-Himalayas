@@ -33,17 +33,17 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex items-center space-x-8 font-semibold text-sm text-gray-800">
-          <li className="bg-red-600 text-white px-4 py-2 rounded-sm">HOME</li>
+          <li className="bg-gray-800 text-white px-4 py-2 rounded-sm">HOME</li>
 
           {/* Destinations Dropdown */}
           <li
-            className="relative cursor-pointer flex items-center gap-1 hover:text-pink-600"
+            className="relative cursor-pointer flex items-center gap-1 hover:text-gray-200 hover:bg-gray-800 px-4 py-2 rounded-sm"
             onMouseEnter={() => setOpenDest(true)}
             onMouseLeave={() => setOpenDest(false)}
           >
             DESTINATIONS <ChevronDown size={16} />
             {openDest && (
-              <ul className="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-md w-40 text-sm">
+              <ul className="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-md w-40 text-gray-800 text-sm">
                 <li className="px-4 py-2 hover:bg-gray-100">India</li>
                 <li className="px-4 py-2 hover:bg-gray-100">Dubai</li>
                 <li className="px-4 py-2 hover:bg-gray-100">Europe</li>
@@ -53,13 +53,13 @@ export default function Navbar() {
 
           {/* Tours by Type Dropdown */}
           <li
-            className="relative cursor-pointer flex items-center gap-1 hover:text-pink-600"
+            className="relative cursor-pointer flex items-center gap-1 hover:text-gray-200 hover:text-gray-200 hover:bg-gray-800 px-4 py-2 rounded-sm"
             onMouseEnter={() => setOpenTours(true)}
             onMouseLeave={() => setOpenTours(false)}
           >
             TOURS BY TYPE <ChevronDown size={16} />
             {openTours && (
-              <ul className="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-md w-48 text-sm">
+              <ul className="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-md w-48 text-gray-800 text-sm">
                 <li className="px-4 py-2 hover:bg-gray-100">Family Tours</li>
                 <li className="px-4 py-2 hover:bg-gray-100">Adventure Tours</li>
                 <li className="px-4 py-2 hover:bg-gray-100">Honeymoon Packages</li>
@@ -67,7 +67,7 @@ export default function Navbar() {
             )}
           </li>
 
-          <li className="hover:text-pink-600 cursor-pointer">CONTACT US</li>
+          <li className="hover:text-gray-200 cursor-pointer hover:bg-gray-800 px-4 py-2 rounded-sm">CONTACT US</li>
         </ul>
 
         {/* Mobile Toggle */}
