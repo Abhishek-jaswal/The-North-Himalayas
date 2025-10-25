@@ -6,20 +6,20 @@ import { tripsData } from "../data/tripsData";
 
 export default function PlanYourTrip() {
   return (
-    <section className="py-16 bg-gradient-to-b from-white to-gray-50">
+    <section className="py-16 ">
       {/* Title */}
       <div className="text-center mb-12">
         <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">
           <span className="text-red-600">Plan</span> Your Trip
         </h2>
-        <div className="mx-auto mt-3 w-28 h-1 bg-gradient-to-r from-red-600 via-blue-600 to-blue-600 rounded-full" />
+        <div className="mx-auto mt-3 w-28  bg-gradient-to-r from-red-600 via-blue-600 to-blue-600 rounded-full" />
         <p className="text-gray-500 text-sm sm:text-base mt-3 max-w-md mx-auto">
           Discover curated travel experiences with the perfect blend of adventure and comfort.
         </p>
       </div>
 
       {/* Cards Grid */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6 sm:px-8 md:px-10 ">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6 sm:px-8 md:px-40 ">
         {tripsData.map((trip) => (
           <div
             key={trip.id}
@@ -39,8 +39,8 @@ export default function PlanYourTrip() {
             </div>
 
             {/* Card Content */}
-            <div className="p-5 flex flex-col justify-between h-48">
-              <div className="space-y-2">
+            <div className="p-1 flex flex-col justify-between h-48">
+              <div className="">
                 <h3 className="font-semibold text-gray-900 text-base sm:text-lg leading-snug line-clamp-2 group-hover:text-red-600 transition-colors">
                   {trip.title}
                 </h3>

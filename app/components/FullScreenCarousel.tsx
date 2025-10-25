@@ -17,6 +17,7 @@ const images = [
 export default function FullScreenCarousel() {
   return (
     <div className="w-full h-[60vh] sm:h-[70vh] md:h-[85vh] lg:h-screen">
+      
       <Swiper
         modules={[Autoplay]}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
@@ -33,6 +34,7 @@ export default function FullScreenCarousel() {
               sizes="100vw"
               className="object-cover object-center"
             />
+             <h1 className="-mt-20 z-20 text-white">The North Himalayas</h1>
           </SwiperSlide>
         ))}
       </Swiper>

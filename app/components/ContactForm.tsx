@@ -15,6 +15,8 @@ export default function ContactForm() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("Sending...");
@@ -36,69 +38,64 @@ export default function ContactForm() {
   return (
     <section
       id="contact"
-      className="flex flex-col items-center justify-center py-16 px-6 sm:px-8 bg-gradient-to-b from-gray-50 to-gray-100"
+      className="relative w-full flex flex-col items-center justify-center px-4  bg-black"
     >
+          <h1 className=" text-[3rem] sm:text-[11rem] -mt-[30rem] items-center justify-center font-bold pl-14 sm:pl-40 text-gray-300/60 select-none pointer-events-none z-10">
+    THE NORTH HIMALAYAS
+  </h1> 
       {/* Title */}
-      <div className="text-center mb-10">
-        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
-          <span className="text-red-600">Contact</span> Me
-        </h2>
-        <div className="mx-auto mt-3 w-24 h-1 bg-gradient-to-r from-red-600 via-blue-600 to-blue-600 rounded-full" />
-        <p className="text-gray-600 mt-3 max-w-md mx-auto text-sm sm:text-base">
-          Feel free to reach out for collaborations, questions, or just to say hi 
-        </p>
-      </div>
+      <div className="w-full sm:w-[90%] max-w-5xl rounded-2xl bg-black text-white shadow-2xl p-6 pt-2 sm:p-2 flex flex-col items-center justify-center  z-10 bg-black/50">
+   
+          <div className="text-center  h-10">
+          <h2 className="text-base sm:text-lg md:text-xl font-semibold tracking-wide">
+            Get Best Holiday Planned by Experts!
+          </h2>
+          <p className="text-xl sm:text-2xl md:text-3xl font-bold text-yellow-400 mt-1">
+            SEASONS SALE!!
+          </p>
+        </div>
 
       {/* Form */}
-      <div className="w-full max-w-sm bg-white rounded-xl shadow-md p-5">
-        <h3 className="text-sm font-semibold text-gray-700 mb-4 text-center">
-          Send a Message
-        </h3>
+    
 
-        <form onSubmit={handleSubmit} className="space-y-3 text-sm">
+        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-4xl mt-10">
+       
           <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            className="w-full p-2 rounded-md border border-gray-300 focus:ring-1 focus:ring-red-500 focus:outline-none text-gray-700"
-          />
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            className="w-full p-2 rounded-md border border-gray-300 focus:ring-1 focus:ring-red-500 focus:outline-none text-gray-700"
-          />
-          <input
-            type="text"
-            name="subject"
-            placeholder="Contact"
-            value={formData.subject}
-            onChange={handleChange}
-            required
-            className="w-full p-2 rounded-md border border-gray-300 focus:ring-1 focus:ring-red-500 focus:outline-none text-gray-700"
-          />
-          <textarea
-            name="message"
-            placeholder="Message"
-            value={formData.message}
-            onChange={handleChange}
-            required
-            rows={3}
-            className="w-full p-2 rounded-md border border-gray-300 focus:ring-1 focus:ring-red-500 focus:outline-none text-gray-700 resize-none"
-          />
+              type="text"
+              name="name"
+              placeholder="Enter Your Name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 rounded-full bg-transparent border border-pink-200 text-white placeholder-pink-200 focus:outline-none focus:ring-1 focus:ring-pink-400 text-sm sm:text-base"
+            />
+            <input
+              type="text"
+              name="subject"
+              placeholder="Mobile Number"
+              value={formData.subject}
+              onChange={handleChange}
+              required
+              className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 rounded-full bg-transparent border border-pink-200 text-white placeholder-pink-200 focus:outline-none focus:ring-1 focus:ring-pink-400 text-sm sm:text-base"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 rounded-full bg-transparent border border-pink-200 text-white placeholder-pink-200 focus:outline-none focus:ring-1 focus:ring-pink-400 text-sm sm:text-base"
+            />
+     
 
           <button
             type="submit"
-            className="w-full py-2 rounded-md bg-red-700  text-white font-medium hover:opacity-90 transition text-sm"
+            className="px-6 sm:px-8 py-2 sm:py-2.5 bg-gray-100  rounded-full font-semibold text-black transition-all text-sm sm:text-base"
           >
-            Send
+            Submit
           </button>
+         
         </form>
 
         {status && (
