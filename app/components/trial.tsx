@@ -34,9 +34,9 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="relative w-full flex flex-col items-center justify-center py-10 px-4 sm:px-6 lg:px-8">
-      {/* Contact Banner Box */}
-      <div className="w-full sm:w-[90%] max-w-6xl rounded-md bg-gradient-to-r from-[#7a004d] via-[#a0004d] to-[#3a005f] text-white shadow-lg p-6 sm:p-8 flex flex-col items-center justify-center">
+    <section className="relative w-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 bg-black">
+      {/* Gradient Contact Box */}
+      <div className="w-full sm:w-[90%] max-w-5xl rounded-2xl bg-black text-white shadow-2xl p-6 sm:p-10 flex flex-col items-center justify-center -mt-40 z-10">
         {/* Headings */}
         <div className="text-center mb-6">
           <h2 className="text-base sm:text-lg md:text-xl font-semibold tracking-wide">
@@ -50,46 +50,42 @@ export default function ContactForm() {
         {/* Form */}
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-5xl"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-4xl"
         >
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
-            {/* Input Fields */}
-            <input
-              type="text"
-              name="name"
-              placeholder="Enter Your Name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="flex-1 border-b border-pink-200 bg-transparent text-white placeholder-pink-200 focus:outline-none focus:border-pink-400 py-1 text-sm sm:text-base w-full sm:w-auto"
-            />
-            <input
-              type="text"
-              name="subject"
-              placeholder="Mobile Number"
-              value={formData.subject}
-              onChange={handleChange}
-              required
-              className="flex-1 border-b border-pink-200 bg-transparent text-white placeholder-pink-200 focus:outline-none focus:border-pink-400 py-1 text-sm sm:text-base w-full sm:w-auto"
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Your Email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="flex-1 border-b border-pink-200 bg-transparent text-white placeholder-pink-200 focus:outline-none focus:border-pink-400 py-1 text-sm sm:text-base w-full sm:w-auto"
-            />
+          <input
+            type="text"
+            name="name"
+            placeholder="Enter Your Name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 rounded-full bg-transparent border border-pink-200 text-white placeholder-pink-200 focus:outline-none focus:ring-1 focus:ring-pink-400 text-sm sm:text-base"
+          />
+          <input
+            type="text"
+            name="subject"
+            placeholder="Mobile Number"
+            value={formData.subject}
+            onChange={handleChange}
+            required
+            className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 rounded-full bg-transparent border border-pink-200 text-white placeholder-pink-200 focus:outline-none focus:ring-1 focus:ring-pink-400 text-sm sm:text-base"
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 rounded-full bg-transparent border border-pink-200 text-white placeholder-pink-200 focus:outline-none focus:ring-1 focus:ring-pink-400 text-sm sm:text-base"
+          />
 
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className="mt-3 sm:mt-0 px-6 sm:px-8 py-2 bg-[#ff0055] hover:bg-[#ff2a6f] rounded-md font-semibold text-white transition-all text-sm sm:text-base"
-            >
-              Submit
-            </button>
-          </div>
+          <button
+            type="submit"
+            className="px-6 sm:px-8 py-2 sm:py-2.5 bg-[#ff0055] hover:bg-[#ff2a6f] rounded-full font-semibold text-white transition-all text-sm sm:text-base"
+          >
+            Submit
+          </button>
         </form>
 
         {/* Status Message */}
