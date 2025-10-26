@@ -1,103 +1,65 @@
 "use client";
-import { useState, FormEvent, ChangeEvent } from "react";
 
-export default function ContactForm() {
-  const [formData, setFormData] = useState({
-    email: "",
-    name: "",
-    subject: "",
-    message: "",
-  });
+import Image from "next/image";
+import { MapPin, Clock } from "lucide-react";
+import { tripsData } from "../data/tripsData";
 
-  const [status, setStatus] = useState("");
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setStatus("Sending...");
-
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
-
-    const result = await response.json();
-    setStatus(result.success ? "Message Sent!" : "Failed to send message");
-
-    if (result.success) {
-      setFormData({ email: "", name: "", subject: "", message: "" });
-    }
-  };
-
+export default function PlanYourTrip() {
   return (
-    <section className="relative w-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 bg-black">
-      {/* Gradient Contact Box */}
-      <div className="w-full sm:w-[90%] max-w-5xl rounded-2xl bg-black text-white shadow-2xl p-6 sm:p-10 flex flex-col items-center justify-center -mt-40 z-10">
-        {/* Headings */}
-        <div className="text-center mb-6">
-          <h2 className="text-base sm:text-lg md:text-xl font-semibold tracking-wide">
-            Get Best Holiday Planned by Experts!
-          </h2>
-          <p className="text-xl sm:text-2xl md:text-3xl font-bold text-yellow-400 mt-1">
-            SEASONS SALE!!
-          </p>
-        </div>
+    <section className="py-16 ">
+      {/* Title */}
+      <div className="text-center mb-12">
+        <h2 className="text-3xl sm:text-4xl font-bold text-gray-200 tracking-tight">
+          <span className="text-gray-200">Plan</span> Your Trip
+        </h2>
+        <div className="mx-auto mt-3 w-28  bg-gradient-to-r from-red-600 via-blue-600 to-blue-600 rounded-full" />
+        <p className="text-gray-500 text-sm sm:text-base mt-3 max-w-md mx-auto">
+          Discover curated travel experiences with the perfect blend of adventure and comfort.
+        </p>
+      </div>
 
-        {/* Form */}
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-4xl"
-        >
-          <input
-            type="text"
-            name="name"
-            placeholder="Enter Your Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 rounded-full bg-transparent border border-pink-200 text-white placeholder-pink-200 focus:outline-none focus:ring-1 focus:ring-pink-400 text-sm sm:text-base"
-          />
-          <input
-            type="text"
-            name="subject"
-            placeholder="Mobile Number"
-            value={formData.subject}
-            onChange={handleChange}
-            required
-            className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 rounded-full bg-transparent border border-pink-200 text-white placeholder-pink-200 focus:outline-none focus:ring-1 focus:ring-pink-400 text-sm sm:text-base"
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 rounded-full bg-transparent border border-pink-200 text-white placeholder-pink-200 focus:outline-none focus:ring-1 focus:ring-pink-400 text-sm sm:text-base"
-          />
-
-          <button
-            type="submit"
-            className="px-6 sm:px-8 py-2 sm:py-2.5 bg-[#ff0055] hover:bg-[#ff2a6f] rounded-full font-semibold text-white transition-all text-sm sm:text-base"
+      {/* Cards Grid */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6 sm:px-8 md:px-40 ">
+        {tripsData.map((trip) => (
+          <div
+            key={trip.id}
+            className="group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2"
           >
-            Submit
-          </button>
-        </form>
+            {/* Image Section */}
+            <div className="relative w-full h-56 overflow-hidden">
+              <Image
+                src={trip.image}
+                alt={trip.title}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-md flex items-center gap-1">
+                <Clock size={14} /> {trip.duration}
+              </div>
+            </div>
 
-        {/* Status Message */}
-        {status && (
-          <p
-            className={`text-center mt-3 text-xs font-medium ${
-              status === "Message Sent!" ? "text-green-400" : "text-red-400"
-            }`}
-          >
-            {status}
-          </p>
-        )}
+            {/* Card Content */}
+            <div className="p-1 flex flex-col justify-between h-48">
+              <div className="">
+                <h3 className="font-semibold text-gray-900 text-base sm:text-lg leading-snug line-clamp-2 group-hover:text-red-600 transition-colors">
+                  {trip.title}
+                </h3>
+                <p className="text-gray-600 text-xs sm:text-sm flex items-center gap-1">
+                  <MapPin size={14} className="text-red-600" /> {trip.location}
+                </p>
+              </div>
+
+              <div className="flex justify-between items-center ">
+                <span className="font-semibold text-gray-900 text-sm sm:text-base">
+                  {trip.price}
+                </span>
+                <button className="bg-red-600  text-white text-xs sm:text-sm px-4 py-2 rounded-md shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300">
+                  Read More
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
