@@ -17,7 +17,7 @@ export default function ContactFormPopup() {
   const [status, setStatus] = useState("");
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowPopup(true), 5000); // show after 5 sec
+    const timer = setTimeout(() => setShowPopup(true), 5000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -51,56 +51,58 @@ export default function ContactFormPopup() {
         persons: "",
         destination: "",
       });
-      setShowPopup(false); // close popup on success
+      setShowPopup(false);
     }
   };
 
   return (
     <>
       {showPopup && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-gray-900 rounded-2xl w-full max-w-xl p-6 sm:p-8 relative shadow-2xl animate-fadeIn">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-2">
+          <div className="bg-white dark:bg-gray-900 rounded-lg w-full max-w-xs p-4 relative shadow-lg">
+            {/* Close Button */}
             <button
               onClick={() => setShowPopup(false)}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-900 dark:hover:text-white"
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-900 dark:hover:text-white"
             >
-              <X size={24} />
+              <X size={18} />
             </button>
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-center text-gray-900 dark:text-white">
+
+            {/* Title */}
+            <h2 className="text-lg font-semibold mb-3 text-center text-gray-900 dark:text-white">
               Plan Your Holiday
             </h2>
-            <form
-              onSubmit={handleSubmit}
-              className="flex flex-col gap-4 sm:gap-6"
-            >
+
+            {/* Form */}
+            <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
               <input
                 type="text"
                 name="name"
-                placeholder="Enter Your Name"
+                placeholder="Name"
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-transparent text-gray-900 dark:text-white placeholder-gray-400"
+                className="w-full px-2 py-1 rounded border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-1 focus:ring-yellow-400 text-sm text-gray-900 dark:text-white placeholder-gray-400"
               />
 
               <input
                 type="text"
                 name="subject"
-                placeholder="Mobile Number"
+                placeholder="Mobile"
                 value={formData.subject}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-transparent text-gray-900 dark:text-white placeholder-gray-400"
+                className="w-full px-2 py-1 rounded border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-1 focus:ring-yellow-400 text-sm text-gray-900 dark:text-white placeholder-gray-400"
               />
 
               <input
                 type="email"
                 name="email"
-                placeholder="Your Email"
+                placeholder="Email"
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-transparent text-gray-900 dark:text-white placeholder-gray-400"
+                className="w-full px-2 py-1 rounded border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-1 focus:ring-yellow-400 text-sm text-gray-900 dark:text-white placeholder-gray-400"
               />
 
               <input
@@ -109,18 +111,18 @@ export default function ContactFormPopup() {
                 value={formData.date}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-transparent text-gray-900 dark:text-white placeholder-gray-400"
+                className="w-full px-2 py-1 rounded border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-1 focus:ring-yellow-400 text-sm text-gray-900 dark:text-white"
               />
 
               <input
-                type="text"
+                type="number"
                 name="persons"
-                placeholder="Total Persons"
+                placeholder="Persons"
                 value={formData.persons}
                 onChange={handleChange}
                 min={1}
                 required
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-transparent text-gray-900 dark:text-white placeholder-gray-400"
+                className="w-full px-2 py-1 rounded border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-1 focus:ring-yellow-400 text-sm text-gray-900 dark:text-white"
               />
 
               <input
@@ -130,7 +132,7 @@ export default function ContactFormPopup() {
                 value={formData.destination}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-transparent text-gray-900 dark:text-white placeholder-gray-400"
+                className="w-full px-2 py-1 rounded border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-1 focus:ring-yellow-400 text-sm text-gray-900 dark:text-white"
               />
 
               <select
@@ -138,37 +140,35 @@ export default function ContactFormPopup() {
                 value={formData.message}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-transparent text-gray-900 dark:text-white placeholder-gray-400"
+                className="w-full px-2 py-1 rounded border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-1 focus:ring-yellow-400 text-sm text-gray-900 dark:text-white"
               >
                 <option value="" disabled>
-                  Select Message
+                  Message
                 </option>
                 <option value="Query">Query</option>
                 <option value="Suggestion">Suggestion</option>
-                <option value="Type">Type your own</option>
+                <option value="Type">Custom</option>
               </select>
 
               {formData.message === "Type" && (
                 <input
                   type="text"
                   name="customMessage"
-                  placeholder="Write your message..."
+                  placeholder="Write message..."
                   value={formData.customMessage}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-transparent text-gray-900 dark:text-white placeholder-gray-400"
+                  className="w-full px-2 py-1 rounded border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-1 focus:ring-yellow-400 text-sm text-gray-900 dark:text-white"
                 />
               )}
 
-              <button
-                type="submit"
-                className="w-full py-2 sm:py-3 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold rounded-lg transition-all"
-              >
+              <button className="w-full py-1.5 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold rounded text-sm mt-1">
                 Submit
               </button>
             </form>
+
             {status && (
               <p
-                className={`mt-3 text-center font-medium ${
+                className={`mt-2 text-center text-xs font-medium ${
                   status === "Message Sent!" ? "text-green-600" : "text-red-600"
                 }`}
               >
