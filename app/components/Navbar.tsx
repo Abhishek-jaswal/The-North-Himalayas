@@ -33,11 +33,11 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex items-center space-x-8 font-semibold text-sm text-gray-800">
-          <li className="bg-gray-800 text-white px-4 py-2 rounded-sm">HOME</li>
+          <li className="bg-black text-white px-4 py-2 rounded-sm">HOME</li>
 
           {/* Destinations Dropdown */}
           <li
-            className="relative cursor-pointer flex items-center gap-1 hover:text-gray-200 hover:bg-gray-800 px-4 py-2 rounded-sm"
+            className="relative cursor-pointer flex items-center gap-1 hover:text-gray-200 hover:bg-black px-4 py-2 rounded-sm"
             onMouseEnter={() => setOpenDest(true)}
             onMouseLeave={() => setOpenDest(false)}
           >
@@ -53,7 +53,7 @@ export default function Navbar() {
 
           {/* Tours by Type Dropdown */}
           <li
-            className="relative cursor-pointer flex items-center gap-1 hover:text-gray-200 hover:text-gray-200 hover:bg-gray-800 px-4 py-2 rounded-sm"
+            className="relative cursor-pointer flex items-center gap-1 hover:text-gray-200 hover:text-gray-200 hover:bg-black px-4 py-2 rounded-sm"
             onMouseEnter={() => setOpenTours(true)}
             onMouseLeave={() => setOpenTours(false)}
           >
@@ -67,7 +67,7 @@ export default function Navbar() {
             )}
           </li>
 
-          <li className="hover:text-gray-200 cursor-pointer hover:bg-gray-800 px-4 py-2 rounded-sm">CONTACT US</li>
+          <li className="hover:text-gray-200 cursor-pointer hover:bg-black px-4 py-2 rounded-sm">CONTACT US</li>
         </ul>
 
         {/* Mobile Toggle */}
@@ -83,10 +83,10 @@ export default function Navbar() {
       {menuOpen && (
         <div className="md:hidden bg-white shadow-md border-t animate-slideDown">
           <ul className="flex flex-col text-gray-800 font-semibold">
-            <li className="bg-pink-600 text-white px-6 py-3">HOME</li>
+            <li className="bg-black text-lg text-white px-6 py-3">HOME</li>
 
             <li
-              className="px-6 py-3 flex justify-between items-center border-t"
+              className="px-6 py-3 flex justify-between items-center border-t bg-black text-lg  text-white"
               onClick={() => setOpenDest(!openDest)}
             >
               DESTINATIONS <ChevronDown size={16} />
@@ -100,7 +100,7 @@ export default function Navbar() {
             )}
 
             <li
-              className="px-6 py-3 flex justify-between items-center border-t"
+              className="px-6 py-3 flex justify-between items-center border-t bg-black text-lg  text-white"
               onClick={() => setOpenTours(!openTours)}
             >
               TOURS BY TYPE <ChevronDown size={16} />
@@ -113,7 +113,7 @@ export default function Navbar() {
               </ul>
             )}
 
-            <li className="px-6 py-3 border-t hover:bg-gray-100">CONTACT US</li>
+            <li className="px-6 py-3 border-t hover:bg-gray-100 bg-black text-lg  text-white">CONTACT US</li>
           </ul>
         </div>
       )}

@@ -40,7 +40,7 @@ export default function ContactForm() {
       id="contact"
       className="relative w-full flex flex-col items-center justify-center px-4  bg-black"
     >
-          <h1 className=" text-[5rem] sm:text-[11rem] sm:-mt-[30rem] -mt-[25rem] items-center justify-center font-bold pl-14 sm:pl-40 text-black/60 select-none pointer-events-none z-10">
+          <h1 className=" text-[3rem] sm:text-[11rem] sm:-mt-[30rem] -mt-[15rem] items-center justify-center font-bold pl-10 sm:pl-30 text-black/60 select-none pointer-events-none z-10">
     THE NORTH HIMALAYAS
   </h1> 
       {/* Title */}
@@ -88,7 +88,15 @@ export default function ContactForm() {
               className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 rounded-full bg-transparent border border-pink-200 text-white placeholder-pink-200 focus:outline-none focus:ring-1 focus:ring-pink-400 text-sm sm:text-base"
             />
      
-
+<input
+            name="message"
+            type="message"
+            placeholder="Message" 
+            value={formData.message}
+            onChange={handleChange}
+            required
+            className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 rounded-full bg-transparent border border-pink-200 text-white placeholder-pink-200 focus:outline-none focus:ring-1 focus:ring-pink-400 text-sm sm:text-base"
+          />
           <button
             type="submit"
             className="px-6 sm:px-8 py-2 sm:py-2.5 bg-gray-100  rounded-full font-semibold text-black transition-all text-sm sm:text-base"
