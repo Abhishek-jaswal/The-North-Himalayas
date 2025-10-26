@@ -31,6 +31,14 @@ export default function MainLayout() {
             transition={{ duration: 0.8 }}
             className="fixed inset-0 flex flex-col items-center justify-center bg-black text-white z-50"
           >
+            <motion.img
+              src="/images/logos/logo_5.jpg"
+              alt="Logo"
+              className="w-32 h-32 mb-6"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+            />
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
