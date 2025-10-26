@@ -7,13 +7,16 @@ export default function ContactForm() {
     name: "",
     subject: "",
     message: "",
+    customMessage: "",
   });
 
   const [status, setStatus] = useState("");
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+const handleChange = (
+  e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+) => {
+  setFormData({ ...formData, [e.target.name]: e.target.value });
+};
 
 
 
@@ -31,7 +34,7 @@ export default function ContactForm() {
     setStatus(result.success ? "Message Sent!" : "Failed to send message");
 
     if (result.success) {
-      setFormData({ email: "", name: "", subject: "", message: "" });
+      setFormData({ email: "", name: "", subject: "", message: "" , customMessage: "",});
     }
   };
 
@@ -40,11 +43,11 @@ export default function ContactForm() {
       id="contact"
       className="relative w-full flex flex-col items-center justify-center px-4  bg-black"
     >
-          <h1 className=" text-[3rem] sm:text-[11rem] sm:-mt-[30rem] -mt-[15rem] items-center justify-center font-bold pl-10 sm:pl-30 text-black/60 select-none pointer-events-none z-10">
+          <h1 className=" text-none  sm:text-[11rem] sm:-mt-[30rem] -mt-[15rem] items-center justify-center font-bold pl-10 sm:pl-40 text-black/60 select-none pointer-events-none z-10">
     THE NORTH HIMALAYAS
   </h1> 
       {/* Title */}
-      <div className="w-full sm:w-[90%] max-w-5xl rounded-2xl bg-black text-white shadow-2xl p-6 pt-2 sm:p-2 flex flex-col items-center justify-center  z-10 bg-black/50">
+      <div className="w-full sm:w-[90%] max-w-5xl rounded-2xl bg-black text-white shadow-2xl p-6 pt-2 sm:p-2 flex flex-col items-center justify-center  z-10 bg-black/50 -mt-60 sm:mt-3 mb-10">
    
           <div className="text-center  h-10">
           <h2 className="text-base sm:text-lg md:text-xl font-semibold tracking-wide">
@@ -67,7 +70,7 @@ export default function ContactForm() {
               value={formData.name}
               onChange={handleChange}
               required
-              className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 rounded-full bg-transparent border border-pink-200 text-white placeholder-pink-200 focus:outline-none focus:ring-1 focus:ring-pink-400 text-sm sm:text-base"
+              className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 bg-transparent border-b border-gray-600 rounded-full text-white placeholder-gray-200 focus:outline-none focus:border-gray-400 focus:ring-0 text-sm sm:text-base"
             />
             <input
               type="text"
@@ -76,27 +79,67 @@ export default function ContactForm() {
               value={formData.subject}
               onChange={handleChange}
               required
-              className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 rounded-full bg-transparent border border-pink-200 text-white placeholder-pink-200 focus:outline-none focus:ring-1 focus:ring-pink-400 text-sm sm:text-base"
+              className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 bg-transparent border-b border-gray-600 rounded-full text-white placeholder-gray-200 focus:outline-none focus:border-gray-400 focus:ring-0 text-sm sm:text-base"
             />
-            <input
-              type="email"
-              name="email"
-              placeholder="Your Email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 rounded-full bg-transparent border border-pink-200 text-white placeholder-pink-200 focus:outline-none focus:ring-1 focus:ring-pink-400 text-sm sm:text-base"
-            />
+      <input
+  type="email"
+  name="email"
+  placeholder="Your Email"
+  value={formData.email}
+  onChange={handleChange}
+  required
+  className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 bg-transparent border-b border-gray-600 rounded-full text-white placeholder-gray-200 focus:outline-none focus:border-gray-400 focus:ring-0 text-sm sm:text-base"
+/>
+
+
+
+      <select
+        name="message"
+        value={formData.message}
+        onChange={handleChange}
+        required
+        className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 bg-transparent border-b border-gray-600 rounded-full text-white placeholder-gray-200 focus:outline-none focus:border-gray-400 focus:ring-0 text-sm sm:text-base appearance-none"
+      >
+        <option value="" disabled className="bg-black text-gray-600">
+          Select Message
+        </option>
+        <option value="Query" className="bg-black text-white">
+          Query
+        </option>
+        <option value="Suggestion" className="bg-black text-white">
+          Suggestion
+        </option>
+        <option value="Type" className="bg-black text-white">
+          Type your own
+        </option>
+      </select>
+
+      {/* Custom text input appears when "Type" is selected */}
+      {formData.message === "Type" && (
+        <input
+          type="text"
+          name="customMessage"
+          placeholder="Write your message..."
+          value={formData.customMessage}
+          onChange={handleChange}
+          className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 bg-transparent border-b border-gray-600 rounded-full text-white placeholder-gray-200 focus:outline-none focus:border-gray-400 focus:ring-0 text-sm sm:text-base appearance-none"
+        />
+      )}
+ 
+
+
+
+
      
-<input
+{/* <input
             name="message"
             type="message"
             placeholder="Message" 
             value={formData.message}
             onChange={handleChange}
             required
-            className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 rounded-full bg-transparent border border-pink-200 text-white placeholder-pink-200 focus:outline-none focus:ring-1 focus:ring-pink-400 text-sm sm:text-base"
-          />
+            className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 bg-transparent border-b border-pink-200 rounded-full text-white placeholder-pink-200 focus:outline-none focus:border-gray-400 focus:ring-0 text-sm sm:text-base"
+          /> */}
           <button
             type="submit"
             className="px-6 sm:px-8 py-2 sm:py-2.5 bg-gray-100  rounded-full font-semibold text-black transition-all text-sm sm:text-base"

@@ -25,10 +25,10 @@ export default function Navbar() {
         scrolled ? "bg-white shadow-md" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-2">
+      <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-1">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <Image src="/images/logo4.jpg" alt="Logo" width={60} height={20} />
+          <Image src="/images/logos/logo_5.jpg" alt="Logo" width={60} height={40} />
         </div>
 
         {/* Desktop Menu */}

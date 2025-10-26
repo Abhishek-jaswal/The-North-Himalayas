@@ -49,4 +49,21 @@ export const tripsData = [
     price: "INR 6999",
     image: "/images/packages/dharamshala.jpg",
   },
+    {
+    id: 7,
+    title: "04 Nights 05 Days Kashmir Holiday Package",
+    duration: "4 Nights / 5 Days",
+    location:
+      "Srinagar, Pahalgam, Gulmarg, Shalimar Garden, Nishat Garden, Sonmarg",
+    price: "INR 15000",
+    image: "/images/packages/kashmir5.jpg",
+  },
+  {
+    id: 8,
+    title: " Days In Shimla Tour",
+    duration: "1 Nights / 2 Days",
+    location: "Kufri, Shimla, Kufri",
+    price: "INR 6999",
+    image: "/images/packages/kashmir.jpg",
+  },
 ];

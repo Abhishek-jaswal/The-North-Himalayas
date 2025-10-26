@@ -2,7 +2,14 @@ import nodemailer from "nodemailer";
 
 export async function POST(req) {
   try {
-    const { email, name, subject, message } = await req.json();
+    const {     email,
+    name,
+    subject,
+    message,
+    customMessage,
+    date,
+    persons,
+    destination, } = await req.json();
 
     if (!email || !name || !subject || !message) {
       return new Response(JSON.stringify({ error: "All fields are required" }), { status: 400 });
@@ -21,8 +28,8 @@ export async function POST(req) {
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: process.env.RECEIVER_EMAIL,
-      subject: `New Contact Form Submission: ${subject}`,
-      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+      subject: `New Contact Form Submission: ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n\nAdditional Message:\n${customMessage}\n\nTrip Details:\nDestination: ${destination}\nDate: ${date}\nTotal Persons: ${persons}\nContact: ${subject}`,
     };
 
     const info = await transporter.sendMail(mailOptions);
