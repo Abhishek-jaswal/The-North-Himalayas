@@ -19,7 +19,7 @@ export default function PlanYourTrip() {
       </div>
 
       {/* Cards Grid */}
-     <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6 sm:px-8 md:px-40">
+     <div className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8 px-6 sm:px-8 md:px-40">
   {tripsData.map((trip) => (
     <div
       key={trip.id}
