@@ -8,6 +8,7 @@ import PlanYourTrip from "./PlanYourTrip";
 import ImageMarquee from "./ImageMarquee";
 import WhatsAppButton from "./WhatsAppButton";
 import Footer from "./Footer";
+import ContactFormPopup from "./ContactFormPopup";
 
 export default function MainLayout() {
   const [loading, setLoading] = useState(true);
@@ -62,6 +63,7 @@ export default function MainLayout() {
             <PlanYourTrip />
             <ImageMarquee />
             <WhatsAppButton />
+            <ContactFormPopup/>
             <Footer />
           </motion.div>
         )}

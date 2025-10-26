@@ -12,9 +12,11 @@ export default function ContactForm() {
 
   const [status, setStatus] = useState("");
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+const handleChange = (
+  e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+) => {
+  setFormData({ ...formData, [e.target.name]: e.target.value });
+};
 
 
 
@@ -90,7 +92,7 @@ export default function ContactForm() {
 />
 
 
-  <div className="w-full relative">
+
       <select
         name="message"
         value={formData.message}
@@ -123,7 +125,7 @@ export default function ContactForm() {
           className="w-full mt-3 px-4 py-2 bg-transparent border-b border-gray-600 text-white placeholder-gray-500 focus:outline-none focus:border-gray-400 focus:ring-0 text-sm sm:text-base"
         />
       )}
-    </div>
+ 
 
 
 

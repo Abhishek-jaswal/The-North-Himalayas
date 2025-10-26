@@ -113,7 +113,7 @@ export default function ContactFormPopup() {
               />
 
               <input
-                type="number"
+                type="text"
                 name="persons"
                 placeholder="Total Persons"
                 value={formData.persons}
