@@ -6,7 +6,7 @@ import { tripsData } from "../data/tripsData";
 
 export default function PlanYourTrip() {
   return (
-    <section className="py-16 ">
+    <section className="py-12 ">
       {/* Title */}
       <div className="text-center mb-12">
         <h2 className="text-3xl sm:text-4xl font-bold text-gray-200 tracking-tight">

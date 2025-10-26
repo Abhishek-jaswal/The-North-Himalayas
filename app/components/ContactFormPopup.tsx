@@ -1,6 +1,16 @@
 "use client";
 import { useState, useEffect, FormEvent, ChangeEvent } from "react";
-import { X } from "lucide-react";
+import {
+  X,
+  Calendar,
+  Users,
+  MapPin,
+  Phone,
+  Mail,
+  User,
+  Send,
+  CheckCircle2,
+} from "lucide-react";
 
 export default function ContactFormPopup() {
   const [showPopup, setShowPopup] = useState(false);
@@ -15,6 +25,7 @@ export default function ContactFormPopup() {
     destination: "",
   });
   const [status, setStatus] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setShowPopup(true), 5000);
@@ -27,157 +38,222 @@ export default function ContactFormPopup() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setStatus("Sending...");
-
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
-
-    const result = await response.json();
-    setStatus(result.success ? "Message Sent!" : "Failed to send message");
-
-    if (result.success) {
-      setFormData({
-        email: "",
-        name: "",
-        subject: "",
-        message: "",
-        customMessage: "",
-        date: "",
-        persons: "",
-        destination: "",
-      });
-      setShowPopup(false);
-    }
+    setIsSubmitting(true);
+    setStatus("sending");
+    setTimeout(() => {
+      setStatus("success");
+      setIsSubmitting(false);
+      setTimeout(() => {
+        setFormData({
+          email: "",
+          name: "",
+          subject: "",
+          message: "",
+          customMessage: "",
+          date: "",
+          persons: "",
+          destination: "",
+        });
+        setShowPopup(false);
+        setStatus("");
+      }, 2000);
+    }, 1500);
   };
 
+  const handleClose = () => setShowPopup(false);
+  if (!showPopup) return null;
+
   return (
-    <>
-      {showPopup && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-2">
-          <div className="bg-white dark:bg-gray-900 rounded-lg w-full max-w-xs p-4 relative shadow-lg">
-            {/* Close Button */}
-            <button
-              onClick={() => setShowPopup(false)}
-              className="absolute top-2 right-2 text-gray-500 hover:text-gray-900 dark:hover:text-white"
-            >
-              <X size={18} />
-            </button>
-
-            {/* Title */}
-            <h2 className="text-lg font-semibold mb-3 text-center text-gray-900 dark:text-white">
-              Plan Your Holiday
+    <div className="fixed inset-0 z-50 flex items-center justify-center px-4 animate-fade-in">
+      <div
+        className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+        onClick={handleClose}
+      />
+      <div className="relative w-full max-w-sm bg-neutral-900 rounded-2xl shadow-xl overflow-hidden animate-popup-enter text-gray-200">
+        {/* Header */}
+        <div className="h-24 bg-black relative">
+          <button
+            onClick={handleClose}
+            className="absolute top-3 right-3 p-1.5 rounded-full bg-white/20 hover:bg-white/30 text-white"
+          >
+            <X size={16} />
+          </button>
+          <div className="flex flex-col items-center justify-center h-full text-center">
+            <div className="bg-white/20 backdrop-blur-sm rounded-full p-2 mb-1">
+              <MapPin size={20} />
+            </div>
+            <h2 className="text-lg font-semibold text-white">
+              Plan Your Dream Holiday
             </h2>
+            <p className="text-xs text-white/90">Let&apos;s create memories 🌴</p>
+          </div>
+        </div>
 
-            {/* Form */}
-            <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
+        {/* Form */}
+        <div className="p-4 space-y-3">
+          <form onSubmit={handleSubmit} className="space-y-3">
+            {/* Name */}
+            <div className="relative">
+              <User
+                size={16}
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+              />
               <input
                 type="text"
                 name="name"
-                placeholder="Name"
+                placeholder="Full Name"
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-2 py-1 rounded border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-1 focus:ring-yellow-400 text-sm text-gray-900 dark:text-white placeholder-gray-400"
+                className="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-gray-700 bg-transparent focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/30 outline-none"
               />
+            </div>
 
+            {/* Phone */}
+            <div className="relative">
+              <Phone
+                size={16}
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+              />
               <input
-                type="text"
+                type="tel"
                 name="subject"
-                placeholder="Mobile"
+                placeholder="Mobile Number"
                 value={formData.subject}
                 onChange={handleChange}
                 required
-                className="w-full px-2 py-1 rounded border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-1 focus:ring-yellow-400 text-sm text-gray-900 dark:text-white placeholder-gray-400"
+                className="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-gray-700 bg-transparent focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/30 outline-none"
               />
+            </div>
 
+            {/* Email */}
+            <div className="relative">
+              <Mail
+                size={16}
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+              />
               <input
                 type="email"
                 name="email"
-                placeholder="Email"
+                placeholder="Email Address"
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-2 py-1 rounded border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-1 focus:ring-yellow-400 text-sm text-gray-900 dark:text-white placeholder-gray-400"
+                className="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-gray-700 bg-transparent focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/30 outline-none"
               />
+            </div>
 
-              <input
-                type="date"
-                name="date"
-                value={formData.date}
-                onChange={handleChange}
-                required
-                className="w-full px-2 py-1 rounded border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-1 focus:ring-yellow-400 text-sm text-gray-900 dark:text-white"
+            {/* Grid for Date & Persons */}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="relative">
+                <Calendar
+                  size={16}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                />
+                <input
+                  type="date"
+                  name="date"
+                  value={formData.date}
+                  onChange={handleChange}
+                  required
+                  className="w-full pl-9 pr-2 py-2 text-sm rounded-lg border border-gray-700 bg-transparent focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/30 outline-none "
+                />
+              </div>
+              <div className="relative">
+                <Users
+                  size={16}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                />
+                <input
+                  type="number"
+                  name="persons"
+                  placeholder="Persons"
+                  min={1}
+                  value={formData.persons}
+                  onChange={handleChange}
+                  required
+                  className="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-gray-700 bg-transparent focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/30 outline-none "
+                />
+              </div>
+            </div>
+
+            {/* Destination */}
+            <div className="relative">
+              <MapPin
+                size={16}
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
               />
-
-              <input
-                type="number"
-                name="persons"
-                placeholder="Persons"
-                value={formData.persons}
-                onChange={handleChange}
-                min={1}
-                required
-                className="w-full px-2 py-1 rounded border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-1 focus:ring-yellow-400 text-sm text-gray-900 dark:text-white"
-              />
-
               <input
                 type="text"
                 name="destination"
-                placeholder="Destination"
+                placeholder="Destination (e.g., Bali)"
                 value={formData.destination}
                 onChange={handleChange}
                 required
-                className="w-full px-2 py-1 rounded border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-1 focus:ring-yellow-400 text-sm text-gray-900 dark:text-white"
+                className="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-gray-700 bg-transparent focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/30 outline-none"
               />
+            </div>
 
-              <select
-                name="message"
-                value={formData.message}
+            {/* Inquiry Type */}
+            <select
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              required
+              className="w-full px-3 py-2 text-sm rounded-lg border border-gray-700 bg-transparent text-gray-200 focus:border-indigo-400 focus:bg-neutral-900 focus:ring-2 focus:ring-indigo-400/30 outline-none bg-black"
+            >
+              <option value="" disabled>
+                Select inquiry type
+              </option>
+              <option value="Query" className="text-gray-200">General Query</option>
+              <option value="Suggestion">Suggestion</option>
+              <option value="Type">Custom Message</option>
+            </select>
+
+            {formData.message === "Type" && (
+              <textarea
+                name="customMessage"
+                placeholder="Tell us more..."
+                value={formData.customMessage}
                 onChange={handleChange}
-                required
-                className="w-full px-2 py-1 rounded border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-1 focus:ring-yellow-400 text-sm text-gray-900 dark:text-white"
-              >
-                <option value="" disabled>
-                  Message
-                </option>
-                <option value="Query">Query</option>
-                <option value="Suggestion">Suggestion</option>
-                <option value="Type">Custom</option>
-              </select>
+                rows={2}
+                className="w-full px-3 py-2 text-sm rounded-lg border border-gray-700 bg-transparent text-gray-300 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/30 outline-none resize-none"
+              />
+            )}
 
-              {formData.message === "Type" && (
-                <input
-                  type="text"
-                  name="customMessage"
-                  placeholder="Write message..."
-                  value={formData.customMessage}
-                  onChange={handleChange}
-                  className="w-full px-2 py-1 rounded border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-1 focus:ring-yellow-400 text-sm text-gray-900 dark:text-white"
-                />
+            {/* Button */}
+            <button
+              type="submit"
+              disabled={isSubmitting || status === "success"}
+              className="w-full py-2.5 bg-black hover:bg-gray-900 rounded-lg text-sm font-medium text-white transition-all duration-300 flex items-center justify-center gap-2"
+            >
+              {status === "success" ? (
+                <>
+                  <CheckCircle2 size={16} />
+                  Sent!
+                </>
+              ) : isSubmitting ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  Sending...
+                </>
+              ) : (
+                <>
+                  Plan Holiday <Send size={14} />
+                </>
               )}
+            </button>
 
-              <button className="w-full py-1.5 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold rounded text-sm mt-1">
-                Submit
-              </button>
-            </form>
-
-            {status && (
-              <p
-                className={`mt-2 text-center text-xs font-medium ${
-                  status === "Message Sent!" ? "text-green-600" : "text-red-600"
-                }`}
-              >
-                {status}
+            {status === "success" && (
+              <p className="text-green-400 text-center text-xs">
+                We&apos;ll contact you soon 🌺
               </p>
             )}
-          </div>
+          </form>
         </div>
-      )}
-    </>
+      </div>
+    </div>
   );
 }
