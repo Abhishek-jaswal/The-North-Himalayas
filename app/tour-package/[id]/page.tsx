@@ -20,7 +20,7 @@ export default function TourPackagePage({ params }: { params: Promise<{ id: stri
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100 flex flex-col items-center py-10 px-4 sm:px-6 md:px-10">
+    <div className="min-h-screen bg-black text-gray-100 flex flex-col items-center py-10 px-4 sm:px-6 md:px-10">
       <div className="w-full max-w-5xl bg-white text-gray-900 rounded-2xl shadow-2xl overflow-hidden relative animate-fadeIn">
         
         {/* ✅ Back Button */}
@@ -56,7 +56,7 @@ export default function TourPackagePage({ params }: { params: Promise<{ id: stri
           </ul>
 
           <div className="mt-8 flex justify-center">
-            <button className="bg-gradient-to-r from-blue-600 to-red-600 text-white px-6 py-3 rounded-full font-semibold hover:scale-105 transition-transform duration-300">
+            <button className="bg-black text-gray-200 px-6 py-3 rounded-full font-semibold hover:scale-105 transition-transform duration-300">
               Book Your Tour
             </button>
           </div>

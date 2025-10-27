@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Clock } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { tripsData } from "../data/tripsData";
+import TourPackageCard from "./TourPackageCard";
 
 export default function PlanYourTrip() {
   const router = useRouter();
@@ -13,7 +14,7 @@ export default function PlanYourTrip() {
   };
 
   return (
-    <section className="py-12 bg-gradient-to-b from-gray-900 via-gray-950 to-black">
+    <section className="py-12 bg-black">
       {/* Title */}
       <div className="text-center mb-12">
         <h2 className="text-3xl sm:text-4xl font-bold text-gray-100 tracking-tight">
@@ -66,11 +67,17 @@ export default function PlanYourTrip() {
                 <Clock size={14} /> {trip.duration}
               </div>
             </div>
-
-            
           </div>
         ))}
       </div>
+     <div className="p-6">
+      <button
+        onClick={() => router.push("/TourPackageCard")}
+        className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+      >
+       View All Packages →
+      </button>
+    </div>
     </section>
   );
 }
