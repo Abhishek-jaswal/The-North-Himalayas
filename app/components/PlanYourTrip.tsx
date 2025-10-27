@@ -4,7 +4,6 @@ import Image from "next/image";
 import { Clock } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { tripsData } from "../data/tripsData";
-import TourPackageCard from "./TourPackageCard";
 
 export default function PlanYourTrip() {
   const router = useRouter();
@@ -57,7 +56,7 @@ export default function PlanYourTrip() {
                     }}
                     className="text-white text-base sm:text-lg font-semibold border border-white px-5 py-2 rounded-full hover:bg-white hover:text-black transition-all duration-300"
                   >
-                    View More
+                    {trip.place}
                   </button>
                 </div>
               </div>

@@ -11,6 +11,7 @@ export const tripsData = [
     activities: "Mountaineering, Trekking",
     theme: "Hill Stations & Valleys",
     price: "on your request",
+    place:"dharamshala"
   },
   {
     id: "2",
@@ -24,6 +25,8 @@ export const tripsData = [
     activities: "Sightseeing, Mountaineering",
     theme: "Hill Stations & Valleys",
     price: "on your request",
+        place:"dharamshala"
+
   },
   {
     id: "3",
@@ -37,6 +40,8 @@ export const tripsData = [
     activities: "Mountaineering, Trekking",
     theme: "Hill Stations & Valleys",
     price: "on your request",
+        place:"dharamshala"
+
   },
   {
     id: "4",
@@ -50,6 +55,8 @@ export const tripsData = [
     activities: "Sightseeing, Mountaineering",
     theme: "Hill Stations & Valleys",
     price: "on your request",
+        place:"dharamshala"
+
   },
   {
     id: "5",
@@ -63,6 +70,8 @@ export const tripsData = [
     activities: "Mountaineering, Trekking",
     theme: "Hill Stations & Valleys",
     price: "on your request",
+        place:"dharamshala"
+
   },
   {
     id: "6",
@@ -76,6 +85,8 @@ export const tripsData = [
     activities: "Sightseeing, Mountaineering",
     theme: "Hill Stations & Valleys",
     price: "on your request",
+        place:"dharamshala"
+
   },
   {
     id: "7",
@@ -89,6 +100,8 @@ export const tripsData = [
     activities: "Mountaineering, Trekking",
     theme: "Hill Stations & Valleys",
     price: "on your request",
+        place:"dharamshala"
+
   },
   {
     id: "8",
@@ -102,5 +115,7 @@ export const tripsData = [
     activities: "Sightseeing, Mountaineering",
     theme: "Hill Stations & Valleys",
     price: "on your request",
+        place:"dharamshala"
+
   },
 ];
