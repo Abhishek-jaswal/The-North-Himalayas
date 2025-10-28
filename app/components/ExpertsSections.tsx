@@ -12,7 +12,7 @@ interface Expert {
 
 const experts: Expert[] = [
   {
-    name: "Sourabh",
+    name: "Sourabh Kumar",
     title: "Destination & Adventure Specialist",
     img: "/experts/sourabh.jpg",
     desc: "From hidden Himalayan trails to iconic Indian landmarks, Sourabh knows them all. His expertise in adventure and offbeat travel makes every journey exciting and safe.",

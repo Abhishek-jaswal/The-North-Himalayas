@@ -58,7 +58,7 @@ export default function ContactFormPopup() {
         });
         setShowPopup(false);
         setStatus("");
-      }, 2000);
+      }, 5000);
     }, 1500);
   };
 

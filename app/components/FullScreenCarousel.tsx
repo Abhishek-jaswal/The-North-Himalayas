@@ -7,11 +7,11 @@ import "swiper/css";
 
 const images = [
   "/images/packages/ladakh.jpg",
-  "/images/packages/dharamshala5.jpg",
-  "/images/crousal2.jpg",
-  "/images/packages/kashmir2.jpg",
+    "/images/packages/kashmir5.jpg",
   "/images/packages/dharamshala1.jpg",
-  "/images/packages/kashmir3.jpg"
+  "/images/packages/dharamshala.jpg",
+  "/images/packages/ladakh3.jpg",
+  "/images/packages/kashmir1.jpg"
 ];
 
 export default function FullScreenCarousel() {
