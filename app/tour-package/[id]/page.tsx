@@ -7,6 +7,7 @@ import { ArrowLeft } from "lucide-react";
 import { tripsData } from "../../data/tripsData";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import WhatsAppButton from "@/app/components/WhatsAppButton";
 
 export default function TourPackagePage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = React.use(params); // ✅ unwrap Promise
@@ -67,6 +68,7 @@ export default function TourPackagePage({ params }: { params: Promise<{ id: stri
         </div>
       </div>
     </div>
+    <WhatsAppButton/>
     <Footer />
     </>
   );

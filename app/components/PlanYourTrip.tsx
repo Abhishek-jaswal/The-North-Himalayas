@@ -15,9 +15,9 @@ export default function PlanYourTrip() {
   return (
     <section className="py-12 bg-black">
       {/* Title */}
-      <div className="text-center">
+      <div className="text-center px-4">
         <h2 className="text-3xl sm:text-4xl font-bold text-gray-100 tracking-tight">
-         Plan Your Trip
+          Plan Your Trip
         </h2>
         <div className="mx-auto mt-3 w-32 h-1 bg-gradient-to-r from-gray-200 via-gray-600 to-gray-900 rounded-full" />
         <p className="text-gray-400 text-sm sm:text-base mt-3 max-w-md mx-auto">
@@ -26,8 +26,8 @@ export default function PlanYourTrip() {
       </div>
 
       {/* Cards Grid */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 px-6 sm:px-8 md:px-12">
-        {tripsData.map((trip) => (
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 px-6 sm:px-8 md:px-12 mt-10">
+        {tripsData.slice(0, 4).map((trip) => ( // ✅ only show first 4 cards
           <div
             key={trip.id}
             className="group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 relative cursor-pointer"
@@ -35,13 +35,14 @@ export default function PlanYourTrip() {
           >
             {/* Image Section */}
             <div className="relative w-full h-56 overflow-hidden">
-              {/* Scalable container */}
               <div className="relative w-full h-full transition-transform duration-700 group-hover:scale-105">
                 <Image
                   src={trip.image}
                   alt={trip.title}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                   className="object-cover"
+                  priority={Number(trip.id) <= 4} // ✅ prioritize first 4 for better LCP
                 />
 
                 {/* Dark overlay on hover */}
@@ -69,14 +70,16 @@ export default function PlanYourTrip() {
           </div>
         ))}
       </div>
-     <div className="p-6 mt-10 item-center justify-center cursor-pointer">
-      <button
-        onClick={() => router.push("/Packages")}
-        className="px-4 py-2 bg-gray-900-600 text-sm text-white border-b rounded-lg"
-      >
-       View All Packages →
-      </button>
-    </div>
+
+      {/* View All Button */}
+      <div className="flex justify-center mt-10">
+        <button
+          onClick={() => router.push("/Packages")}
+          className="px-6 py-2  text-white rounded-full border-b border-gray-200 text-sm sm:text-base font-semibold hover:bg-gray-200 hover:text-gray-900 transition-all duration-300"
+        >
+          View All Packages →
+        </button>
+      </div>
     </section>
   );
 }

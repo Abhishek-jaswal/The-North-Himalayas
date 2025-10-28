@@ -53,7 +53,7 @@ export default function ContactForm() {
       </h1>
 
       {/* Form container */}
-      <div className="w-full sm:w-[90%] max-w-5xl rounded-2xl bg-black text-white shadow-2xl p-6 sm:p-8 flex flex-col items-center justify-center z-10 bg-black/50 -mt-60 sm:mt-3 ">
+      <div className="w-full sm:w-[90%] max-w-5xl rounded-2xl bg-black text-white shadow-2xl p-6 sm:p-8 flex flex-col items-center justify-center z-10 bg-black/50 -mt-80 sm:-mt-3 ">
         {/* Title */}
         <div className="text-center mb-6">
           <h2 className="text-base sm:text-lg md:text-xl font-semibold tracking-wide">
@@ -135,7 +135,7 @@ export default function ContactForm() {
           <div className="sm:col-span-2 flex justify-center">
             <button
               type="submit"
-              className="px-6 sm:px-8 py-2 sm:py-2.5 bg-gray-100 rounded-full font-semibold text-black transition-all hover:bg-gray-300 text-sm sm:text-base"
+              className="px-6 py-2  text-white rounded-full border-b border-gray-200 text-sm sm:text-base font-semibold hover:bg-gray-200 hover:text-gray-900 transition-all duration-300"
             >
               Submit
             </button>
