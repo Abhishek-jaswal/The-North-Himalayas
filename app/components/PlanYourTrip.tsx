@@ -15,11 +15,11 @@ export default function PlanYourTrip() {
   return (
     <section className="py-12 bg-black">
       {/* Title */}
-      <div className="text-center mb-12">
+      <div className="text-center">
         <h2 className="text-3xl sm:text-4xl font-bold text-gray-100 tracking-tight">
-          <span className="text-blue-500">Plan</span> Your Trip
+         Plan Your Trip
         </h2>
-        <div className="mx-auto mt-3 w-32 h-1 bg-gradient-to-r from-red-600 via-blue-600 to-blue-600 rounded-full" />
+        <div className="mx-auto mt-3 w-32 h-1 bg-gradient-to-r from-gray-200 via-gray-600 to-gray-900 rounded-full" />
         <p className="text-gray-400 text-sm sm:text-base mt-3 max-w-md mx-auto">
           Discover curated travel experiences with the perfect blend of adventure and comfort.
         </p>
@@ -69,10 +69,10 @@ export default function PlanYourTrip() {
           </div>
         ))}
       </div>
-     <div className="p-6">
+     <div className="p-6 mt-10 item-center justify-center cursor-pointer">
       <button
         onClick={() => router.push("/Packages")}
-        className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+        className="px-4 py-2 bg-gray-900-600 text-sm text-white border-b rounded-lg"
       >
        View All Packages →
       </button>
