@@ -38,7 +38,7 @@ export default function PlanYourTrip() {
               <div className="relative w-full h-full transition-transform duration-700 group-hover:scale-105">
                 <Image
                   src={trip.image}
-                  alt={trip.title}
+                  alt={`Beautiful view of ${trip.place} - ${trip.title}`}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                   className="object-cover"

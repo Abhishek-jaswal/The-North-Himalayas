@@ -25,7 +25,7 @@ export default function TourPackagePage({ params }: { params: Promise<{ id: stri
   return (
     <>
     <Navbar />
-    <div className="min-h-screen bg-black text-gray-100 flex flex-col items-center py-10 px-4 sm:px-6 md:px-10">
+    <div className="min-h-screen bg-black text-gray-100 mt-10 flex flex-col items-center py-10 px-4 sm:px-6 md:px-10">
       <div className="w-full max-w-5xl bg-white text-gray-900 rounded-2xl shadow-2xl overflow-hidden relative animate-fadeIn">
         
         {/* ✅ Back Button */}
@@ -33,7 +33,7 @@ export default function TourPackagePage({ params }: { params: Promise<{ id: stri
           onClick={() => router.back()}
           className="absolute top-4 left-4 flex items-center gap-2 bg-white/90 hover:bg-white text-gray-800 px-3 py-1.5 rounded-full z-10 text-sm font-medium shadow-md transition-all duration-300 hover:scale-105"
         >
-          <ArrowLeft size={16} /> Back
+          <ArrowLeft size={16} /> Go Back
         </button>
 
         {/* Image Section */}

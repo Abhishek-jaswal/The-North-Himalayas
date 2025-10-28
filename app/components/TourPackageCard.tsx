@@ -7,7 +7,7 @@ export default function TourPackageCard() {
  
 
   return (
-    <div className="w-full max-w-5xl mx-auto p-4 space-y-6">
+    <div className="w-full max-w-5xl mx-auto mt-10 p-4 space-y-6">
       {tripsData.map((tour) => (
         <div
           key={tour.id}
@@ -17,7 +17,7 @@ export default function TourPackageCard() {
           <div className="sm:w-1/3 relative overflow-hidden">
             <Image
               src={tour.image}
-              alt={tour.title}
+              alt={`Beautiful view of ${tour.place} - ${tour.title}`}
               width={400}
               height={300}
               className="w-full h-48 sm:h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
