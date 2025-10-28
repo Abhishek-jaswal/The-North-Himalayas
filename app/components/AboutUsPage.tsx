@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function AboutUsPage() {
   return (
@@ -9,9 +10,10 @@ export default function AboutUsPage() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="max-w-5xl w-full text-center md:text-left space-y-6"
-      >
+        className="max-w-5xl w-full text-center md:text-left space-y-6">
         <h1 className="text-3xl sm:text-4xl font-bold text-gray-100 tracking-tight text-center ">
+                         <Image src="/images/logos/logo_5.jpg" alt="Logo" width={60} height={40} />
+
           About Us — 
         </h1>
         <div className="mx-auto mt-3 w-32 h-1 bg-gradient-to-r from-gray-200 via-gray-600 to-gray-900 rounded-full" />
