@@ -48,20 +48,18 @@ export default function ContactForm() {
       className="relative w-full flex flex-col items-center justify-center px-4 bg-black"
     >
       {/* Watermark heading (hidden on mobile) */}
-      <h1 className="hidden sm:block text-none sm:text-[11rem] sm:-mt-[30rem] -mt-[20rem] items-center justify-center font-bold pl-10 sm:pl-40 text-black/60 select-none pointer-events-none z-10">
+      {/* <h1 className="hidden sm:block text-none sm:text-[11rem] sm:-mt-[30rem] -mt-[20rem] items-center justify-center font-bold pl-10 sm:pl-40 text-black/60 select-none pointer-events-none z-10">
         THE NORTH HIMALAYAS
-      </h1>
+      </h1> */}
 
       {/* Form container */}
-      <div className="w-full sm:w-[90%] max-w-5xl rounded-2xl bg-black text-white shadow-2xl p-6 sm:p-8 flex flex-col items-center justify-center z-10 bg-black/50 -mt-80 sm:-mt-3 ">
+      <div className="w-full sm:w-[90%] max-w-5xl rounded-2xl bg-black text-white shadow-2xl p-6 sm:p-8 flex flex-col items-center justify-center z-10 bg-black/50 -mt-80 sm:-mt-60 ">
         {/* Title */}
         <div className="text-center mb-6">
           <h2 className="text-base sm:text-lg md:text-xl font-semibold tracking-wide">
             Get Best Holiday Planned by Experts!
           </h2>
-          <p className="text-xl sm:text-2xl md:text-3xl font-bold text-yellow-400 mt-1">
-            SEASONS SALE!!
-          </p>
+       
         </div>
 
         {/* Form */}

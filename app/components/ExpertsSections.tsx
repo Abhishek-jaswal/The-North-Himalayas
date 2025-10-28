@@ -13,30 +13,30 @@ interface Expert {
 const experts: Expert[] = [
   {
     name: "Sourabh",
-    title: "Luxury Travel Designer",
-    img: "/experts/suraj.jpg",
-    desc: "Experienced and a little bit of perfectionist, Thuy loves to design the very best trip for clients. She will probably lose sleep over any detail that doesn’t go according to the plan.",
+    title: "Destination & Adventure Specialist",
+    img: "/experts/sourabh.jpg",
+    desc: "From hidden Himalayan trails to iconic Indian landmarks, Sourabh knows them all. His expertise in adventure and offbeat travel makes every journey exciting and safe.",
     alt: "Sourabh smiling outdoors",
   },
   {
     name: "Abhishek Kumar",
-    title: "Southeast Asia Specialist",
+    title: "Operations & Experience Curator",
     img: "/experts/abhishek.jpg",
-    desc: "Abhishek likes to share everything he has seen with his clients and reveal the secret parts that not many travelers know.",
+    desc: "Abhishek ensures every itinerary runs smoothly — from seamless logistics to unforgettable experiences. His attention to detail makes every trip effortless and enjoyable.",
     alt: "Abhishek Kumar smiling outdoors",
   },
   {
     name: "Suraj Jaryal",
-    title: "Cultural Experience Curator",
-    img: "/experts/suraj.jpg",
-    desc: "Suraj loves sharing the emotions and beauty he experiences while traveling, inspiring others to explore.",
+    title: "Founder & Travel Visionary",
+    img: "/experts/surajj.jpg",
+    desc: " A passionate explorer with a deep love for the mountains, Suraj turned his travel dreams into reality by creating The North Himalayas. His vision is simple — to help others find peace and purpose through travel.",
     alt: "Suraj Jaryal beside a vehicle in mountains",
   },
   {
     name: "Ankaj Thakur",
-    title: "Guest Experience Coordinator",
+    title: "Sales & Client Relations Expert",
     img: "/experts/ankaj.jpg",
-    desc: "Ankaj always feels happiest when his clients finish a trip with a smile and unforgettable memories.",
+    desc: "The friendly face of The North Himalayas, Ankaj believes every traveler deserves a personalized experience. His warmth and professionalism ensure guests feel like family.",
     alt: "Ankaj Thakur smiling near a lake",
   },
 ];
@@ -52,7 +52,6 @@ export default function ExpertsSection() {
         className="absolute inset-0  bg-center opacity-20"
         role="presentation"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80" />
 
       {/* Content */}
       <div className="relative max-w-7xl mx-auto z-10">
@@ -65,6 +64,7 @@ export default function ExpertsSection() {
             Meet Our Experts
           </h2>
                   <div className="mx-auto mt-3 w-32 h-1 bg-gradient-to-r from-gray-200 via-gray-600 to-gray-900 rounded-full" />
+                  <h4 className="mt-4 text-gray-400 text-sm sm:text-base max-w-md mx-auto">A Our expert team ensures that every journey is planned with perfection, passion, and a personal touch.</h4>
 
         </header>
 
