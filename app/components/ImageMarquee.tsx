@@ -16,7 +16,7 @@ const images = [
 export default function ImageMarquee() {
   return (
     <>
-    <div className="relative w-full overflow-hidden mt-8 mb-8">
+    <div className="relative w-full overflow-hidden mt-8 mb-20">
       <div className="flex animate-marquee whitespace-nowrap gap-4">
         {images.concat(images).map((src, idx) => (
           <Image

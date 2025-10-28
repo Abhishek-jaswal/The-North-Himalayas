@@ -2,7 +2,7 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white py-8 px-6">
+    <footer className="bg-gradient-to-t from-gray-800 via-neutral-900 to-black text-gray-200">
       {/* Top Row - Main Links */}
       <div className="flex flex-wrap justify-center gap-6 text-sm md:text-base font-semibold text-center">
         <a href="#" className="hover:underline">Cancellation Policy And T&Cs</a>
