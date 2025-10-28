@@ -3,7 +3,7 @@ export const tripsData = [
     id: "1",
     title: "8 Days - 7 Nights Manali Tour Package",
     duration: "7 Nights / 8 Days",
-    image: "/images/packages/dharamshala5.jpg",
+    image: "/images/packages/dharamshala3.jpg",
     shortDesc: "Explore Kullu, Manali, Solang Valley, and more.",
     description:
       "Enjoy 7 nights and 8 days of adventure in Manali, including visits to Kullu, Kasol, Solang Valley, and Rohtang Pass.",
@@ -11,13 +11,13 @@ export const tripsData = [
     activities: "Mountaineering, Trekking",
     theme: "Hill Stations & Valleys",
     price: "on your request",
-    place:"dharamshala"
+    place:"kashmir"
   },
   {
     id: "2",
     title: "7 Days - 6 Nights Shimla Tour Package",
     duration: "6 Nights / 7 Days",
-    image: "/images/packages/dharamshala5.jpg",
+    image: "/images/packages/kashmir1.jpg",
     shortDesc: "Visit Chail, Kufri, and Shimla’s colonial beauty.",
     description:
       "Experience the charm of Shimla with breathtaking views, local markets, and nearby hill stations like Kufri and Chail.",
@@ -25,7 +25,7 @@ export const tripsData = [
     activities: "Sightseeing, Mountaineering",
     theme: "Hill Stations & Valleys",
     price: "on your request",
-        place:"dharamshala"
+        place:"leh-ladakh"
 
   },
   {
@@ -40,14 +40,14 @@ export const tripsData = [
     activities: "Mountaineering, Trekking",
     theme: "Hill Stations & Valleys",
     price: "on your request",
-        place:"dharamshala"
+        place:"Manali"
 
   },
   {
     id: "4",
     title: "7 Days - 6 Nights Shimla Tour Package",
     duration: "6 Nights / 7 Days",
-    image: "/images/packages/dharamshala5.jpg",
+    image: "/images/packages/kashmir2.jpg",
     shortDesc: "Visit Chail, Kufri, and Shimla’s colonial beauty.",
     description:
       "Experience the charm of Shimla with breathtaking views, local markets, and nearby hill stations like Kufri and Chail.",
@@ -115,7 +115,7 @@ export const tripsData = [
     activities: "Sightseeing, Mountaineering",
     theme: "Hill Stations & Valleys",
     price: "on your request",
-        place:"dharamshala"
+        place:"Kangra"
 
   },
 ];

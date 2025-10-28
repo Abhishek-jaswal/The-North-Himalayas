@@ -9,6 +9,7 @@ import ImageMarquee from "./ImageMarquee";
 import WhatsAppButton from "./WhatsAppButton";
 import Footer from "./Footer";
 import ContactFormPopup from "./ContactFormPopup";
+import ExpertsSection from "./ExpertsSections";
 
 export default function MainLayout() {
   const [loading, setLoading] = useState(true);
@@ -69,6 +70,7 @@ export default function MainLayout() {
             <FullScreenCarousel />
             <ContactForm />
             <PlanYourTrip />
+            <ExpertsSection/>
             <ImageMarquee />
             <WhatsAppButton />
             <ContactFormPopup/>
