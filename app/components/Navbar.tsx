@@ -1,9 +1,11 @@
 "use client";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
 
 export default function Navbar() {
+  const router = useRouter();
   const [openDest, setOpenDest] = useState(false);
   const [openTours, setOpenTours] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -33,7 +35,7 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex items-center space-x-8 font-semibold text-sm text-gray-800">
-          <li className="bg-black text-white px-4 py-2 rounded-sm">HOME</li>
+          <li className="bg-black text-white px-4 py-2 rounded-sm cour "  onClick={() => router.push("/")}>HOME</li>
 
           {/* Destinations Dropdown */}
           <li
@@ -44,9 +46,9 @@ export default function Navbar() {
             DESTINATIONS <ChevronDown size={16} />
             {openDest && (
               <ul className="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-md w-40 text-gray-800 text-sm">
-                <li className="px-4 py-2 hover:bg-gray-100">India</li>
-                <li className="px-4 py-2 hover:bg-gray-100">Dubai</li>
-                <li className="px-4 py-2 hover:bg-gray-100">Europe</li>
+                <li className="px-4 py-2 hover:bg-gray-100">Himachal Pradesh</li>
+                <li className="px-4 py-2 hover:bg-gray-100">Srinagar</li>
+                <li className="px-4 py-2 hover:bg-gray-100">Bali</li>
               </ul>
             )}
           </li>
@@ -83,7 +85,7 @@ export default function Navbar() {
       {menuOpen && (
         <div className="md:hidden bg-white shadow-md border-t animate-slideDown">
           <ul className="flex flex-col text-gray-800 font-semibold">
-            <li className="bg-black text-lg text-white px-6 py-3">HOME</li>
+            <li className="bg-black text-lg text-white px-6 py-3"  onClick={() => router.push("/")}>HOME</li>
 
             <li
               className="px-6 py-3 flex justify-between items-center border-t bg-black text-lg  text-white"
@@ -93,9 +95,9 @@ export default function Navbar() {
             </li>
             {openDest && (
               <ul className="bg-gray-50 text-sm">
-                <li className="px-8 py-2 hover:bg-gray-100">India</li>
-                <li className="px-8 py-2 hover:bg-gray-100">Dubai</li>
-                <li className="px-8 py-2 hover:bg-gray-100">Europe</li>
+                <li className="px-8 py-2 hover:bg-gray-100">Himachal Pradesh</li>
+                <li className="px-8 py-2 hover:bg-gray-100">Srinagar</li>
+                <li className="px-8 py-2 hover:bg-gray-100">Bali</li>
               </ul>
             )}
 

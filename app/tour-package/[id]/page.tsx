@@ -5,6 +5,9 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { tripsData } from "../../data/tripsData";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import WhatsAppButton from "@/app/components/WhatsAppButton";
 
 export default function TourPackagePage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = React.use(params); // ✅ unwrap Promise
@@ -20,6 +23,8 @@ export default function TourPackagePage({ params }: { params: Promise<{ id: stri
   }
 
   return (
+    <>
+    <Navbar />
     <div className="min-h-screen bg-black text-gray-100 flex flex-col items-center py-10 px-4 sm:px-6 md:px-10">
       <div className="w-full max-w-5xl bg-white text-gray-900 rounded-2xl shadow-2xl overflow-hidden relative animate-fadeIn">
         
@@ -63,5 +68,8 @@ export default function TourPackagePage({ params }: { params: Promise<{ id: stri
         </div>
       </div>
     </div>
+    <WhatsAppButton/>
+    <Footer />
+    </>
   );
 }

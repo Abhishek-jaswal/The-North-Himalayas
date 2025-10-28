@@ -34,7 +34,7 @@ export default function FullScreenCarousel() {
               sizes="100vw"
               className="object-cover object-center"
             />
-             <h1 className="-mt-20 z-20 text-white">The North Himalayas</h1>
+            
           </SwiperSlide>
         ))}
       </Swiper>

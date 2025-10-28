@@ -12,13 +12,11 @@ export default function ContactForm() {
 
   const [status, setStatus] = useState("");
 
-const handleChange = (
-  e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-) => {
-  setFormData({ ...formData, [e.target.name]: e.target.value });
-};
-
-
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -34,22 +32,30 @@ const handleChange = (
     setStatus(result.success ? "Message Sent!" : "Failed to send message");
 
     if (result.success) {
-      setFormData({ email: "", name: "", subject: "", message: "" , customMessage: "",});
+      setFormData({
+        email: "",
+        name: "",
+        subject: "",
+        message: "",
+        customMessage: "",
+      });
     }
   };
 
   return (
     <section
       id="contact"
-      className="relative w-full flex flex-col items-center justify-center px-4  bg-black"
+      className="relative w-full flex flex-col items-center justify-center px-4 bg-black"
     >
-          <h1 className=" text-none  sm:text-[11rem] sm:-mt-[30rem] -mt-[15rem] items-center justify-center font-bold pl-10 sm:pl-40 text-black/60 select-none pointer-events-none z-10">
-    THE NORTH HIMALAYAS
-  </h1> 
-      {/* Title */}
-      <div className="w-full sm:w-[90%] max-w-5xl rounded-2xl bg-black text-white shadow-2xl p-6 pt-2 sm:p-2 flex flex-col items-center justify-center  z-10 bg-black/50 -mt-60 sm:mt-3 mb-10">
-   
-          <div className="text-center  h-10">
+      {/* Watermark heading (hidden on mobile) */}
+      <h1 className="hidden sm:block text-none sm:text-[11rem] sm:-mt-[30rem] -mt-[20rem] items-center justify-center font-bold pl-10 sm:pl-40 text-black/60 select-none pointer-events-none z-10">
+        THE NORTH HIMALAYAS
+      </h1>
+
+      {/* Form container */}
+      <div className="w-full sm:w-[90%] max-w-5xl rounded-2xl bg-black text-white shadow-2xl p-6 sm:p-8 flex flex-col items-center justify-center z-10 bg-black/50 -mt-80 sm:-mt-3 ">
+        {/* Title */}
+        <div className="text-center mb-6">
           <h2 className="text-base sm:text-lg md:text-xl font-semibold tracking-wide">
             Get Best Holiday Planned by Experts!
           </h2>
@@ -58,95 +64,82 @@ const handleChange = (
           </p>
         </div>
 
-      {/* Form */}
-    
-
-        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-4xl mt-10">
-       
+        {/* Form */}
+        <form
+          onSubmit={handleSubmit}
+          className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-4xl"
+        >
           <input
-              type="text"
-              name="name"
-              placeholder="Enter Your Name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 bg-transparent border-b border-gray-600 rounded-full text-white placeholder-gray-200 focus:outline-none focus:border-gray-400 focus:ring-0 text-sm sm:text-base"
-            />
-            <input
-              type="text"
-              name="subject"
-              placeholder="Mobile Number"
-              value={formData.subject}
-              onChange={handleChange}
-              required
-              className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 bg-transparent border-b border-gray-600 rounded-full text-white placeholder-gray-200 focus:outline-none focus:border-gray-400 focus:ring-0 text-sm sm:text-base"
-            />
-      <input
-  type="email"
-  name="email"
-  placeholder="Your Email"
-  value={formData.email}
-  onChange={handleChange}
-  required
-  className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 bg-transparent border-b border-gray-600 rounded-full text-white placeholder-gray-200 focus:outline-none focus:border-gray-400 focus:ring-0 text-sm sm:text-base"
-/>
+            type="text"
+            name="name"
+            placeholder="Enter Your Name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            className="w-full px-4 py-2 sm:py-2.5 bg-transparent border-b border-gray-600 rounded-full text-white placeholder-gray-300 focus:outline-none focus:border-gray-400 focus:ring-0 text-sm sm:text-base"
+          />
 
+          <input
+            type="text"
+            name="subject"
+            placeholder="Mobile Number"
+            value={formData.subject}
+            onChange={handleChange}
+            required
+            className="w-full px-4 py-2 sm:py-2.5 bg-transparent border-b border-gray-600 rounded-full text-white placeholder-gray-300 focus:outline-none focus:border-gray-400 focus:ring-0 text-sm sm:text-base"
+          />
 
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className="w-full px-4 py-2 sm:py-2.5 bg-transparent border-b border-gray-600 rounded-full text-white placeholder-gray-300 focus:outline-none focus:border-gray-400 focus:ring-0 text-sm sm:text-base"
+          />
 
-      <select
-        name="message"
-        value={formData.message}
-        onChange={handleChange}
-        required
-        className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 bg-transparent border-b border-gray-600 rounded-full text-white placeholder-gray-200 focus:outline-none focus:border-gray-400 focus:ring-0 text-sm sm:text-base appearance-none"
-      >
-        <option value="" disabled className="bg-black text-gray-600">
-          Select Message
-        </option>
-        <option value="Query" className="bg-black text-white">
-          Query
-        </option>
-        <option value="Suggestion" className="bg-black text-white">
-          Suggestion
-        </option>
-        <option value="Type" className="bg-black text-white">
-          Type your own
-        </option>
-      </select>
-
-      {/* Custom text input appears when "Type" is selected */}
-      {formData.message === "Type" && (
-        <input
-          type="text"
-          name="customMessage"
-          placeholder="Write your message..."
-          value={formData.customMessage}
-          onChange={handleChange}
-          className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 bg-transparent border-b border-gray-600 rounded-full text-white placeholder-gray-200 focus:outline-none focus:border-gray-400 focus:ring-0 text-sm sm:text-base appearance-none"
-        />
-      )}
- 
-
-
-
-
-     
-{/* <input
+          <select
             name="message"
-            type="message"
-            placeholder="Message" 
             value={formData.message}
             onChange={handleChange}
             required
-            className="flex-1 min-w-[180px] px-4 py-2 sm:py-2.5 bg-transparent border-b border-pink-200 rounded-full text-white placeholder-pink-200 focus:outline-none focus:border-gray-400 focus:ring-0 text-sm sm:text-base"
-          /> */}
-          <button
-            type="submit"
-            className="px-6 sm:px-8 py-2 sm:py-2.5 bg-gray-100  rounded-full font-semibold text-black transition-all text-sm sm:text-base"
+            className="w-full px-4 py-2 sm:py-2.5 bg-transparent border-b border-gray-600 rounded-full text-white placeholder-gray-300 focus:outline-none focus:border-gray-400 focus:ring-0 text-sm sm:text-base appearance-none"
           >
-            Submit
-          </button>
-         
+            <option value="" disabled className="bg-black text-gray-600">
+              Select Message
+            </option>
+            <option value="Query" className="bg-black text-white">
+              Query
+            </option>
+            <option value="Suggestion" className="bg-black text-white">
+              Suggestion
+            </option>
+            <option value="Type" className="bg-black text-white">
+              Type your own
+            </option>
+          </select>
+
+          {formData.message === "Type" && (
+            <input
+              type="text"
+              name="customMessage"
+              placeholder="Write your message..."
+              value={formData.customMessage}
+              onChange={handleChange}
+              className="w-full px-4 py-2 sm:py-2.5 bg-transparent border-b border-gray-600 rounded-full text-white placeholder-gray-300 focus:outline-none focus:border-gray-400 focus:ring-0 text-sm sm:text-base"
+            />
+          )}
+
+          {/* Submit button spans full width */}
+          <div className="sm:col-span-2 flex justify-center">
+            <button
+              type="submit"
+              className="px-6 py-2  text-white rounded-full border-b border-gray-200 text-sm sm:text-base font-semibold hover:bg-gray-200 hover:text-gray-900 transition-all duration-300"
+            >
+              Submit
+            </button>
+          </div>
         </form>
 
         {status && (
