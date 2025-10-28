@@ -71,7 +71,7 @@ export default function PlanYourTrip() {
       </div>
      <div className="p-6">
       <button
-        onClick={() => router.push("/TourPackageCard")}
+        onClick={() => router.push("/Packages")}
         className="px-4 py-2 bg-blue-600 text-white rounded-lg"
       >
        View All Packages →
