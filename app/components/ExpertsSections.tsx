@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 interface Expert {
   name: string;
@@ -29,7 +30,7 @@ const experts: Expert[] = [
     name: "Suraj Jaryal",
     title: "Founder & Travel Visionary",
     img: "/experts/surajj.jpg",
-    desc: " A passionate explorer with a deep love for the mountains, Suraj turned his travel dreams into reality by creating The North Himalayas. His vision is simple — to help others find peace and purpose through travel.",
+    desc: "A passionate explorer with a deep love for the mountains, Suraj turned his travel dreams into reality by creating The North Himalayas. His vision is simple — to help others find peace and purpose through travel.",
     alt: "Suraj Jaryal beside a vehicle in mountains",
   },
   {
@@ -45,68 +46,62 @@ export default function ExpertsSection() {
   return (
     <section
       aria-labelledby="experts-heading"
-      className="relative bg-black text-white py-16 px-4 sm:px-8 lg:px-20 overflow-hidden"
+      className="relative bg-black text-white px-4 sm:px-8 lg:px-20 overflow-hidden"
     >
-      {/* Background overlay */}
-      <div
-        className="absolute inset-0  bg-center opacity-20"
-        role="presentation"
-      />
-
-      {/* Content */}
-      <div className="relative max-w-7xl mx-auto z-10">
-        <header className="text-center mb-12">
-         
-          <h2
-            id="experts-heading"
-            className="text-2xl sm:text-3xl font-bold tracking-tight"
-          >
-            Meet Our Experts
-          </h2>
-                  <div className="mx-auto mt-3 w-32 h-1 bg-gradient-to-r from-gray-200 via-gray-600 to-gray-900 rounded-full" />
-                  <h4 className="mt-4 text-gray-400 text-sm sm:text-base max-w-md mx-auto">A Our expert team ensures that every journey is planned with perfection, passion, and a personal touch.</h4>
-
-        </header>
-
-        {/* Grid Layout */}
-        <div
-          className="
-            grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 
-            divide-y sm:divide-y-0 sm:divide-x divide-gray-600/50
-          "
-          role="list"
-          aria-label="Expert profiles"
+      {/* --- Decorative Glow Background --- */}
+      <div className="absolute inset-0 bg-gradient-to-b from-blackto-gray-900 opacity-90" />
+     
+      {/* --- Section Header --- */}
+      <div className="relative z-10 text-center mb-16">
+        <h2
+          id="experts-heading"
+          className="text-3xl sm:text-4xl font-bold tracking-tight text-white"
         >
-          {experts.map((expert, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center text-center px-6 py-10"
-            >
-              <div className="w-32 h-32 sm:w-36 sm:h-36 relative mb-4">
-                <Image
-                  src={expert.img}
-                  alt={expert.alt}
-                  fill
-                  sizes="(max-width: 640px) 128px, (max-width: 1024px) 144px, 160px"
-                  className="rounded-full object-cover border-2 border-gray-400/30"
-                  priority={index === 0}
-                />
-              </div>
-              <h3 className="text-lg font-semibold text-green-600 mb-1">
-                {expert.name}
-              </h3>
-              {expert.title && (
-                <p className="text-gray-400 text-xs mb-2">{expert.title}</p>
-              )}
-              <p className="text-gray-300 text-sm leading-relaxed line-clamp-4">
-                {expert.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        
+          Meet Our Experts
+        </h2>
+        <div className="mx-auto mt-3 w-32 h-1 bg-gradient-to-r from-gray-200 via-gray-600 to-gray-900 rounded-full" />
+        <p className="mt-4 text-gray-400 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
+          Our expert team ensures that every journey is crafted with perfection, passion, and a personal touch.
+        </p>
       </div>
+
+      {/* --- Experts Grid --- */}
+      <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        {experts.map((expert, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: index * 0.1 }}
+            className="group bg-gradient-to-b from-gray-900/80 via-black/80 to-black border border-gray-800 rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-green-600/20 transition-all duration-500 p-6 flex flex-col items-center text-center"
+          >
+            {/* Expert Image */}
+            <div className="relative w-32 h-32 sm:w-36 sm:h-36 mb-5">
+              <Image
+                src={expert.img}
+                alt={expert.alt}
+                fill
+                className="rounded-full object-cover border-2 border-gray-700 group-hover:border-green-600 transition-all duration-500"
+                priority={index === 0}
+              />
+            </div>
+
+            {/* Expert Info */}
+            <h3 className="text-lg font-semibold text-green-500 mb-1">
+              {expert.name}
+            </h3>
+            {expert.title && (
+              <p className="text-gray-400 text-xs mb-3">{expert.title}</p>
+            )}
+            <p className="text-gray-300 text-sm leading-relaxed line-clamp-4 group-hover:text-gray-200 transition-colors duration-300">
+              {expert.desc}
+            </p>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* --- Decorative Line --- */}
+      <div className="my-12 mx-auto w-full h-[2px] bg-gradient-to-r from-transparent via-gray-600 to-transparent opacity-50" />
     </section>
   );
 }

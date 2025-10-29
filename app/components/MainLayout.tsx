@@ -31,7 +31,7 @@ export default function MainLayout() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}
-            className="fixed inset-0 flex flex-col items-center justify-center bg-black text-white z-50"
+            className="fixed inset-0 flex flex-col items-center justify-centerbg-gradient-to-b from-black via-gray-900 to-black  text-white z-50"
           >
             <motion.img
               src="/images/logos/logo_5.jpg"
