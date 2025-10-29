@@ -71,9 +71,10 @@ export default function MainLayout() {
             <FullScreenCarousel />
             <ContactForm />
             <PlanYourTrip />
+            <ImageMarquee />
             <AboutUsPage />
             <ExpertsSection/>
-            <ImageMarquee />
+            
             <WhatsAppButton />
             <ContactFormPopup/>
             <Footer />

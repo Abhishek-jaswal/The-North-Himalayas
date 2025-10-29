@@ -25,7 +25,7 @@ export default function TourPackagePage({ params }: { params: Promise<{ id: stri
   return (
     <>
     <Navbar />
-    <div className="min-h-screen bg-black text-gray-100 mt-10 flex flex-col items-center py-10 px-4 sm:px-6 md:px-10">
+    <div className="min-h-screen bg-black text-gray-100 mt-30 flex flex-col items-center py-10 px-4 sm:px-6 md:px-10">
       <div className="w-full max-w-5xl bg-white text-gray-900 rounded-2xl shadow-2xl overflow-hidden relative animate-fadeIn">
         
         {/* ✅ Back Button */}

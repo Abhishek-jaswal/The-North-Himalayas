@@ -20,103 +20,182 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
+const navLink = (label: string, onClick?: () => void) => (
+<button
+onClick={onClick}
+className="px-4 py-2 rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800"
+>
+{label}
+</button>
+);
   return (
-    <nav
-      className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white shadow-md" : "bg-transparent"
+       <nav
+      aria-label="Primary"
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 backdrop-blur-sm ${
+        scrolled ? "bg-white/95 shadow-md" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-1">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
         {/* Logo */}
-        <div className="flex items-center gap-2">
-          <Image src="/images/logos/logo_5.jpg" alt="Logo" width={60} height={40} />
+        <div className="flex items-center gap-3">
+          <button
+            aria-label="Home"
+            onClick={() => router.push("/")}
+            className="inline-flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-offset-2"
+          >
+            <Image
+              src="/images/logos/logo_5.jpg"
+              alt="The North Himalayas logo"
+              width={60}
+              height={40}
+              className="rounded-sm"
+            />
+            <span className="sr-only">The North Himalayas</span>
+          </button>
         </div>
 
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex items-center space-x-8 font-semibold text-sm text-gray-800">
-          <li className="bg-black text-white px-4 py-2 rounded-sm cour "  onClick={() => router.push("/")}>HOME</li>
+        {/* Desktop menu */}
+        <ul className="hidden md:flex items-center gap-6 font-semibold text-sm text-gray-800">
+          <li>{navLink("HOME", () => router.push("/"))}</li>
 
-          {/* Destinations Dropdown */}
-          <li
-            className="relative cursor-pointer flex items-center gap-1 hover:text-gray-200 hover:bg-black px-4 py-2 rounded-sm"
-            onMouseEnter={() => setOpenDest(true)}
-            onMouseLeave={() => setOpenDest(false)}
-          >
-            DESTINATIONS <ChevronDown size={16} />
-            {openDest && (
-              <ul className="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-md w-40 text-gray-800 text-sm">
-                <li className="px-4 py-2 hover:bg-gray-100">Himachal Pradesh</li>
-                <li className="px-4 py-2 hover:bg-gray-100">Srinagar</li>
-                <li className="px-4 py-2 hover:bg-gray-100">Bali</li>
-              </ul>
-            )}
-          </li>
-
-          {/* Tours by Type Dropdown */}
-          <li
-            className="relative cursor-pointer flex items-center gap-1 hover:text-gray-200 hover:text-gray-200 hover:bg-black px-4 py-2 rounded-sm"
-            onMouseEnter={() => setOpenTours(true)}
-            onMouseLeave={() => setOpenTours(false)}
-          >
-            TOURS BY TYPE <ChevronDown size={16} />
-            {openTours && (
-              <ul className="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-md w-48 text-gray-800 text-sm">
-                <li className="px-4 py-2 hover:bg-gray-100">Family Tours</li>
-                <li className="px-4 py-2 hover:bg-gray-100">Adventure Tours</li>
-                <li className="px-4 py-2 hover:bg-gray-100">Honeymoon Packages</li>
-              </ul>
-            )}
-          </li>
-
-          <li className="hover:text-gray-200 cursor-pointer hover:bg-black px-4 py-2 rounded-sm">CONTACT US</li>
-        </ul>
-
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden text-gray-800"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div className="md:hidden bg-white shadow-md border-t animate-slideDown">
-          <ul className="flex flex-col text-gray-800 font-semibold">
-            <li className="bg-black text-lg text-white px-6 py-3"  onClick={() => router.push("/")}>HOME</li>
-
-            <li
-              className="px-6 py-3 flex justify-between items-center border-t bg-black text-lg  text-white"
-              onClick={() => setOpenDest(!openDest)}
+          <li className="relative" onMouseEnter={() => setOpenDest(true)} onMouseLeave={() => setOpenDest(false)}>
+            <button
+              aria-haspopup="menu"
+              aria-expanded={openDest}
+              className="inline-flex items-center gap-1 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2"
             >
               DESTINATIONS <ChevronDown size={16} />
-            </li>
+            </button>
+
             {openDest && (
-              <ul className="bg-gray-50 text-sm">
-                <li className="px-8 py-2 hover:bg-gray-100">Himachal Pradesh</li>
-                <li className="px-8 py-2 hover:bg-gray-100">Srinagar</li>
-                <li className="px-8 py-2 hover:bg-gray-100">Bali</li>
+              <ul className="absolute left-0 top-full mt-2 w-44 rounded-md bg-white shadow-md ring-1 ring-black/5 focus:outline-none">
+                {[
+                  { label: "Himachal Pradesh" },
+                  { label: "Srinagar" },
+                  { label: "Bali" },
+                ].map((d) => (
+                  <li key={d.label} className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    {d.label}
+                  </li>
+                ))}
               </ul>
             )}
+          </li>
 
-            <li
-              className="px-6 py-3 flex justify-between items-center border-t bg-black text-lg  text-white"
-              onClick={() => setOpenTours(!openTours)}
+          <li className="relative" onMouseEnter={() => setOpenTours(true)} onMouseLeave={() => setOpenTours(false)}>
+            <button
+              aria-haspopup="menu"
+              aria-expanded={openTours}
+              className="inline-flex items-center gap-1 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2"
             >
               TOURS BY TYPE <ChevronDown size={16} />
-            </li>
+            </button>
+
             {openTours && (
-              <ul className="bg-gray-50 text-sm">
-                <li className="px-8 py-2 hover:bg-gray-100">Family Tours</li>
-                <li className="px-8 py-2 hover:bg-gray-100">Adventure Tours</li>
-                <li className="px-8 py-2 hover:bg-gray-100">Honeymoon Packages</li>
+              <ul className="absolute left-0 top-full mt-2 w-52 rounded-md bg-white shadow-md ring-1 ring-black/5 focus:outline-none">
+                {[
+                  "Family Tours",
+                  "Adventure Tours",
+                  "Honeymoon Packages",
+                ].map((t) => (
+                  <li key={t} className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    {t}
+                  </li>
+                ))}
               </ul>
             )}
+          </li>
 
-            <li className="px-6 py-3 border-t hover:bg-gray-100 bg-black text-lg  text-white">CONTACT US</li>
-          </ul>
+          <li>{navLink("CONTACT US", () => router.push("#contact"))}</li>
+        </ul>
+
+        {/* Mobile toggle */}
+        <div className="md:hidden">
+          <button
+            aria-label="Toggle main menu"
+            onClick={() => setMenuOpen((s) => !s)}
+            className="rounded-md p-1 focus:outline-none focus:ring-2 focus:ring-offset-2"
+          >
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile menu panel */}
+      {menuOpen && (
+        <div className="md:hidden border-t bg-white/95 shadow-sm">
+          <div className="max-w-7xl mx-auto px-4 py-3">
+            <nav aria-label="Mobile">
+              <ul className="flex flex-col gap-1">
+                <li>
+                  <button
+                    className="w-full text-left px-4 py-3 rounded-md bg-black text-white font-semibold"
+                    onClick={() => {
+                      setMenuOpen(false);
+                      router.push("/");
+                    }}
+                  >
+                    HOME
+                  </button>
+                </li>
+
+                <li>
+                  <button
+                    className="w-full flex items-center justify-between px-4 py-3 rounded-md bg-black text-white font-semibold"
+                    onClick={() => setOpenDest((s) => !s)}
+                  >
+                    DESTINATIONS <ChevronDown />
+                  </button>
+                </li>
+
+                {openDest && (
+                  <ul className="mt-1 rounded-md bg-gray-50">
+                    {[
+                      "Himachal Pradesh",
+                      "Srinagar",
+                      "Bali",
+                    ].map((p) => (
+                      <li key={p} className="px-6 py-2 hover:bg-gray-100 cursor-pointer">
+                        {p}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                <li>
+                  <button
+                    className="w-full flex items-center justify-between px-4 py-3 rounded-md bg-black text-white font-semibold mt-2"
+                    onClick={() => setOpenTours((s) => !s)}
+                  >
+                    TOURS BY TYPE <ChevronDown />
+                  </button>
+                </li>
+
+                {openTours && (
+                  <ul className="mt-1 rounded-md bg-gray-50">
+                    {[
+                      "Family Tours",
+                      "Adventure Tours",
+                      "Honeymoon Packages",
+                    ].map((t) => (
+                      <li key={t} className="px-6 py-2 hover:bg-gray-100 cursor-pointer">
+                        {t}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                <li>
+                  <button
+                    className="w-full text-left px-4 py-3 rounded-md hover:bg-gray-100"
+                    onClick={() => router.push("#contact")}
+                  >
+                    CONTACT US
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
       )}
     </nav>
