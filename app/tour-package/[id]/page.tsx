@@ -5,8 +5,13 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { ChevronDown, Clock, MapPin, Tag } from "lucide-react";
+import Navbar from "@/app/components/Navbar";
+import Footer from "@/app/components/Footer";
+import WhatsAppButton from "@/app/components/WhatsAppButton";
+import { useRouter } from "next/navigation";
 
 export default function TourPackageDetails() {
+   const router = useRouter();
   const { id } = useParams();
   const tour = tripsData.find((t) => t.id === id);
 
@@ -33,7 +38,12 @@ export default function TourPackageDetails() {
     });
 
   return (
+    <>
+    <Navbar />
     <section className="min-h-screen bg-gradient-to-b from-black via-black to-black text-gray-200">
+          {/* View All Button */}
+      
+  
       {/* Hero */}
       <div className="relative w-full h-72 sm:h-96">
         <Image
@@ -103,6 +113,7 @@ export default function TourPackageDetails() {
                   }`}
                 />
               </button>
+     
 
               <AnimatePresence>
                 {openDay === index && (
@@ -123,8 +134,17 @@ export default function TourPackageDetails() {
               </AnimatePresence>
             </div>
           ))}
+                <button
+          onClick={() => router.push("/Packages")}
+          className="px-8 py-2.5 bg-gray-800 font-semibold rounded-full text-sm hover:shadow-[0_0_25px_rgba(255,255,255,0.3)] transition-all duration-300 hover:scale-105"
+        >
+          Back to Packages →
+        </button>
         </div>
       </div>
-    </section>
+    </section >
+    <WhatsAppButton />
+    <Footer />
+    </>
   );
 }
