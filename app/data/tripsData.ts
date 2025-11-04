@@ -477,4 +477,416 @@ Explore Himachal Pradesh with 9 nights and 10 days covering Shimla, Manali, Dhar
   place: "Uttarakhand"
 }
 ,
+
+  {
+    id: "9",
+    title: "Spiritual Journey - 4N/5D Tour Package",
+    duration: "4 Nights / 5 Days",
+    image: "/images/packages/spiritual-journey.jpg",
+    shortDesc:
+      "Experience the divine aura of Haridwar and Rishikesh — from the sacred Ganga Aarti to yoga by the riverbanks.",
+    description: `
+**"Haridwar & Rishikesh Spiritual Journey" (4N/5D)**  
+*Explore the Spiritual Heart of India*
+
+**Itinerary:**
+
+**Day 1: Delhi → Haridwar**  
+- Drive from Delhi to Haridwar (220 km / 5–6 hrs).  
+- Check-in to hotel and visit Har Ki Pauri.
+
+**Day 2: Haridwar Sightseeing**  
+- Attend Ganga Aarti, visit Mansa Devi Temple, Chandi Devi Temple.
+
+**Day 3: Haridwar → Rishikesh**  
+- Drive to Rishikesh (25 km / 1 hr).  
+- Visit Triveni Ghat and Ram Jhula.
+
+**Day 4: Rishikesh Sightseeing**  
+- Visit Lakshman Jhula, Neer Garh Waterfall, local markets, and yoga sessions.
+
+**Day 5: Departure**  
+- Drive back to Delhi (230 km / 5–6 hrs).
+
+**Inclusions:**  
+• 4N accommodation  
+• Breakfast and dinner  
+• Private car for transfers and sightseeing  
+
+**Exclusions:**  
+• Entry fees, lunch, and personal expenses  
+• Travel insurance  
+
+**Important Notes:**  
+• Carry valid ID for all guests.  
+• Itinerary flexible based on local conditions.
+    `,
+    destinations: "Haridwar, Rishikesh",
+    activities: "Temple Visits, Yoga, Ganga Aarti, Sightseeing",
+    theme: "Spiritual & Wellness",
+    price: "On Request",
+    place: "Uttarakhand"
+  },
+  {
+    id: "10",
+    title: "Ladakh Unplugged - 5N/6D Tour Package",
+    duration: "5 Nights / 6 Days",
+    image: "/images/packages/ladakh-unplugged.jpg",
+    shortDesc:
+      "Discover the rugged beauty of Leh, Nubra Valley, and Pangong Lake — an unforgettable high-altitude adventure.",
+    description: `
+**"Ladakh Unplugged" (5N/6D)**  
+*Explore the Breathtaking Landscapes of Leh*
+
+**Itinerary:**
+
+**Day 1: Leh Arrival & Acclimatization**  
+- Arrive in Leh, check-in to hotel, and rest.
+
+**Day 2: Leh Sightseeing**  
+- Visit Shanti Stupa, Leh Palace, Hall of Fame, and local markets.
+
+**Day 3: Leh → Nubra Valley**  
+- Drive via Khardungla Pass, visit Hunder Sand Dunes, and enjoy a camel safari.
+
+**Day 4: Nubra → Pangong**  
+- Drive to Pangong Lake and enjoy breathtaking views.
+
+**Day 5: Pangong → Leh**  
+- Return to Leh via Changla Pass, visit the 3 Idiots shooting point.
+
+**Day 6: Departure**  
+- Leisure morning, then drop at airport.
+
+**Inclusions:**  
+• 5N accommodation  
+• Breakfast and dinner  
+• Private car with driver and fuel  
+
+**Exclusions:**  
+• Entry fees and adventure activities  
+• Personal expenses and lunch  
+
+**Important Notes:**  
+• High-altitude travel — stay hydrated.  
+• Carry warm clothing.
+    `,
+    destinations: "Leh, Nubra Valley, Pangong Lake",
+    activities: "Sightseeing, Camel Safari, Lake Visit, Monastery Tour",
+    theme: "Adventure & Mountains",
+    price: "On Request",
+    place: "Ladakh"
+  },
+  {
+    id: "11",
+    title: "Spiti Valley Odyssey - 8N/9D Tour Package",
+    duration: "8 Nights / 9 Days",
+    image: "/images/packages/spiti-valley-odyssey.jpg",
+    shortDesc:
+      "Embark on an epic road trip through the mystical valleys of Spiti — monasteries, mountain lakes, and adventure.",
+    description: `
+**"Spiti Valley Odyssey" (8N/9D)**  
+*Explore the Hidden Gem of Himachal Pradesh*
+
+**Itinerary:**
+
+**Day 1: Delhi → Shimla**  
+- Drive from Delhi to Shimla (370 km / 8–9 hrs).  
+- Check-in and explore Mall Road.
+
+**Day 2: Shimla → Sangla**  
+- Drive (230 km / 6–7 hrs), enjoy scenic Baspa Valley.
+
+**Day 3: Sangla → Kalpa**  
+- Drive (100 km / 4–5 hrs), visit apple orchards and enjoy views.
+
+**Day 4: Kalpa → Tabo**  
+- Drive (150 km / 6 hrs), visit ancient Tabo Monastery.
+
+**Day 5: Tabo → Kaza**  
+- Drive (60 km / 3 hrs), explore Kaza town and market.
+
+**Day 6: Kaza Sightseeing**  
+- Visit Langza, Hikkim, and Komic villages.
+
+**Day 7: Kaza → Chandra Taal Lake**  
+- Drive (90 km / 3.5 hrs), enjoy lakeside beauty.
+
+**Day 8: Chandra Taal → Manali**  
+- Drive (60 km / 4 hrs), explore Mall Road.
+
+**Day 9: Manali → Delhi**  
+- Drive (290 km / 7 hrs), trip ends.
+
+**Inclusions:**  
+• 8N accommodation  
+• Breakfast and dinner  
+• Private car with driver and fuel  
+
+**Exclusions:**  
+• Permits, entry fees, and lunch  
+• Travel insurance  
+
+**Important Notes:**  
+• Rugged terrain — suitable for experienced travelers.  
+• Limited network connectivity in remote areas.
+    `,
+    destinations: "Shimla, Sangla, Kalpa, Tabo, Kaza, Chandra Taal, Manali",
+    activities: "Sightseeing, Trekking, Village Visit, Lake Tour",
+    theme: "Adventure & Offbeat",
+    price: "On Request",
+    place: "Spiti Valley"
+  },
+  {
+    id: "12",
+    title: "Winter Spiti Expedition - 6N/7D Tour Package",
+    duration: "6 Nights / 7 Days",
+    image: "/images/packages/winter-spiti-expedition.jpg",
+    shortDesc:
+      "Witness the snow-covered beauty of Spiti — monasteries, frozen rivers, and whitewashed mountain landscapes.",
+    description: `
+**"Winter Spiti Expedition" (6N/7D)**  
+*Explore the Snow-Capped Peaks of Spiti Valley*
+
+**Itinerary:**
+
+**Day 1: Delhi → Shimla**  
+- Drive from Delhi to Shimla (370 km / 8–9 hrs).  
+- Check-in and relax.
+
+**Day 2: Shimla → Sangla**  
+- Drive (230 km / 6–7 hrs), enjoy Baspa Valley views.
+
+**Day 3: Sangla → Tabo**  
+- Drive (110 km / 4–5 hrs), visit Tabo Monastery.
+
+**Day 4: Tabo → Kaza**  
+- Drive (60 km / 3 hrs), explore Kaza and market.
+
+**Day 5: Kaza Sightseeing**  
+- Visit Key Monastery, Langza, Hikkim.
+
+**Day 6: Kaza → Kalpa**  
+- Drive (200 km / 7–8 hrs), explore apple orchards.
+
+**Day 7: Kalpa → Delhi**  
+- Long drive (630 km / 12–14 hrs), end tour.
+
+**Inclusions:**  
+• 6N accommodation  
+• Breakfast and dinner  
+• Private car with driver and fuel  
+
+**Exclusions:**  
+• Entry fees, permits, and lunch  
+• Personal expenses  
+
+**Important Notes:**  
+• Cold weather gear essential.  
+• Roads may close due to snowfall.
+    `,
+    destinations: "Shimla, Sangla, Tabo, Kaza, Kalpa",
+    activities: "Sightseeing, Snow Trek, Monastery Visits, Photography",
+    theme: "Winter & Adventure",
+    price: "On Request",
+    place: "Spiti Valley"
+  },
+  {
+    id: "13",
+    title: "Himachal Odyssey - 9N/10D Tour Package",
+    duration: "9 Nights / 10 Days",
+    image: "/images/packages/himachal-odyssey.jpg",
+    shortDesc:
+      "A grand circuit of Himachal — Shimla, Manali, Dharamshala, and Dalhousie in one scenic journey.",
+    description: `
+**"Himachal Odyssey" (9N/10D)**  
+*Explore the Beauty of Himachal Pradesh*
+
+**Itinerary Highlights:**  
+Delhi → Shimla → Manali → Dharamshala → Dalhousie → Delhi  
+
+**Inclusions:**  
+• 9N accommodation  
+• Breakfast and dinner  
+• Private car with driver and fuel  
+
+**Exclusions:**  
+• Entry fees, lunch, and personal expenses  
+• Travel insurance  
+
+**Important Notes:**  
+• Weather may vary by region.  
+• Best for families and couples.
+    `,
+    destinations: "Shimla, Manali, Dharamshala, Dalhousie",
+    activities: "Sightseeing, Waterfalls, Temples, Market Visit",
+    theme: "Nature & Culture",
+    price: "₹16,999",
+    place: "Himachal Pradesh"
+  },
+  {
+    id: "14",
+    title: "Himachal & Golden Temple Tour - 10N/11D Package",
+    duration: "10 Nights / 11 Days",
+    image: "/images/packages/himachal-golden-temple.jpg",
+    shortDesc:
+      "A soulful journey through Himachal’s beauty and Punjab’s spirituality, ending with the iconic Golden Temple.",
+    description: `
+**"Himachal & Golden Temple Tour" (10N/11D)**  
+*Explore the Beauty of Himachal & Spirituality of Punjab*
+
+**Itinerary Highlights:**  
+Delhi → Shimla → Manali → Dharamshala → Dalhousie → Amritsar → Delhi  
+
+**Inclusions:**  
+• 10N accommodation  
+• Breakfast and dinner  
+• Private car with driver and fuel  
+
+**Exclusions:**  
+• Entry fees and lunch  
+• Personal expenses  
+
+**Important Notes:**  
+• Includes Golden Temple & Wagah Border.  
+• Ideal for family vacations.
+    `,
+    destinations: "Shimla, Manali, Dharamshala, Dalhousie, Amritsar",
+    activities: "Sightseeing, Temple Visits, Border Ceremony, Culture",
+    theme: "Culture & Spirituality",
+    price: "On Request",
+    place: "Himachal & Punjab"
+  },
+  {
+    id: "15",
+    title: "Jungle Paradise - 4N/5D Tour Package",
+    duration: "4 Nights / 5 Days",
+    image: "/images/packages/jungle-paradise.jpg",
+    shortDesc:
+      "Unwind in the serene valleys of Kasol and Jibhi — waterfalls, treks, and scenic Himachal beauty.",
+    description: `
+**"Jungle Paradise" (4N/5D)**  
+*Explore the Hidden Gems of Himachal Pradesh*
+
+**Itinerary Highlights:**  
+Delhi → Kasol → Jibhi → Delhi  
+
+**Inclusions:**  
+• 4N accommodation  
+• Breakfast and dinner  
+• Private car with driver and fuel  
+
+**Exclusions:**  
+• Entry fees, lunch, and personal expenses  
+
+**Important Notes:**  
+• Ideal for nature lovers and trekkers.  
+• Adventure activities available on request.
+    `,
+    destinations: "Kasol, Jibhi",
+    activities: "Trekking, Waterfalls, Camping, Village Tour",
+    theme: "Nature & Adventure",
+    price: "₹10,999",
+    place: "Himachal Pradesh"
+  },
+  {
+    id: "16",
+    title: "Dharamshala & Dalhousie Escape - 4N/5D Tour Package",
+    duration: "4 Nights / 5 Days",
+    image: "/images/packages/dharamshala-dalhousie.jpg",
+    shortDesc:
+      "A peaceful retreat through the green valleys of Dharamshala and Dalhousie — monasteries and meadows await.",
+    description: `
+**"Dharamshala & Dalhousie Escape" (4N/5D)**  
+*Explore the Hill Stations of Himachal Pradesh*
+
+**Itinerary Highlights:**  
+Delhi → Dharamshala → Dalhousie → Delhi  
+
+**Inclusions:**  
+• 4N accommodation  
+• Breakfast and dinner  
+• Private car with driver and fuel  
+
+**Exclusions:**  
+• Entry fees and lunch  
+• Personal expenses  
+
+**Important Notes:**  
+• Perfect for couples and families.  
+• Visit Khajjiar – Mini Switzerland of India.
+    `,
+    destinations: "Dharamshala, Dalhousie, Khajjiar",
+    activities: "Sightseeing, Photography, Temples, Relaxation",
+    theme: "Nature & Hills",
+    price: "₹8,999",
+    place: "Himachal Pradesh"
+  },
+  {
+    id: "17",
+    title: "Royal Rajasthan - 4N/5D Tour Package",
+    duration: "4 Nights / 5 Days",
+    image: "/images/packages/royal-rajasthan.jpg",
+    shortDesc:
+      "Discover the grandeur of Jaipur and Udaipur — forts, palaces, lakes, and colorful bazaars.",
+    description: `
+**"Royal Rajasthan" (4N/5D)**  
+*Explore the Majestic Cities of Jaipur & Udaipur*
+
+**Itinerary Highlights:**  
+Jaipur → Ajmer → Pushkar → Udaipur  
+
+**Inclusions:**  
+• 4N accommodation  
+• Breakfast and dinner  
+• Private car with driver and fuel  
+
+**Exclusions:**  
+• Entry fees and lunch  
+• Travel insurance  
+
+**Important Notes:**  
+• Cultural performances available on request.  
+• Great for history and architecture lovers.
+    `,
+    destinations: "Jaipur, Ajmer, Pushkar, Udaipur",
+    activities: "Fort Visits, Palace Tours, Cultural Walks",
+    theme: "Culture & Heritage",
+    price: "On Request",
+    place: "Rajasthan"
+  },
+  {
+    id: "18",
+    title: "Desert Getaway - 4N/5D Tour Package",
+    duration: "4 Nights / 5 Days",
+    image: "/images/packages/desert-getaway.jpg",
+    shortDesc:
+      "Ride through the golden sands of Jodhpur and Jaisalmer — forts, camel safaris, and desert camps.",
+    description: `
+**"Desert Getaway" (4N/5D)**  
+*Explore the Thar Desert of Rajasthan*
+
+**Itinerary Highlights:**  
+Jodhpur → Jaisalmer  
+
+**Inclusions:**  
+• 4N accommodation (hotel + desert camp)  
+• Breakfast and dinner  
+• Private car with driver and fuel  
+• Camel safari & folk dance  
+
+**Exclusions:**  
+• Entry fees and lunch  
+• Personal expenses  
+
+**Important Notes:**  
+• Ideal for desert explorers.  
+• Winter months recommended.
+    `,
+    destinations: "Jodhpur, Jaisalmer",
+    activities: "Camel Safari, Fort Tour, Folk Dance, Camping",
+    theme: "Desert & Culture",
+    price: "On Request",
+    place: "Rajasthan"
+  }
 ];
