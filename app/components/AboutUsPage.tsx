@@ -8,7 +8,7 @@ export default function AboutUsPage() {
     <section className="w-full bg-black text-white py-16 px-6 sm:px-10">
       <div className="max-w-6xl mx-auto flex flex-col items-center">
         {/* --- Hero Image --- */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
@@ -23,7 +23,7 @@ export default function AboutUsPage() {
           />
           <div className="absolute inset-0 bg-black/40" />
         
-        </motion.div>
+        </motion.div> */}
 
         {/* --- Content Section --- */}
         <motion.div
@@ -32,7 +32,7 @@ export default function AboutUsPage() {
           transition={{ duration: 0.8 }}
           className="text-center md:text-left space-y-6 md:space-y-8 max-w-4xl"
         >
-          <div>
+          <div >
             <h1 className="text-3xl sm:text-4xl font-bold text-gray-100 tracking-tight text-center md:text-left">
               About Us
             </h1>
