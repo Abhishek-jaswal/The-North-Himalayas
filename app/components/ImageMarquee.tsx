@@ -47,7 +47,7 @@ export default function ImageMarquee() {
   return (
     <div className="relative w-full overflow-hidden pb-12 bg-gradient-to-b from-black via-[#0d0d0d] to-black">
       {/* Fade edges for seamless scrolling */}
-      <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-black via-transparent to-black z-10" />
+      <div className="absolute inset-0 pointer-events-none " />
 
       {/* Heading */}
       <h2 className="text-center text-3xl sm:text-4xl font-bold mb-10 text-white tracking-wide">

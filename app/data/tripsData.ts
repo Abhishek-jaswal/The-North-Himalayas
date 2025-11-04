@@ -1,28 +1,76 @@
 export const tripsData = [
-  {
-    id: "1",
-    title: "5N/6D — North India Escape",
-    duration: "5 Nights / 6 Days ",
-    image: "/images/packages/dharamshala3.jpg",
-    shortDesc: " A short, scenic escape combining relaxed mountain time, local culture and easy excursions — ideal for couples, friends or small families.",
-    description:
-      `Day 1 — Arrival & Transfer
- Arrive in Delhi. Meet & drive/flight to the hill destination. Check in at the hotel and relax. Evening at leisure. Overnight at the hotel.
-Day 2 — Local Sightseeing
- After breakfast, explore nearby attractions: viewpoints, temples and local bazaars. Short guided walks and photo stops. Return to the hotel; evening free. Overnight stay.
-Day 3 — Excursion / Nature Day
- Full-day excursion to a nearby valley or nature spot for short hikes, riverside picnic or village visit. Pack a light daypack; comfortable shoes recommended. Return to hotel for dinner and overnight.
-Day 4 — Free Day & Optional Activities
- Relax at the hotel or choose optional experiences (paragliding, rafting, spa, local workshops) depending on location and availability. Overnight stay.
-Day 5 — Culture & Markets
- Visit a local market and handicraft centers; interact with artisans or attend a short cultural program in the evening (subject to availability). Overnight stay.
-`,
-    destinations: "Kullu, Manali, Kasol, Solang Valley, Rohtang Pass",
-    activities: "Mountaineering, Trekking",
-    theme: "Hill Stations & Valleys",
-    price: "on your request",
-    place:"kashmir"
-  },
+{
+  id: "1",
+  title: "Paradise Found - Kashmir Tour Package",
+  duration: "5 Nights / 6 Days",
+  image: "/images/packages/kashmir1.jpg",
+  shortDesc:
+    "A short, scenic escape combining relaxed mountain time, local culture, and easy excursions — ideal for couples, friends, or small families.",
+  description: `
+Experience the magic of Kashmir with 5 nights and 6 days of breathtaking beauty, local culture, and mountain serenity.
+
+**Quick Highlights:**
+• Daily breakfast & dinners  
+• 3★/4★ hotels  
+• Private transfers  
+• Local sightseeing  
+
+**Day 1: Srinagar Arrival & Local Sightseeing**  
+- Pickup from Srinagar Airport by private cab.  
+- Check-in at hotel or deluxe houseboat on Dal/Nigeen Lake.  
+- Visit Mughal Gardens (Shalimar Bagh, Nishat Bagh, Chashme Shahi), Shankaracharya Temple, and Hazratbal Shrine.  
+- Evening Shikara ride on Dal Lake.  
+- Overnight stay in Srinagar.
+
+**Day 2: Srinagar → Gulmarg (Day Trip)**  
+- Explore Gulmarg, the “Meadow of Flowers.”  
+- Enjoy the Gondola Ride, St. Mary’s Church, Maharani Temple, and Golf Course.  
+- Winter: Skiing, snowboarding, sledge rides (extra cost).  
+- Return to Srinagar for overnight stay.
+
+**Day 3: Srinagar → Sonmarg (Day Trip)**  
+- Drive to Sonmarg, the “Meadow of Gold.”  
+- Visit Thajiwas Glacier, enjoy snow activities and trout fishing (seasonal).  
+- Return to Srinagar. Overnight stay.
+
+**Day 4: Srinagar → Pahalgam**  
+- Enroute visit Awantipora Ruins, Saffron fields, and apple orchards.  
+- Check-in at Pahalgam hotel.  
+- Evening by the Lidder River. Overnight stay in Pahalgam.
+
+**Day 5: Pahalgam Sightseeing → Srinagar**  
+- Visit Aru Valley, Betaab Valley, and Chandanwari (extra cost).  
+- Return to Srinagar. Overnight stay.
+
+**Day 6: Srinagar Departure**  
+- Breakfast and check-out.  
+- Transfer to Srinagar Airport.
+
+**Inclusions:**  
+• Accommodation on twin/double sharing (5 nights)  
+• Daily breakfast & dinners  
+• All transfers and sightseeing in private vehicle  
+• All taxes and driver allowances  
+
+**Exclusions:**  
+• Flights/trains to/from start city  
+• Entry fees, permits, guide charges  
+• Personal expenses and tips  
+• Adventure activities (unless included)  
+• Travel insurance  
+
+**Important Notes:**  
+• Hotel details shared post-booking confirmation.  
+• Carry valid ID for all guests.  
+• Travel insurance recommended.
+  `,
+  destinations: "Srinagar, Gulmarg, Sonmarg, Pahalgam",
+  activities: "Sightseeing, Shikara Ride, Skiing, Trekking, Local Exploration",
+  theme: "Hill Stations & Valleys",
+  price: "₹12,000 (indicative)",
+  place: "Kashmir"
+}
+,
   {
     id: "2",
     title: "7 Days - 6 Nights Shimla Tour Package",

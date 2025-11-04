@@ -1,74 +1,149 @@
 "use client";
-
-import React from "react";
+import { useParams } from "next/navigation";
+import { tripsData } from "@/app/data/tripsData";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
-import { tripsData } from "../../data/tripsData";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { ChevronDown, Clock, MapPin, Tag } from "lucide-react";
+import Navbar from "@/app/components/Navbar";
+import Footer from "@/app/components/Footer";
 import WhatsAppButton from "@/app/components/WhatsAppButton";
+import { useRouter } from "next/navigation";
 
-export default function TourPackagePage({ params }: { params: Promise<{ id: string }> }) {
-  const resolvedParams = React.use(params); // ✅ unwrap Promise
-  const trip = tripsData.find((t) => t.id === resolvedParams.id);
-  const router = useRouter();
+export default function TourPackageDetails() {
+   const router = useRouter();
+  const { id } = useParams();
+  const tour = tripsData.find((t) => t.id === id);
 
-  if (!trip) {
+  const [openDay, setOpenDay] = useState<number | null>(null);
+
+  if (!tour) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-white">
-        <p>Tour not found.</p>
+      <div className="min-h-screen flex items-center justify-center text-white text-xl">
+        Tour not found.
       </div>
     );
   }
 
+  // Split description into day sections
+  const daySections = tour.description
+    .split("**Day ")
+    .filter((part) => part.includes(":"))
+    .map((part) => {
+      const [dayTitle, ...rest] = part.split("**");
+      return {
+        title: "Day " + dayTitle.replace(":", "").trim(),
+        content: rest.join("").trim(),
+      };
+    });
+
   return (
     <>
     <Navbar />
-    <div className="min-h-screen bg-black text-gray-100 mt-30 flex flex-col items-center py-10 px-4 sm:px-6 md:px-10">
-      <div className="w-full max-w-5xl bg-white text-gray-900 rounded-2xl shadow-2xl overflow-hidden relative animate-fadeIn">
-        
-        {/* ✅ Back Button */}
-        <button
-          onClick={() => router.back()}
-          className="absolute top-4 left-4 flex items-center gap-2 bg-white/90 hover:bg-white text-gray-800 px-3 py-1.5 rounded-full z-10 text-sm font-medium shadow-md transition-all duration-300 hover:scale-105"
-        >
-          <ArrowLeft size={16} /> Go Back
-        </button>
-
-        {/* Image Section */}
-        <div className="relative w-full h-80 sm:h-96">
-          <Image
-            src={trip.image}
-            alt={trip.title}
-            fill
-            className="object-cover"
-          />
-        </div>
-
-        {/* Content Section */}
-        <div className="p-6 sm:p-10">
-          <h1 className="text-3xl sm:text-4xl font-bold mb-4">{trip.title}</h1>
-          <p className="text-gray-700 mb-6 leading-relaxed">
-            {trip.description}
-          </p>
-
-          <ul className="space-y-2 text-gray-600">
-            <li><strong>Duration:</strong> {trip.duration}</li>
-            <li><strong>Destination Covered:</strong> {trip.destinations}</li>
-            <li><strong>Activities:</strong> {trip.activities}</li>
-            <li><strong>Theme:</strong> {trip.theme}</li>
-          </ul>
-
-          <div className="mt-8 flex justify-center">
-            <button className="bg-black text-gray-200 px-6 py-3 rounded-full font-semibold hover:scale-105 transition-transform duration-300">
-              Book Your Tour
-            </button>
-          </div>
+    <section className="min-h-screen bg-gradient-to-b from-black via-black to-black text-gray-200">
+          {/* View All Button */}
+      
+  
+      {/* Hero */}
+      <div className="relative w-full h-72 sm:h-96">
+        <Image
+          src={tour.image}
+          alt={tour.title}
+          fill
+          className="object-cover opacity-70"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+        <div className="absolute bottom-8 left-6 sm:left-12">
+          <h1 className="text-3xl sm:text-5xl font-bold text-white drop-shadow-lg">
+            {tour.title}
+          </h1>
+          <p className="text-gray-300 mt-2">{tour.place}</p>
         </div>
       </div>
-    </div>
-    <WhatsAppButton/>
+
+      {/* Overview */}
+      <div className="max-w-5xl mx-auto px-4 py-10 space-y-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+          <div className="bg-gray-800/50 p-4 rounded-xl shadow-md">
+            <Clock className="mx-auto mb-2 text-gray-300" />
+            <p className="text-sm uppercase text-gray-400">Duration</p>
+            <p className="font-semibold">{tour.duration}</p>
+          </div>
+          <div className="bg-gray-800/50 p-4 rounded-xl shadow-md">
+            <MapPin className="mx-auto mb-2 text-gray-300" />
+            <p className="text-sm uppercase text-gray-400">Destinations</p>
+            <p className="font-semibold">{tour.destinations}</p>
+          </div>
+          <div className="bg-gray-800/50 p-4 rounded-xl shadow-md">
+            <Tag className="mx-auto mb-2 text-gray-300" />
+            <p className="text-sm uppercase text-gray-400">Price</p>
+            <p className="font-semibold">{tour.price}</p>
+          </div>
+        </div>
+
+        {/* Intro */}
+        <div className="mt-10">
+          <h2 className="text-2xl font-bold mb-3 text-white">Overview</h2>
+          <p className="text-gray-400 leading-relaxed">
+            {tour.shortDesc}
+          </p>
+        </div>
+
+        {/* Itinerary */}
+        <div className="mt-10 space-y-4">
+          <h2 className="text-2xl font-bold text-white mb-4">
+            Day-wise Itinerary
+          </h2>
+
+          {daySections.map((day, index) => (
+            <div
+              key={index}
+              className="bg-gray-900/60 border border-gray-800 rounded-xl overflow-hidden"
+            >
+              <button
+                onClick={() =>
+                  setOpenDay(openDay === index ? null : index)
+                }
+                className="w-full flex justify-between items-center px-5 py-4 text-left font-semibold text-lg text-white hover:bg-gray-800 transition-colors"
+              >
+                {day.title}
+                <ChevronDown
+                  className={`transition-transform duration-300 ${
+                    openDay === index ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+     
+
+              <AnimatePresence>
+                {openDay === index && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="px-5 pb-5 text-gray-300 text-sm leading-relaxed"
+                  >
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: day.content.replace(/\n/g, "<br/>"),
+                      }}
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
+                <button
+          onClick={() => router.push("/Packages")}
+          className="px-8 py-2.5 bg-gray-800 font-semibold rounded-full text-sm hover:shadow-[0_0_25px_rgba(255,255,255,0.3)] transition-all duration-300 hover:scale-105"
+        >
+          Back to Packages →
+        </button>
+        </div>
+      </div>
+    </section >
+    <WhatsAppButton />
     <Footer />
     </>
   );
