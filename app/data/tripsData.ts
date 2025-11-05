@@ -1,146 +1,9 @@
 export const tripsData = [
-{
+ {
   id: "1",
-  title: "Paradise Found - Kashmir Tour Package",
-  duration: "5 Nights / 6 Days",
-  image: "/images/packages/kashmir1.jpg",
-  shortDesc:
-    "A short, scenic escape combining relaxed mountain time, local culture, and easy excursions — ideal for couples, friends, or small families.",
-  description: `
-Experience the magic of Kashmir with 5 nights and 6 days of breathtaking beauty, local culture, and mountain serenity.
-
-**Quick Highlights:**
-• Daily breakfast & dinners  
-• 3★/4★ hotels  
-• Private transfers  
-• Local sightseeing  
-
-**Day 1: Srinagar Arrival & Local Sightseeing**  
-- Pickup from Srinagar Airport by private cab.  
-- Check-in at hotel or deluxe houseboat on Dal/Nigeen Lake.  
-- Visit Mughal Gardens (Shalimar Bagh, Nishat Bagh, Chashme Shahi), Shankaracharya Temple, and Hazratbal Shrine.  
-- Evening Shikara ride on Dal Lake.  
-- Overnight stay in Srinagar.
-
-**Day 2: Srinagar → Gulmarg (Day Trip)**  
-- Explore Gulmarg, the “Meadow of Flowers.”  
-- Enjoy the Gondola Ride, St. Mary’s Church, Maharani Temple, and Golf Course.  
-- Winter: Skiing, snowboarding, sledge rides (extra cost).  
-- Return to Srinagar for overnight stay.
-
-**Day 3: Srinagar → Sonmarg (Day Trip)**  
-- Drive to Sonmarg, the “Meadow of Gold.”  
-- Visit Thajiwas Glacier, enjoy snow activities and trout fishing (seasonal).  
-- Return to Srinagar. Overnight stay.
-
-**Day 4: Srinagar → Pahalgam**  
-- Enroute visit Awantipora Ruins, Saffron fields, and apple orchards.  
-- Check-in at Pahalgam hotel.  
-- Evening by the Lidder River. Overnight stay in Pahalgam.
-
-**Day 5: Pahalgam Sightseeing → Srinagar**  
-- Visit Aru Valley, Betaab Valley, and Chandanwari (extra cost).  
-- Return to Srinagar. Overnight stay.
-
-**Day 6: Srinagar Departure**  
-- Breakfast and check-out.  
-- Transfer to Srinagar Airport.
-
-**Inclusions:**  
-• Accommodation on twin/double sharing (5 nights)  
-• Daily breakfast & dinners  
-• All transfers and sightseeing in private vehicle  
-• All taxes and driver allowances  
-
-**Exclusions:**  
-• Flights/trains to/from start city  
-• Entry fees, permits, guide charges  
-• Personal expenses and tips  
-• Adventure activities (unless included)  
-• Travel insurance  
-
-**Important Notes:**  
-• Hotel details shared post-booking confirmation.  
-• Carry valid ID for all guests.  
-• Travel insurance recommended.
-  `,
-  destinations: "Srinagar, Gulmarg, Sonmarg, Pahalgam",
-  activities: "Sightseeing, Shikara Ride, Skiing, Trekking, Local Exploration",
-  theme: "Hill Stations & Valleys",
-  price: "₹12,000 (indicative)",
-  place: "Kashmir"
-}
-,
- {
-  id: "2",
-  title: "Magnetic Manali - 3N/4D Tour Package",
-  duration: "3 Nights / 4 Days",
-  image: "/images/packages/manali.jpg",
-  shortDesc:
-    "A perfect Himalayan getaway — snow peaks, adventure, and cozy charm. Ideal for couples, families, or groups looking for a scenic break.",
-  description: `
-Escape to the magical hills of Manali with 3 nights and 4 days of scenic beauty, local culture, and adventure.
-
-**Quick Highlights:**
-• Daily breakfast & dinners  
-• 3★/4★ hotels  
-• Private transfers  
-• Adventure & sightseeing  
-
-**Day 1: Arrival in Manali & Local Sightseeing**  
-- Arrive in Manali (via overnight Volvo or private cab from Delhi/Chandigarh).  
-- Pickup from bus stand/hotel.  
-- Visit Hadimba Temple, Vashisht Hot Springs, Club House, Tibetan Monastery, and Van Vihar.  
-- Evening free for Mall Road shopping and cafes.  
-- Overnight stay at hotel in Manali.
-
-**Day 2: Solang Valley / Snow Adventure**  
-- Breakfast at hotel.  
-- Proceed to Solang Valley for snow fun and adventure (paragliding, ATV rides, skiing in winter).  
-- Enjoy leisure time amidst the Himalayas.  
-- Return to hotel. Dinner & overnight stay in Manali.
-
-**Day 3: Kullu & Naggar Excursion**  
-- After breakfast, drive to Kullu for optional river rafting.  
-- Enroute visit Kullu Shawl Factory and Parvati River viewpoints.  
-- Continue to Naggar Castle — a heritage site with panoramic views.  
-- Return to Manali by evening. Dinner & overnight stay at hotel.
-
-**Day 4: Departure**  
-- Breakfast and check-out.  
-- Transfer to Volvo stand/taxi for return to Delhi/Chandigarh.  
-- Tour ends with beautiful memories of Manali.
-
-**Inclusions:**  
-• 3 Nights hotel stay in Manali  
-• Daily breakfast & dinner  
-• All sightseeing as per itinerary (private cab or sharing vehicle)  
-• Pickup & drop from Manali Volvo station (if applicable)  
-• Driver allowance, parking & tolls  
-
-**Exclusions:**  
-• Delhi–Manali–Delhi travel (Volvo/flight/train)  
-• Adventure activities, entry fees & personal expenses  
-• Lunch, tips, and camera charges  
-• Travel insurance  
-
-**Important Notes:**  
-• Final hotel details & vehicle timings shared post booking confirmation.  
-• Carry valid photo ID for all guests.  
-• Travel insurance recommended.
-  `,
-  destinations: "Manali, Solang Valley, Kullu, Naggar",
-  activities: "Sightseeing, Adventure Sports, River Rafting, Shopping, Local Culture",
-  theme: "Himalayan Getaway",
-  price: "₹8,999 (indicative)",
-  place: "Manali"
-}
-,
- {
-  id: "3",
   title: "Himalayan Experience - All Himachal Tour Package",
   duration: "9 Nights / 10 Days",
-  image: "/images/packages/all-himachal.jpg",
+  image: "/images/package/Dharamshala.jpg",
   shortDesc:
     "A complete Himachal experience — from Shimla’s colonial charm to Manali’s adventure, Dharamshala’s peace, and Dalhousie’s beauty.",
   description: `
@@ -222,10 +85,187 @@ Explore Himachal Pradesh with 9 nights and 10 days covering Shimla, Manali, Dhar
   theme: "Complete Himachal Circuit",
   price: "₹16,999 (indicative)",
   place: "Himachal"
-}
-,
+},
 {
-  id: "4",
+  id: "2",
+  title: "Paradise Found - Kashmir Tour Package",
+  duration: "5 Nights / 6 Days",
+  image: "/images/packages/kashmir1.jpg",
+  shortDesc:
+    "A short, scenic escape combining relaxed mountain time, local culture, and easy excursions — ideal for couples, friends, or small families.",
+  description: `
+Experience the magic of Kashmir with 5 nights and 6 days of breathtaking beauty, local culture, and mountain serenity.
+
+**Quick Highlights:**
+• Daily breakfast & dinners  
+• 3★/4★ hotels  
+• Private transfers  
+• Local sightseeing  
+
+**Day 1: Srinagar Arrival & Local Sightseeing**  
+- Pickup from Srinagar Airport by private cab.  
+- Check-in at hotel or deluxe houseboat on Dal/Nigeen Lake.  
+- Visit Mughal Gardens (Shalimar Bagh, Nishat Bagh, Chashme Shahi), Shankaracharya Temple, and Hazratbal Shrine.  
+- Evening Shikara ride on Dal Lake.  
+- Overnight stay in Srinagar.
+
+**Day 2: Srinagar → Gulmarg (Day Trip)**  
+- Explore Gulmarg, the “Meadow of Flowers.”  
+- Enjoy the Gondola Ride, St. Mary’s Church, Maharani Temple, and Golf Course.  
+- Winter: Skiing, snowboarding, sledge rides (extra cost).  
+- Return to Srinagar for overnight stay.
+
+**Day 3: Srinagar → Sonmarg (Day Trip)**  
+- Drive to Sonmarg, the “Meadow of Gold.”  
+- Visit Thajiwas Glacier, enjoy snow activities and trout fishing (seasonal).  
+- Return to Srinagar. Overnight stay.
+
+**Day 4: Srinagar → Pahalgam**  
+- Enroute visit Awantipora Ruins, Saffron fields, and apple orchards.  
+- Check-in at Pahalgam hotel.  
+- Evening by the Lidder River. Overnight stay in Pahalgam.
+
+**Day 5: Pahalgam Sightseeing → Srinagar**  
+- Visit Aru Valley, Betaab Valley, and Chandanwari (extra cost).  
+- Return to Srinagar. Overnight stay.
+
+**Day 6: Srinagar Departure**  
+- Breakfast and check-out.  
+- Transfer to Srinagar Airport.
+
+**Inclusions:**  
+• Accommodation on twin/double sharing (5 nights)  
+• Daily breakfast & dinners  
+• All transfers and sightseeing in private vehicle  
+• All taxes and driver allowances  
+
+**Exclusions:**  
+• Flights/trains to/from start city  
+• Entry fees, permits, guide charges  
+• Personal expenses and tips  
+• Adventure activities (unless included)  
+• Travel insurance  
+
+**Important Notes:**  
+• Hotel details shared post-booking confirmation.  
+• Carry valid ID for all guests.  
+• Travel insurance recommended.
+  `,
+  destinations: "Srinagar, Gulmarg, Sonmarg, Pahalgam",
+  activities: "Sightseeing, Shikara Ride, Skiing, Trekking, Local Exploration",
+  theme: "Hill Stations & Valleys",
+  price: "₹12,000 (indicative)",
+  place: "Kashmir"
+}
+
+,
+ {
+    id: "3",
+    title: "Ladakh Unplugged - 5N/6D Tour Package",
+    duration: "5 Nights / 6 Days",
+    image: "/images/packages/ladakh.jpg",
+    shortDesc:
+      "Discover the rugged beauty of Leh, Nubra Valley, and Pangong Lake — an unforgettable high-altitude adventure.",
+    description: `
+**"Ladakh Unplugged" (5N/6D)**  
+*Explore the Breathtaking Landscapes of Leh*
+
+**Itinerary:**
+
+**Day 1: Leh Arrival & Acclimatization**  
+- Arrive in Leh, check-in to hotel, and rest.
+
+**Day 2: Leh Sightseeing**  
+- Visit Shanti Stupa, Leh Palace, Hall of Fame, and local markets.
+
+**Day 3: Leh → Nubra Valley**  
+- Drive via Khardungla Pass, visit Hunder Sand Dunes, and enjoy a camel safari.
+
+**Day 4: Nubra → Pangong**  
+- Drive to Pangong Lake and enjoy breathtaking views.
+
+**Day 5: Pangong → Leh**  
+- Return to Leh via Changla Pass, visit the 3 Idiots shooting point.
+
+**Day 6: Departure**  
+- Leisure morning, then drop at airport.
+
+**Inclusions:**  
+• 5N accommodation  
+• Breakfast and dinner  
+• Private car with driver and fuel  
+
+**Exclusions:**  
+• Entry fees and adventure activities  
+• Personal expenses and lunch  
+
+**Important Notes:**  
+• High-altitude travel — stay hydrated.  
+• Carry warm clothing.
+    `,
+    destinations: "Leh, Nubra Valley, Pangong Lake",
+    activities: "Sightseeing, Camel Safari, Lake Visit, Monastery Tour",
+    theme: "Adventure & Mountains",
+    price: "On Request",
+    place: "Ladakh"
+  }
+,
+ {
+    id: "4",
+    title: "Winter Spiti Expedition - 6N/7D Tour Package",
+    duration: "6 Nights / 7 Days",
+    image: "/images/package/spiti (2).jpg",
+    shortDesc:
+      "Witness the snow-covered beauty of Spiti — monasteries, frozen rivers, and whitewashed mountain landscapes.",
+    description: `
+**"Winter Spiti Expedition" (6N/7D)**  
+*Explore the Snow-Capped Peaks of Spiti Valley*
+
+**Itinerary:**
+
+**Day 1: Delhi → Shimla**  
+- Drive from Delhi to Shimla (370 km / 8–9 hrs).  
+- Check-in and relax.
+
+**Day 2: Shimla → Sangla**  
+- Drive (230 km / 6–7 hrs), enjoy Baspa Valley views.
+
+**Day 3: Sangla → Tabo**  
+- Drive (110 km / 4–5 hrs), visit Tabo Monastery.
+
+**Day 4: Tabo → Kaza**  
+- Drive (60 km / 3 hrs), explore Kaza and market.
+
+**Day 5: Kaza Sightseeing**  
+- Visit Key Monastery, Langza, Hikkim.
+
+**Day 6: Kaza → Kalpa**  
+- Drive (200 km / 7–8 hrs), explore apple orchards.
+
+**Day 7: Kalpa → Delhi**  
+- Long drive (630 km / 12–14 hrs), end tour.
+
+**Inclusions:**  
+• 6N accommodation  
+• Breakfast and dinner  
+• Private car with driver and fuel  
+
+**Exclusions:**  
+• Entry fees, permits, and lunch  
+• Personal expenses  
+
+**Important Notes:**  
+• Cold weather gear essential.  
+• Roads may close due to snowfall.
+    `,
+    destinations: "Shimla, Sangla, Tabo, Kaza, Kalpa",
+    activities: "Sightseeing, Snow Trek, Monastery Visits, Photography",
+    theme: "Winter & Adventure",
+    price: "On Request",
+    place: "Spiti Valley"
+  },
+{
+  id: "19",
   title: "Manali Getaway - 3N/4D Tour Package",
   duration: "3 Nights / 4 Days",
   image: "/images/packages/manali-getaway.jpg",
@@ -527,56 +567,70 @@ Explore Himachal Pradesh with 9 nights and 10 days covering Shimla, Manali, Dhar
     price: "On Request",
     place: "Uttarakhand"
   },
-  {
-    id: "10",
-    title: "Ladakh Unplugged - 5N/6D Tour Package",
-    duration: "5 Nights / 6 Days",
-    image: "/images/packages/ladakh-unplugged.jpg",
-    shortDesc:
-      "Discover the rugged beauty of Leh, Nubra Valley, and Pangong Lake — an unforgettable high-altitude adventure.",
-    description: `
-**"Ladakh Unplugged" (5N/6D)**  
-*Explore the Breathtaking Landscapes of Leh*
+{
+  id: "10",
+  title: "Magnetic Manali - 3N/4D Tour Package",
+  duration: "3 Nights / 4 Days",
+  image: "/images/packages/manali.jpg",
+  shortDesc:
+    "A perfect Himalayan getaway — snow peaks, adventure, and cozy charm. Ideal for couples, families, or groups looking for a scenic break.",
+  description: `
+Escape to the magical hills of Manali with 3 nights and 4 days of scenic beauty, local culture, and adventure.
 
-**Itinerary:**
+**Quick Highlights:**
+• Daily breakfast & dinners  
+• 3★/4★ hotels  
+• Private transfers  
+• Adventure & sightseeing  
 
-**Day 1: Leh Arrival & Acclimatization**  
-- Arrive in Leh, check-in to hotel, and rest.
+**Day 1: Arrival in Manali & Local Sightseeing**  
+- Arrive in Manali (via overnight Volvo or private cab from Delhi/Chandigarh).  
+- Pickup from bus stand/hotel.  
+- Visit Hadimba Temple, Vashisht Hot Springs, Club House, Tibetan Monastery, and Van Vihar.  
+- Evening free for Mall Road shopping and cafes.  
+- Overnight stay at hotel in Manali.
 
-**Day 2: Leh Sightseeing**  
-- Visit Shanti Stupa, Leh Palace, Hall of Fame, and local markets.
+**Day 2: Solang Valley / Snow Adventure**  
+- Breakfast at hotel.  
+- Proceed to Solang Valley for snow fun and adventure (paragliding, ATV rides, skiing in winter).  
+- Enjoy leisure time amidst the Himalayas.  
+- Return to hotel. Dinner & overnight stay in Manali.
 
-**Day 3: Leh → Nubra Valley**  
-- Drive via Khardungla Pass, visit Hunder Sand Dunes, and enjoy a camel safari.
+**Day 3: Kullu & Naggar Excursion**  
+- After breakfast, drive to Kullu for optional river rafting.  
+- Enroute visit Kullu Shawl Factory and Parvati River viewpoints.  
+- Continue to Naggar Castle — a heritage site with panoramic views.  
+- Return to Manali by evening. Dinner & overnight stay at hotel.
 
-**Day 4: Nubra → Pangong**  
-- Drive to Pangong Lake and enjoy breathtaking views.
-
-**Day 5: Pangong → Leh**  
-- Return to Leh via Changla Pass, visit the 3 Idiots shooting point.
-
-**Day 6: Departure**  
-- Leisure morning, then drop at airport.
+**Day 4: Departure**  
+- Breakfast and check-out.  
+- Transfer to Volvo stand/taxi for return to Delhi/Chandigarh.  
+- Tour ends with beautiful memories of Manali.
 
 **Inclusions:**  
-• 5N accommodation  
-• Breakfast and dinner  
-• Private car with driver and fuel  
+• 3 Nights hotel stay in Manali  
+• Daily breakfast & dinner  
+• All sightseeing as per itinerary (private cab or sharing vehicle)  
+• Pickup & drop from Manali Volvo station (if applicable)  
+• Driver allowance, parking & tolls  
 
 **Exclusions:**  
-• Entry fees and adventure activities  
-• Personal expenses and lunch  
+• Delhi–Manali–Delhi travel (Volvo/flight/train)  
+• Adventure activities, entry fees & personal expenses  
+• Lunch, tips, and camera charges  
+• Travel insurance  
 
 **Important Notes:**  
-• High-altitude travel — stay hydrated.  
-• Carry warm clothing.
-    `,
-    destinations: "Leh, Nubra Valley, Pangong Lake",
-    activities: "Sightseeing, Camel Safari, Lake Visit, Monastery Tour",
-    theme: "Adventure & Mountains",
-    price: "On Request",
-    place: "Ladakh"
-  },
+• Final hotel details & vehicle timings shared post booking confirmation.  
+• Carry valid photo ID for all guests.  
+• Travel insurance recommended.
+  `,
+  destinations: "Manali, Solang Valley, Kullu, Naggar",
+  activities: "Sightseeing, Adventure Sports, River Rafting, Shopping, Local Culture",
+  theme: "Himalayan Getaway",
+  price: "₹8,999 (indicative)",
+  place: "Manali"
+},
   {
     id: "11",
     title: "Spiti Valley Odyssey - 8N/9D Tour Package",
@@ -637,60 +691,60 @@ Explore Himachal Pradesh with 9 nights and 10 days covering Shimla, Manali, Dhar
     price: "On Request",
     place: "Spiti Valley"
   },
-  {
-    id: "12",
-    title: "Winter Spiti Expedition - 6N/7D Tour Package",
-    duration: "6 Nights / 7 Days",
-    image: "/images/packages/winter-spiti-expedition.jpg",
-    shortDesc:
-      "Witness the snow-covered beauty of Spiti — monasteries, frozen rivers, and whitewashed mountain landscapes.",
-    description: `
-**"Winter Spiti Expedition" (6N/7D)**  
-*Explore the Snow-Capped Peaks of Spiti Valley*
+//   {
+//     id: "3",
+//     title: "Winter Spiti Expedition - 6N/7D Tour Package",
+//     duration: "6 Nights / 7 Days",
+//     image: "/images/packages/winter-spiti-expedition.jpg",
+//     shortDesc:
+//       "Witness the snow-covered beauty of Spiti — monasteries, frozen rivers, and whitewashed mountain landscapes.",
+//     description: `
+// **"Winter Spiti Expedition" (6N/7D)**  
+// *Explore the Snow-Capped Peaks of Spiti Valley*
 
-**Itinerary:**
+// **Itinerary:**
 
-**Day 1: Delhi → Shimla**  
-- Drive from Delhi to Shimla (370 km / 8–9 hrs).  
-- Check-in and relax.
+// **Day 1: Delhi → Shimla**  
+// - Drive from Delhi to Shimla (370 km / 8–9 hrs).  
+// - Check-in and relax.
 
-**Day 2: Shimla → Sangla**  
-- Drive (230 km / 6–7 hrs), enjoy Baspa Valley views.
+// **Day 2: Shimla → Sangla**  
+// - Drive (230 km / 6–7 hrs), enjoy Baspa Valley views.
 
-**Day 3: Sangla → Tabo**  
-- Drive (110 km / 4–5 hrs), visit Tabo Monastery.
+// **Day 3: Sangla → Tabo**  
+// - Drive (110 km / 4–5 hrs), visit Tabo Monastery.
 
-**Day 4: Tabo → Kaza**  
-- Drive (60 km / 3 hrs), explore Kaza and market.
+// **Day 4: Tabo → Kaza**  
+// - Drive (60 km / 3 hrs), explore Kaza and market.
 
-**Day 5: Kaza Sightseeing**  
-- Visit Key Monastery, Langza, Hikkim.
+// **Day 5: Kaza Sightseeing**  
+// - Visit Key Monastery, Langza, Hikkim.
 
-**Day 6: Kaza → Kalpa**  
-- Drive (200 km / 7–8 hrs), explore apple orchards.
+// **Day 6: Kaza → Kalpa**  
+// - Drive (200 km / 7–8 hrs), explore apple orchards.
 
-**Day 7: Kalpa → Delhi**  
-- Long drive (630 km / 12–14 hrs), end tour.
+// **Day 7: Kalpa → Delhi**  
+// - Long drive (630 km / 12–14 hrs), end tour.
 
-**Inclusions:**  
-• 6N accommodation  
-• Breakfast and dinner  
-• Private car with driver and fuel  
+// **Inclusions:**  
+// • 6N accommodation  
+// • Breakfast and dinner  
+// • Private car with driver and fuel  
 
-**Exclusions:**  
-• Entry fees, permits, and lunch  
-• Personal expenses  
+// **Exclusions:**  
+// • Entry fees, permits, and lunch  
+// • Personal expenses  
 
-**Important Notes:**  
-• Cold weather gear essential.  
-• Roads may close due to snowfall.
-    `,
-    destinations: "Shimla, Sangla, Tabo, Kaza, Kalpa",
-    activities: "Sightseeing, Snow Trek, Monastery Visits, Photography",
-    theme: "Winter & Adventure",
-    price: "On Request",
-    place: "Spiti Valley"
-  },
+// **Important Notes:**  
+// • Cold weather gear essential.  
+// • Roads may close due to snowfall.
+//     `,
+//     destinations: "Shimla, Sangla, Tabo, Kaza, Kalpa",
+//     activities: "Sightseeing, Snow Trek, Monastery Visits, Photography",
+//     theme: "Winter & Adventure",
+//     price: "On Request",
+//     place: "Spiti Valley"
+//   },
   {
     id: "13",
     title: "Himachal Odyssey - 9N/10D Tour Package",

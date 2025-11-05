@@ -11,7 +11,12 @@ const images = [
   "/images/packages/dharamshala1.jpg",
   "/images/packages/dharamshala.jpg",
   "/images/packages/ladakh3.jpg",
-  "/images/packages/kashmir1.jpg"
+  "/images/packages/kashmir1.jpg",
+ "/images/crousal/crousal1.jpg",
+ "/images/crousal/crousal2.jpg",
+ "/images/crousal/crousal3.jpg",
+"/images/crousal/crousal4.jpg",
+ "/images/crousal/crousal5.jpg",
 ];
 
 export default function FullScreenCarousel() {
