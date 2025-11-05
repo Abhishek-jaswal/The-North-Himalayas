@@ -11,6 +11,7 @@ import Footer from "./Footer";
 import ContactFormPopup from "./ContactFormPopup";
 import ExpertsSection from "./ExpertsSections";
 import AboutUsPage from "./AboutUsPage";
+import ReviewsSection from "./ReviewsSection";
 
 export default function MainLayout() {
   const [loading, setLoading] = useState(true);
@@ -31,7 +32,7 @@ export default function MainLayout() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}
-            className="fixed inset-0 flex flex-col items-center justify-centerbg-gradient-to-b from-black via-gray-900 to-black  text-white z-50"
+            className="fixed inset-0 flex flex-col items-center mt-20 justify-centerbg-gradient-to-b from-black via-gray-900 to-black  text-white z-50"
           >
             <motion.img
               src="/images/logos/logo_5.jpg"
@@ -74,7 +75,7 @@ export default function MainLayout() {
             <ImageMarquee />
             <AboutUsPage />
             <ExpertsSection/>
-            
+            <ReviewsSection/>
             <WhatsAppButton />
             <ContactFormPopup/>
             <Footer />

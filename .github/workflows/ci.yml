@@ -3,10 +3,10 @@ name: CI Pipeline
 on:
   push:
     branches:
-      - main ## trigger to pushes to main branch
+      - newFeature ## trigger to pushes to main branch
   pull_request:
     branches:
-      - main  ## trigger on pull requests to main branch
+      - newFeature  ## trigger on pull requests to main branch
 
 jobs:
   build:
