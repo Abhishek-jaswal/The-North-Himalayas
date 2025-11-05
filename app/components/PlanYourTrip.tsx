@@ -13,7 +13,7 @@ export default function PlanYourTrip() {
   };
 
   return (
-    <section className="py-16 bg-gradient-to-b from-black via-[#0a0a0a] to-black">
+    <section className="pt-12 bg-gradient-to-b from-black via-[#0a0a0a] to-black">
       {/* Title */}
       <div className="text-center px-6">
         <h2 className="text-3xl sm:text-4xl font-extrabold bg-clip-text text-gray-100 tracking-wide">
@@ -90,6 +90,8 @@ export default function PlanYourTrip() {
           View All Packages →
         </button>
       </div>
+            {/* --- Decorative Line --- */}
+      <div className="my-12 mx-auto w-full h-[2px] bg-gradient-to-r from-transparent via-gray-600 to-transparent opacity-50" />
     </section>
   );
 }

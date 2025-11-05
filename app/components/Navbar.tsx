@@ -11,6 +11,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  
   // Detect scroll
   useEffect(() => {
     const handleScroll = () => {
@@ -82,29 +83,7 @@ className="px-4 py-2 rounded-md transition-all duration-200 focus:outline-none f
             )}
           </li>
 
-          <li className="relative" onMouseEnter={() => setOpenTours(true)} onMouseLeave={() => setOpenTours(false)}>
-            <button
-              aria-haspopup="menu"
-              aria-expanded={openTours}
-              className="inline-flex items-center gap-1 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2"
-            >
-              TOURS BY TYPE <ChevronDown size={16} />
-            </button>
-
-            {openTours && (
-              <ul className="absolute left-0 top-full mt-2 w-52 rounded-md bg-white shadow-md ring-1 ring-black/5 focus:outline-none">
-                {[
-                  "Family Tours",
-                  "Adventure Tours",
-                  "Honeymoon Packages",
-                ].map((t) => (
-                  <li key={t} className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                    {t}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
+            <li>{navLink("ABOUT US", () => router.push("/About"))}</li>
 
           <li>{navLink("CONTACT US", () => router.push("#contact"))}</li>
         </ul>
@@ -164,26 +143,12 @@ className="px-4 py-2 rounded-md transition-all duration-200 focus:outline-none f
 
                 <li>
                   <button
-                    className="w-full flex items-center justify-between px-4 py-3 rounded-md bg-black text-white font-semibold mt-2"
-                    onClick={() => setOpenTours((s) => !s)}
+                    className="w-full text-left px-4 py-3 rounded-md hover:bg-gray-100"
+                    onClick={() => router.push("/About")}
                   >
-                    TOURS BY TYPE <ChevronDown />
+                    ABOUT US
                   </button>
                 </li>
-
-                {openTours && (
-                  <ul className="mt-1 rounded-md bg-gray-50">
-                    {[
-                      "Family Tours",
-                      "Adventure Tours",
-                      "Honeymoon Packages",
-                    ].map((t) => (
-                      <li key={t} className="px-6 py-2 hover:bg-gray-100 cursor-pointer">
-                        {t}
-                      </li>
-                    ))}
-                  </ul>
-                )}
 
                 <li>
                   <button
