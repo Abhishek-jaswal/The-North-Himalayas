@@ -48,13 +48,13 @@ export default function ExpertsSection() {
   return (
     <section
       aria-labelledby="experts-heading"
-      className="relative bg-black text-white px-4 sm:px-8 lg:px-20 overflow-hidden"
+      className="relative text-white px-4 sm:px-8 lg:px-20 overflow-hidden"
     >
       {/* --- Decorative Glow Background --- */}
       <div className="absolute inset-0 bg-gradient-to-b from-blackto-gray-900 opacity-90" />
      
       {/* --- Section Header --- */}
-      <div className="relative z-10 text-center mb-16">
+      <div className="relative z-10 text-center  mb-16">
         <h2
           id="experts-heading"
           className="text-3xl sm:text-4xl font-bold tracking-tight text-white"
