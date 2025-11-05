@@ -73,7 +73,6 @@ export default function MainLayout() {
             <ContactForm />
             <PlanYourTrip />
             <ImageMarquee />
-            <AboutUsPage />
             <ExpertsSection/>
             <ReviewsSection/>
             <WhatsAppButton />

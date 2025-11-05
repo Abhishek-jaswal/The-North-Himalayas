@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function AboutUsPage() {
   return (
-    <section className="w-full bg-black text-white py-16 px-6 sm:px-10">
+    <section className="w-full bg-black mt-30 text-white py-16 px-6 sm:px-10">
       <div className="max-w-6xl mx-auto flex flex-col items-center">
         {/* --- Hero Image --- */}
         {/* <motion.div

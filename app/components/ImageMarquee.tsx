@@ -47,8 +47,8 @@ export default function ImageMarquee() {
   return (
     <div className="relative w-full overflow-hidden pb-12 bg-gradient-to-b from-black via-[#0d0d0d] to-black">
       {/* Fade edges for seamless scrolling */}
-      <div className="absolute inset-0 pointer-events-none " />
-
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-blackto-gray-900 opacity-90" />
+ 
       {/* Heading */}
       <h2 className="text-center text-3xl sm:text-4xl font-bold mb-10 text-white tracking-wide">
         <span className="text-gray-100">
@@ -98,8 +98,8 @@ export default function ImageMarquee() {
         </div>
       </div>
 
-      {/* Subtle glow line */}
-      <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-60"></div>
+      {/* --- Decorative Line --- */}
+      <div className="my-12 mx-auto w-full h-[2px] bg-gradient-to-r from-transparent via-gray-600 to-transparent opacity-50" />
     </div>
   );
 }

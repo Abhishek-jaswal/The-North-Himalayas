@@ -40,7 +40,7 @@ export default function ReviewsSection() {
   };
 
   return (
-    <section className="w-full bg-gradient-to-b from-black px-4 text-white">
+    <section className="w-full bg-gradient-to-b from-blackto-gray-900 opacity-90 px-4 text-white">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}

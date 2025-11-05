@@ -142,6 +142,8 @@ export default function TourPackageDetails() {
         </button>
         </div>
       </div>
+            {/* --- Decorative Line --- */}
+      <div className="my-12 mx-auto w-full h-[2px] bg-gradient-to-r from-transparent via-gray-600 to-transparent opacity-50" />
     </section >
     <WhatsAppButton />
     <Footer />
