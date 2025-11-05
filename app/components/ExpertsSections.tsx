@@ -14,7 +14,7 @@ interface Expert {
 const experts: Expert[] = [
     {
     name: "Suraj Jaryal",
-    title: "Founder & Travel Visionary",
+    title: "Co-Founder & Travel Visionary",
     img: "/experts/surajj.jpg",
     desc: "A passionate explorer with a deep love for the mountains, Suraj turned his travel dreams into reality by creating The North Himalayas. His vision is simple — to help others find peace and purpose through travel.",
     alt: "Suraj Jaryal beside a vehicle in mountains",
@@ -22,7 +22,7 @@ const experts: Expert[] = [
 
   {
     name: "Abhishek Kumar",
-    title: "Operations & Experience Curator",
+    title: "Co-Founder & Operations & Experience Curator",
     img: "/experts/abhishek.jpg",
     desc: "Abhishek ensures every itinerary runs smoothly — from seamless logistics to unforgettable experiences. His attention to detail makes every trip effortless and enjoyable.",
     alt: "Abhishek Kumar smiling outdoors",
@@ -30,14 +30,14 @@ const experts: Expert[] = [
 
   {
     name: "Ankaj Thakur",
-    title: "Sales & Client Relations Expert",
+    title: "Co-Founder & Sales & Client Relations Expert",
     img: "/experts/ankaj.jpg",
     desc: "The friendly face of The North Himalayas, Ankaj believes every traveler deserves a personalized experience. His warmth and professionalism ensure guests feel like family.",
     alt: "Ankaj Thakur smiling near a lake",
   },
     {
     name: "Sourabh Kumar",
-    title: "Destination & Adventure Specialist",
+    title: "Co-Founder & Destination & Adventure Specialist",
     img: "/experts/sourabh.jpg",
     desc: "From hidden Himalayan trails to iconic Indian landmarks, Sourabh knows them all. His expertise in adventure and offbeat travel makes every journey exciting and safe.",
     alt: "Sourabh smiling outdoors",
@@ -48,13 +48,13 @@ export default function ExpertsSection() {
   return (
     <section
       aria-labelledby="experts-heading"
-      className="relative bg-black text-white px-4 sm:px-8 lg:px-20 overflow-hidden"
+      className="relative text-white px-4 sm:px-8 lg:px-20 overflow-hidden"
     >
       {/* --- Decorative Glow Background --- */}
       <div className="absolute inset-0 bg-gradient-to-b from-blackto-gray-900 opacity-90" />
      
       {/* --- Section Header --- */}
-      <div className="relative z-10 text-center mb-16">
+      <div className="relative z-10 text-center  mb-16">
         <h2
           id="experts-heading"
           className="text-3xl sm:text-4xl font-bold tracking-tight text-white"
