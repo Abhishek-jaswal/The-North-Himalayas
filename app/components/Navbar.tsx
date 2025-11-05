@@ -7,7 +7,6 @@ import { ChevronDown, Menu, X } from "lucide-react";
 export default function Navbar() {
   const router = useRouter();
   const [openDest, setOpenDest] = useState(false);
-  const [openTours, setOpenTours] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -85,7 +84,7 @@ className="px-4 py-2 rounded-md transition-all duration-200 focus:outline-none f
 
             <li>{navLink("ABOUT US", () => router.push("/About"))}</li>
 
-          <li>{navLink("CONTACT US", () => router.push("#contact"))}</li>
+          <li>{navLink("CONTACT US", () => router.push("/contact"))}</li>
         </ul>
 
         {/* Mobile toggle */}
