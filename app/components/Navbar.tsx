@@ -70,9 +70,9 @@ className="px-4 py-2 rounded-md transition-all duration-200 focus:outline-none f
             {openDest && (
               <ul className="absolute left-0 top-full mt-2 w-44 rounded-md bg-white shadow-md ring-1 ring-black/5 focus:outline-none">
                 {[
-                  { label: "Himachal Pradesh" },
-                  { label: "Srinagar" },
-                  { label: "Bali" },
+                  { label: "Domestic" },
+                  { label: "International" },
+                
                 ].map((d) => (
                   <li key={d.label} className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                     {d.label}

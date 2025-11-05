@@ -15,10 +15,12 @@ const images = [
  "/images/crousal/crousal1.jpg",
  "/images/crousal/crousal2.jpg",
  "/images/crousal/crousal3.jpg",
-"/images/crousal/crousal4.jpg",
+ "/images/crousal/crousal4.jpg",
  "/images/crousal/crousal5.jpg",
+
 ];
 
+// 7897417379
 export default function FullScreenCarousel() {
   return (
     <div className="w-full h-[60vh] sm:h-[70vh] md:h-[85vh] lg:h-screen">
