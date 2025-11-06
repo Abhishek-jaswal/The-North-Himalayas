@@ -9,21 +9,28 @@ const reviews = [
     location: "Delhi, India",
     review:
       "Our trip to Manali was perfectly organized! The hotel, food, and sightseeing were just amazing. Highly recommend this agency!",
-    image: "/images/reviewer1.jpg",
+    image: "/experts/abhikumar.jpg",
   },
   {
     name: "Priya Nair",
     location: "Mumbai, India",
     review:
       "Had an incredible experience in Kashmir. The team handled everything smoothly — from transport to accommodation. 10/10!",
-    image: "/images/reviewer2.jpg",
+    image: "/experts/surajj.jpg",
   },
   {
     name: "Rahul Verma",
     location: "Pune, India",
     review:
       "The Rishikesh spiritual tour was rejuvenating. Well-planned itinerary and super friendly guides. Thank you for the memories!",
-    image: "/images/reviewer3.jpg",
+    image: "/experts/ankaj.jpg",
+  },
+  {
+    name: "Simran Kaur",
+    location: "Chandigarh, India",
+    review:
+      "We loved our Himachal package. Everything was seamless from start to finish. Will definitely book again!",
+    image: "/experts/sourabh.jpg",
   },
 ];
 
@@ -34,28 +41,42 @@ export default function ReviewsSection() {
     autoplay: true,
     autoplaySpeed: 4000,
     speed: 600,
-    slidesToShow: 1,
+    slidesToShow: 2, // ✅ show 2 reviews side by side
     slidesToScroll: 1,
     arrows: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1, // ✅ show 1 on mobile
+        },
+      },
+    ],
   };
 
   return (
-    <section className="w-full bg-gradient-to-b from-blackto-gray-900 opacity-90 px-4 text-white">
+    <section className="w-full bg-gradient-to-b from-black to-gray-900 opacity-90 px-4 text-white py-16">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="max-w-5xl mx-auto text-center"
+        className="max-w-6xl mx-auto text-center"
       >
         <h2 className="text-3xl md:text-4xl font-bold mb-10">
-          What Our Travelers Say 
+          What Our Travelers Say
         </h2>
 
         <Slider {...settings}>
           {reviews.map((r, i) => (
             <div key={i}>
-              <div className="flex flex-col md:flex-row items-center justify-center gap-8  backdrop-blur-sm rounded-2xl p-6 md:p-10 shadow-lg mx-2">
+              <div className="flex flex-col md:flex-row items-center justify-center gap-8 backdrop-blur-sm rounded-2xl p-6 md:p-10 shadow-lg mx-3 bg-white/5">
                 <Image
                   src={r.image}
                   alt={r.name}
@@ -75,7 +96,8 @@ export default function ReviewsSection() {
           ))}
         </Slider>
       </motion.div>
-            {/* --- Decorative Line --- */}
+
+      {/* --- Decorative Line --- */}
       <div className="my-12 mx-auto w-full h-[2px] bg-gradient-to-r from-transparent via-gray-600 to-transparent opacity-50" />
     </section>
   );
