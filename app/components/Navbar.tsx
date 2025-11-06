@@ -152,7 +152,7 @@ className="px-4 py-2 rounded-md transition-all duration-200 focus:outline-none f
                 <li>
                   <button
                     className="w-full text-left px-4 py-3 rounded-md hover:bg-gray-100"
-                    onClick={() => router.push("#contact")}
+                    onClick={() => router.push("/contact")}
                   >
                     CONTACT US
                   </button>
