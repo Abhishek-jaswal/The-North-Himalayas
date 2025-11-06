@@ -23,7 +23,7 @@ const experts: Expert[] = [
   {
     name: "Abhishek Kumar",
     title: "Co-Founder & Operations & Experience Curator",
-    img: "/experts/abhishek.jpg",
+    img: "/experts/abhikumar.jpg",
     desc: "Abhishek ensures every itinerary runs smoothly — from seamless logistics to unforgettable experiences. His attention to detail makes every trip effortless and enjoyable.",
     alt: "Abhishek Kumar smiling outdoors",
   },
