@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://thenorthhimalayas.com
+
+# Sitemaps
+Sitemap: https://thenorthhimalayas.com/sitemap.xml
