@@ -1,31 +1,28 @@
 "use client";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { tripsData } from "@/app/data/tripsData";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { ChevronDown, Clock, MapPin, Tag } from "lucide-react";
+import { ChevronDown, Clock, MapPin, Tag, ArrowLeft } from "lucide-react";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import WhatsAppButton from "@/app/components/WhatsAppButton";
-import { useRouter } from "next/navigation";
 
 export default function TourPackageDetails() {
-   const router = useRouter();
+  const router = useRouter();
   const { id } = useParams();
   const tour = tripsData.find((t) => t.id === id);
-
   const [openDay, setOpenDay] = useState<number | null>(null);
 
   if (!tour) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-white text-xl">
+      <div className="min-h-screen flex items-center justify-center bg-black text-white text-xl">
         Tour not found.
       </div>
     );
   }
 
-  // Split description into day sections
   const daySections = tour.description
     .split("**Day ")
     .filter((part) => part.includes(":"))
@@ -39,114 +36,161 @@ export default function TourPackageDetails() {
 
   return (
     <>
-    <Navbar />
-    <section className="min-h-screen bg-gradient-to-b from-black via-black to-black text-gray-200">
-          {/* View All Button */}
-      
-  
-      {/* Hero */}
-      <div className="relative w-full h-72 sm:h-96">
-        <Image
-          src={tour.image}
-          alt={tour.title}
-          fill
-          className="object-cover opacity-70"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-        <div className="absolute bottom-8 left-6 sm:left-12">
-          <h1 className="text-3xl sm:text-5xl font-bold text-white drop-shadow-lg">
-            {tour.title}
-          </h1>
-          <p className="text-gray-300 mt-2">{tour.place}</p>
-        </div>
-      </div>
-
-      {/* Overview */}
-      <div className="max-w-5xl mx-auto px-4 py-10 space-y-4">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-          <div className="bg-gray-800/50 p-4 rounded-xl shadow-md">
-            <Clock className="mx-auto mb-2 text-gray-300" />
-            <p className="text-sm uppercase text-gray-400">Duration</p>
-            <p className="font-semibold">{tour.duration}</p>
-          </div>
-          <div className="bg-gray-800/50 p-4 rounded-xl shadow-md">
-            <MapPin className="mx-auto mb-2 text-gray-300" />
-            <p className="text-sm uppercase text-gray-400">Destinations</p>
-            <p className="font-semibold">{tour.destinations}</p>
-          </div>
-          <div className="bg-gray-800/50 p-4 rounded-xl shadow-md">
-            <Tag className="mx-auto mb-2 text-gray-300" />
-            <p className="text-sm uppercase text-gray-400">Price</p>
-            <p className="font-semibold">{tour.price}</p>
-          </div>
-        </div>
-
-        {/* Intro */}
-        <div className="mt-10">
-          <h2 className="text-2xl font-bold mb-3 text-white">Overview</h2>
-          <p className="text-gray-400 leading-relaxed">
-            {tour.shortDesc}
-          </p>
-        </div>
-
-        {/* Itinerary */}
-        <div className="mt-10 space-y-4">
-          <h2 className="text-2xl font-bold text-white mb-4">
-            Day-wise Itinerary
-          </h2>
-
-          {daySections.map((day, index) => (
-            <div
-              key={index}
-              className="bg-gray-900/60 border border-gray-800 rounded-xl overflow-hidden"
-            >
-              <button
-                onClick={() =>
-                  setOpenDay(openDay === index ? null : index)
-                }
-                className="w-full flex justify-between items-center px-5 py-4 text-left font-semibold text-lg text-white hover:bg-gray-800 transition-colors"
-              >
-                {day.title}
-                <ChevronDown
-                  className={`transition-transform duration-300 ${
-                    openDay === index ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
-     
-
-              <AnimatePresence>
-                {openDay === index && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.4 }}
-                    className="px-5 pb-5 text-gray-300 text-sm leading-relaxed"
-                  >
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: day.content.replace(/\n/g, "<br/>"),
-                      }}
-                    />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          ))}
-                <button
-          onClick={() => router.push("/Packages")}
-          className="px-8 py-2.5 bg-gray-800 font-semibold rounded-full text-sm hover:shadow-[0_0_25px_rgba(255,255,255,0.3)] transition-all duration-300 hover:scale-105"
+      <Navbar />
+      <section className="min-h-screen bg-black text-gray-200 pt-16">
+        {/* Hero Section */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          className="relative w-full h-[400px] sm:h-[500px] overflow-hidden"
         >
-          Back to Packages →
-        </button>
+          <Image
+            src={tour.image}
+            alt={tour.title}
+            fill
+            className="object-cover opacity-60"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+          <motion.div
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="absolute bottom-12 left-6 sm:left-12 right-6 sm:right-12"
+          >
+            <h1 className="text-4xl sm:text-6xl font-bold text-white mb-3 drop-shadow-lg">
+              {tour.title}
+            </h1>
+            <p className="text-gray-300 text-lg">{tour.place}</p>
+          </motion.div>
+        </motion.div>
+
+        {/* Main Content */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-12">
+          {/* Overview Cards */}
+          <motion.div
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="grid grid-cols-1 sm:grid-cols-3 gap-6"
+          >
+            <div className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+              <Clock className="mx-auto mb-3 text-white" size={32} />
+              <p className="text-sm uppercase text-gray-400 tracking-wider text-center mb-1">
+                Duration
+              </p>
+              <p className="font-semibold text-white text-center text-lg">
+                {tour.duration}
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+              <MapPin className="mx-auto mb-3 text-white" size={32} />
+              <p className="text-sm uppercase text-gray-400 tracking-wider text-center mb-1">
+                Destinations
+              </p>
+              <p className="font-semibold text-white text-center text-lg">
+                {tour.destinations}
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+              <Tag className="mx-auto mb-3 text-white" size={32} />
+              <p className="text-sm uppercase text-gray-400 tracking-wider text-center mb-1">
+                Price
+              </p>
+              <p className="font-semibold text-white text-center text-lg">
+                {tour.price}
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Overview Section */}
+          <motion.div
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+            className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/10"
+          >
+            <h2 className="text-3xl font-bold mb-4 text-white">Overview</h2>
+            <p className="text-gray-300 leading-relaxed text-lg">
+              {tour.shortDesc}
+            </p>
+          </motion.div>
+
+          {/* Itinerary Section */}
+          <motion.div
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+            className="space-y-6"
+          >
+            <h2 className="text-3xl font-bold text-white mb-6">
+              Day-wise Itinerary
+            </h2>
+
+            {daySections.map((day, index) => (
+              <motion.div
+                key={index}
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.7 + index * 0.1, duration: 0.5 }}
+                className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-300"
+              >
+                <button
+                  onClick={() => setOpenDay(openDay === index ? null : index)}
+                  className="w-full flex justify-between items-center px-6 py-5 text-left font-semibold text-lg text-white hover:bg-white/5 transition-all duration-300"
+                >
+                  {day.title}
+                  <ChevronDown
+                    className={`transition-transform duration-300 ${
+                      openDay === index ? "rotate-180" : ""
+                    }`}
+                    size={24}
+                  />
+                </button>
+
+                <AnimatePresence>
+                  {openDay === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-6 pb-6 text-gray-300 leading-relaxed">
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: day.content.replace(/\n/g, "<br/>"),
+                          }}
+                        />
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+
+            {/* Back Button */}
+            <motion.button
+              onClick={() => router.push("/Packages")}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="mt-8 flex items-center justify-center gap-2 px-8 py-3 bg-white/5 border border-white/20 rounded-full text-white font-semibold text-base hover:bg-white/10 hover:border-white/30 transition-all duration-300 hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]"
+            >
+              <ArrowLeft size={20} />
+              Back to Packages
+            </motion.button>
+          </motion.div>
         </div>
-      </div>
-            {/* --- Decorative Line --- */}
-      <div className="my-12 mx-auto w-full h-[2px] bg-gradient-to-r from-transparent via-gray-600 to-transparent opacity-50" />
-    </section >
-    <WhatsAppButton />
-    <Footer />
+
+        {/* Divider */}
+        <div className="my-16 mx-auto w-full max-w-4xl h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+      </section>
+
+      <WhatsAppButton />
+      <Footer />
     </>
   );
 }

@@ -41,27 +41,29 @@ export default function ReviewsSection() {
     autoplay: true,
     autoplaySpeed: 4000,
     speed: 600,
-    slidesToShow: 2, // ✅ show 2 reviews side by side
+    slidesToShow: 2, // ✅ 2 on desktop
     slidesToScroll: 1,
     arrows: false,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1024, // tablets
         settings: {
           slidesToShow: 2,
         },
       },
       {
-        breakpoint: 768,
+        breakpoint: 768, // ✅ mobile
         settings: {
-          slidesToShow: 1, // ✅ show 1 on mobile
+          slidesToShow: 1,
+          centerMode: false,
+          centerPadding: "0px",
         },
       },
     ],
   };
 
   return (
-    <section className="w-full bg-gradient-to-b from-black to-gray-900 opacity-90 px-4 text-white py-16">
+    <section className="w-full bg-gradient-to-b from-gay-900 to-black opacity-90 px-4 text-white">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -76,7 +78,7 @@ export default function ReviewsSection() {
         <Slider {...settings}>
           {reviews.map((r, i) => (
             <div key={i}>
-              <div className="flex flex-col md:flex-row items-center justify-center gap-8 backdrop-blur-sm rounded-2xl p-6 md:p-10 shadow-lg mx-3 bg-white/5">
+              <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 backdrop-blur-sm rounded-2xl p-6 md:p-10 shadow-lg mx-2 bg-white/5">
                 <Image
                   src={r.image}
                   alt={r.name}
