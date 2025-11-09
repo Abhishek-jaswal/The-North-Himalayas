@@ -9,28 +9,28 @@ const reviews = [
     location: "Delhi, India",
     review:
       "Our trip to Manali was perfectly organized! The hotel, food, and sightseeing were just amazing. Highly recommend this agency!",
-    image: "/experts/abhikumar.jpg",
+    image: "/experts/abhiumar.jpg",
   },
   {
     name: "Priya Nair",
     location: "Mumbai, India",
     review:
       "Had an incredible experience in Kashmir. The team handled everything smoothly — from transport to accommodation. 10/10!",
-    image: "/experts/surajj.jpg",
+    image: "/experts/suraj.jpg",
   },
   {
     name: "Rahul Verma",
     location: "Pune, India",
     review:
       "The Rishikesh spiritual tour was rejuvenating. Well-planned itinerary and super friendly guides. Thank you for the memories!",
-    image: "/experts/ankaj.jpg",
+    image: "/experts/anaj.jpg",
   },
   {
     name: "Simran Kaur",
     location: "Chandigarh, India",
     review:
       "We loved our Himachal package. Everything was seamless from start to finish. Will definitely book again!",
-    image: "/experts/sourabh.jpg",
+    image: "/experts/sourbh.jpg",
   },
 ];
 
