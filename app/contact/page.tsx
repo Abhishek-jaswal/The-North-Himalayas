@@ -58,7 +58,7 @@ export default function ContactPage() {
 
             <div className="flex items-center gap-3">
               <Mail className="w-5 h-5 text-indigo-400" />
-              <p>info@thenorthhimalayas.com</p>
+              <p>hello@thenorthhimalayas.com</p>
             </div>
 
             <div className="flex items-center gap-3">

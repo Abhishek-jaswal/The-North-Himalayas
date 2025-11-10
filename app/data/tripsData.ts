@@ -90,7 +90,7 @@ Explore Himachal Pradesh with 9 nights and 10 days covering Shimla, Manali, Dhar
   id: "2",
   title: "Paradise Found - Kashmir Tour Package",
   duration: "5 Nights / 6 Days",
-  image: "/images/packages/kashmir1.jpg",
+  image: "/images/package/kashmir.jpg",
   shortDesc:
     "A short, scenic escape combining relaxed mountain time, local culture, and easy excursions — ideal for couples, friends, or small families.",
   description: `
@@ -163,7 +163,7 @@ Experience the magic of Kashmir with 5 nights and 6 days of breathtaking beauty,
     id: "3",
     title: "Ladakh Unplugged - 5N/6D Tour Package",
     duration: "5 Nights / 6 Days",
-    image: "/images/packages/ladakh.jpg",
+    image: "/images/package/ladakh.jpg",
     shortDesc:
       "Discover the rugged beauty of Leh, Nubra Valley, and Pangong Lake — an unforgettable high-altitude adventure.",
     description: `
@@ -268,7 +268,7 @@ Experience the magic of Kashmir with 5 nights and 6 days of breathtaking beauty,
   id: "19",
   title: "Manali Getaway - 3N/4D Tour Package",
   duration: "3 Nights / 4 Days",
-  image: "/images/packages/manali-getaway.jpg",
+  image: "/images/package/6.jpg",
   shortDesc:
     "A cozy Manali retreat with Volvo transfers, snow adventures, and serene mountain views — perfect for couples and families.",
   description: `
@@ -319,7 +319,7 @@ Experience the magic of Kashmir with 5 nights and 6 days of breathtaking beauty,
   id: "5",
   title: "Manali Delight - 3N/4D Tour Package",
   duration: "3 Nights / 4 Days",
-  image: "/images/packages/manali-delight.jpg",
+  image: "/images/package/5.jpg",
   shortDesc:
     "Enjoy the scenic drive from Delhi to Manali and explore temples, Solang Valley, and snow adventures — a perfect mix of comfort and thrill.",
   description: `
@@ -367,7 +367,7 @@ Experience the magic of Kashmir with 5 nights and 6 days of breathtaking beauty,
   id: "6",
   title: "Kerala Odyssey - 5N/6D Tour Package",
   duration: "5 Nights / 6 Days",
-  image: "/images/packages/kerala-odyssey.jpg",
+  image: "/images/package/7.jpg",
   shortDesc:
     "Discover God’s Own Country — from misty Munnar to backwater cruises in Alleppey and wildlife adventures in Thekkady.",
   description: `
@@ -421,7 +421,7 @@ Experience the magic of Kashmir with 5 nights and 6 days of breathtaking beauty,
   id: "7",
   title: "Goa Getaway - 4N/5D Tour Package",
   duration: "4 Nights / 5 Days",
-  image: "/images/packages/goa-getaway.jpg",
+  image: "/images/package/8.jpg",
   shortDesc:
     "Experience the vibrant soul of Goa with pristine beaches, water sports, markets, and sunset vibes — perfect for a relaxing escape.",
   description: `
@@ -471,7 +471,7 @@ Experience the magic of Kashmir with 5 nights and 6 days of breathtaking beauty,
   id: "8",
   title: "Uttarakhand Escape - 4N/5D Tour Package",
   duration: "4 Nights / 5 Days",
-  image: "/images/packages/uttarakhand-escape.jpg",
+  image: "/images/package/9.jpg",
   shortDesc:
     "Discover the hill charms of Nainital and Mussoorie — lakes, mountains, and peaceful getaways from Delhi.",
   description: `
@@ -522,7 +522,7 @@ Experience the magic of Kashmir with 5 nights and 6 days of breathtaking beauty,
     id: "9",
     title: "Spiritual Journey - 4N/5D Tour Package",
     duration: "4 Nights / 5 Days",
-    image: "/images/packages/spiritual-journey.jpg",
+    image: "/images/package/10.jpg",
     shortDesc:
       "Experience the divine aura of Haridwar and Rishikesh — from the sacred Ganga Aarti to yoga by the riverbanks.",
     description: `
@@ -571,7 +571,7 @@ Experience the magic of Kashmir with 5 nights and 6 days of breathtaking beauty,
   id: "10",
   title: "Magnetic Manali - 3N/4D Tour Package",
   duration: "3 Nights / 4 Days",
-  image: "/images/packages/manali.jpg",
+  image: "/images/package/11.jpg",
   shortDesc:
     "A perfect Himalayan getaway — snow peaks, adventure, and cozy charm. Ideal for couples, families, or groups looking for a scenic break.",
   description: `
@@ -635,7 +635,7 @@ Escape to the magical hills of Manali with 3 nights and 4 days of scenic beauty,
     id: "11",
     title: "Spiti Valley Odyssey - 8N/9D Tour Package",
     duration: "8 Nights / 9 Days",
-    image: "/images/packages/spiti-valley-odyssey.jpg",
+    image: "/images/package/12.jpg",
     shortDesc:
       "Embark on an epic road trip through the mystical valleys of Spiti — monasteries, mountain lakes, and adventure.",
     description: `
@@ -691,65 +691,12 @@ Escape to the magical hills of Manali with 3 nights and 4 days of scenic beauty,
     price: "On Request",
     place: "Spiti Valley"
   },
-//   {
-//     id: "3",
-//     title: "Winter Spiti Expedition - 6N/7D Tour Package",
-//     duration: "6 Nights / 7 Days",
-//     image: "/images/packages/winter-spiti-expedition.jpg",
-//     shortDesc:
-//       "Witness the snow-covered beauty of Spiti — monasteries, frozen rivers, and whitewashed mountain landscapes.",
-//     description: `
-// **"Winter Spiti Expedition" (6N/7D)**  
-// *Explore the Snow-Capped Peaks of Spiti Valley*
 
-// **Itinerary:**
-
-// **Day 1: Delhi → Shimla**  
-// - Drive from Delhi to Shimla (370 km / 8–9 hrs).  
-// - Check-in and relax.
-
-// **Day 2: Shimla → Sangla**  
-// - Drive (230 km / 6–7 hrs), enjoy Baspa Valley views.
-
-// **Day 3: Sangla → Tabo**  
-// - Drive (110 km / 4–5 hrs), visit Tabo Monastery.
-
-// **Day 4: Tabo → Kaza**  
-// - Drive (60 km / 3 hrs), explore Kaza and market.
-
-// **Day 5: Kaza Sightseeing**  
-// - Visit Key Monastery, Langza, Hikkim.
-
-// **Day 6: Kaza → Kalpa**  
-// - Drive (200 km / 7–8 hrs), explore apple orchards.
-
-// **Day 7: Kalpa → Delhi**  
-// - Long drive (630 km / 12–14 hrs), end tour.
-
-// **Inclusions:**  
-// • 6N accommodation  
-// • Breakfast and dinner  
-// • Private car with driver and fuel  
-
-// **Exclusions:**  
-// • Entry fees, permits, and lunch  
-// • Personal expenses  
-
-// **Important Notes:**  
-// • Cold weather gear essential.  
-// • Roads may close due to snowfall.
-//     `,
-//     destinations: "Shimla, Sangla, Tabo, Kaza, Kalpa",
-//     activities: "Sightseeing, Snow Trek, Monastery Visits, Photography",
-//     theme: "Winter & Adventure",
-//     price: "On Request",
-//     place: "Spiti Valley"
-//   },
   {
     id: "13",
     title: "Himachal Odyssey - 9N/10D Tour Package",
     duration: "9 Nights / 10 Days",
-    image: "/images/packages/himachal-odyssey.jpg",
+    image: "/images/package/13.jpg",
     shortDesc:
       "A grand circuit of Himachal — Shimla, Manali, Dharamshala, and Dalhousie in one scenic journey.",
     description: `
@@ -782,7 +729,7 @@ Delhi → Shimla → Manali → Dharamshala → Dalhousie → Delhi
     id: "14",
     title: "Himachal & Golden Temple Tour - 10N/11D Package",
     duration: "10 Nights / 11 Days",
-    image: "/images/packages/himachal-golden-temple.jpg",
+    image: "/images/package/14.jpg",
     shortDesc:
       "A soulful journey through Himachal’s beauty and Punjab’s spirituality, ending with the iconic Golden Temple.",
     description: `
@@ -815,7 +762,7 @@ Delhi → Shimla → Manali → Dharamshala → Dalhousie → Amritsar → Delhi
     id: "15",
     title: "Jungle Paradise - 4N/5D Tour Package",
     duration: "4 Nights / 5 Days",
-    image: "/images/packages/jungle-paradise.jpg",
+    image: "/images/package/15.jpg",
     shortDesc:
       "Unwind in the serene valleys of Kasol and Jibhi — waterfalls, treks, and scenic Himachal beauty.",
     description: `
@@ -847,7 +794,7 @@ Delhi → Kasol → Jibhi → Delhi
     id: "16",
     title: "Dharamshala & Dalhousie Escape - 4N/5D Tour Package",
     duration: "4 Nights / 5 Days",
-    image: "/images/packages/dharamshala-dalhousie.jpg",
+    image: "/images/package/16.jpg",
     shortDesc:
       "A peaceful retreat through the green valleys of Dharamshala and Dalhousie — monasteries and meadows await.",
     description: `
@@ -880,7 +827,7 @@ Delhi → Dharamshala → Dalhousie → Delhi
     id: "17",
     title: "Royal Rajasthan - 4N/5D Tour Package",
     duration: "4 Nights / 5 Days",
-    image: "/images/packages/royal-rajasthan.jpg",
+    image: "/images/package/17.jpg",
     shortDesc:
       "Discover the grandeur of Jaipur and Udaipur — forts, palaces, lakes, and colorful bazaars.",
     description: `
@@ -913,7 +860,7 @@ Jaipur → Ajmer → Pushkar → Udaipur
     id: "18",
     title: "Desert Getaway - 4N/5D Tour Package",
     duration: "4 Nights / 5 Days",
-    image: "/images/packages/desert-getaway.jpg",
+    image: "/images/package/18.jpg",
     shortDesc:
       "Ride through the golden sands of Jodhpur and Jaisalmer — forts, camel safaris, and desert camps.",
     description: `
