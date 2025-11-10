@@ -62,11 +62,11 @@ export default function Navbar() {
               +91 98055 51311
             </a>
             <a
-              href="mailto:info@thenorthhimalayas.com"
+              href="mailto:hello@thenorthhimalayas.com"
               className="flex items-center gap-1 hover:text-blue-600 transition-colors"
             >
               <Mail size={16} />
-              info@thenorthhimalayas.com
+              hello@thenorthhimalayas.com
             </a>
             <a
               href="https://thenorthhimalayas.com"
@@ -192,10 +192,10 @@ export default function Navbar() {
                       <Phone size={16} /> +91 98055 51311
                     </a>
                     <a
-                      href="mailto:info@thenorthhimalayas.com"
+                      href="mailto:hello@thenorthhimalayas.com"
                       className="flex items-center gap-2"
                     >
-                      <Mail size={16} /> info@thenorthhimalayas.com
+                      <Mail size={16} /> hello@thenorthhimalayas.com
                     </a>
                     <a
                       href="https://thenorthhimalayas.com"

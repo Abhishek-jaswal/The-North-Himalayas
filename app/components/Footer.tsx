@@ -26,7 +26,7 @@ export default function Footer() {
           <ul className="space-y-1 text-sm">
             <li>📞 +91 80915 35250 / +91 98055 51911</li>
             <li>📞 +91 80919 55310 / +91 98055 51311</li>
-            <li>✉️ <a href="mailto:info@thenorthhimalayas.com" className="hover:underline">info@thenorthhimalayas.com</a></li>
+            <li>✉️ <a href="mailto:hello@thenorthhimalayas.com" className="hover:underline">hello@thenorthhimalayas.com</a></li>
           </ul>
         </div>
 
