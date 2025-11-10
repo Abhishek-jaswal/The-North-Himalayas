@@ -71,9 +71,10 @@ export default function ReviewsSection() {
         viewport={{ once: true }}
         className="max-w-6xl mx-auto text-center"
       >
-        <h2 className="text-3xl md:text-4xl font-bold mb-10">
+        <h2 className="text-3xl md:text-4xl font-bold ">
           What Our Travelers Say
         </h2>
+        <div className="mx-auto mt-3 mb-8 w-32 h-1 bg-gradient-to-r from-gray-200 via-gray-600 to-gray-900 rounded-full" />
 
         <Slider {...settings}>
           {reviews.map((r, i) => (
