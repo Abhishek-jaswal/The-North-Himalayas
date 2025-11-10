@@ -77,7 +77,7 @@ export default function RootLayout({
               description:
                 "Plan your dream vacation with The North Himalayas. We offer Himachal, Ladakh, and Kashmir tour packages with affordable pricing and expert guides.",
               telephone: "+91 9876543210",
-              email: "info@thenorthhimalayas.com",
+              email: "hello@thenorthhimalayas.com",
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "Mall Road",
