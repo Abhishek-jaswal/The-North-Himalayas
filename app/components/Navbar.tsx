@@ -59,7 +59,9 @@ export default function Navbar() {
               className="flex items-center gap-1 hover:text-blue-600 transition-colors"
             >
               <Phone size={16} />
-              +91 98055 51311
+              +91 98055 51311<br></br>
+              +91 80915 35250
+              
             </a>
             <a
               href="mailto:hello@thenorthhimalayas.com"
