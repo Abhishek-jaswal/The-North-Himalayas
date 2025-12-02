@@ -1,8 +1,16 @@
 "use client";
 import { useEffect, useState } from "react";
 
+type Weather = {
+  temperature: number;
+  windspeed: number;
+  winddirection?: number;
+  weathercode?: number;
+  time?: string;
+};
+
 export default function WeatherBox({ place }: { place: string }) {
-  const [weather, setWeather] = useState<any>(null);
+  const [weather, setWeather] = useState<Weather | null>(null);
 
   useEffect(() => {
     async function fetchWeather() {

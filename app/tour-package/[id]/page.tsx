@@ -1,7 +1,6 @@
 "use client";
 import { useParams, useRouter } from "next/navigation";
 import { tripsData } from "@/app/data/tripsData";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { ChevronDown, Clock, MapPin, Tag, ArrowLeft } from "lucide-react";
