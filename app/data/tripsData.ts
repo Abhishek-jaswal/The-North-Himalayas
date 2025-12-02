@@ -214,7 +214,7 @@ Experience the magic of Kashmir with 5 nights and 6 days of breathtaking beauty,
     id: "4",
     title: "Winter Spiti Expedition - 6N/7D Tour Package",
     duration: "6 Nights / 7 Days",
-    image: "/images/package/spiti (2).jpg",
+    image: "/images/package/spitii.jpg",
     shortDesc:
       "Witness the snow-covered beauty of Spiti — monasteries, frozen rivers, and whitewashed mountain landscapes.",
     description: `
@@ -689,7 +689,7 @@ Escape to the magical hills of Manali with 3 nights and 4 days of scenic beauty,
     activities: "Sightseeing, Trekking, Village Visit, Lake Tour",
     theme: "Adventure & Offbeat",
     price: "On Request",
-    place: "Spiti Valley"
+    place: "Spiti"
   },
 
   {
