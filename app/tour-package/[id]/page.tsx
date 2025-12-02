@@ -8,6 +8,7 @@ import { ChevronDown, Clock, MapPin, Tag, ArrowLeft } from "lucide-react";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import WhatsAppButton from "@/app/components/WhatsAppButton";
+import WeatherBox from "@/app/components/WeatherBox";
 
 export default function TourPackageDetails() {
   const router = useRouter();
@@ -45,6 +46,8 @@ export default function TourPackageDetails() {
   transition={{ duration: 0.6 }}
   className="relative w-full h-[400px] sm:h-[550px] md:h-[650px] overflow-hidden"
 >
+   {/* Weather */}
+  <WeatherBox place={tour.place} />
   {/* Full background image */}
   <div
     className="absolute inset-0 bg-cover bg-center bg-no-repeat"
