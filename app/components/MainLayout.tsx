@@ -10,7 +10,6 @@ import WhatsAppButton from "./WhatsAppButton";
 import Footer from "./Footer";
 import ContactFormPopup from "./ContactFormPopup";
 import ExpertsSection from "./ExpertsSections";
-import AboutUsPage from "./AboutUsPage";
 import ReviewsSection from "./ReviewsSection";
 
 export default function MainLayout() {
