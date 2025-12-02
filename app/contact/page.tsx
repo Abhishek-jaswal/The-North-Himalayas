@@ -141,13 +141,14 @@ export default function ContactPage() {
         className="max-w-6xl mx-auto mt-20 rounded-2xl overflow-hidden border border-white/10 shadow-lg"
       >
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3430.807352029623!2d76.3318!3d32.2191!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391b4d3adf5fffcf%3A0xb41b48d19b6e80f8!2sRadisson%20Blu%20Resort%20Dharamshala!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3375.732234607491!2d76.34312207445853!3d32.21144511267646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391b517291a73d0f%3A0xce7dcaf3620404bb!2sThe%20North%20Himalayas!5e0!3m2!1sen!2sin!4v1764684463941!5m2!1sen!2sin"
           width="100%"
           height="400"
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         ></iframe>
+        
       </motion.div>
     </section>
     <WhatAppButton/>
