@@ -68,59 +68,59 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "TravelAgency",
-              name: "The North Himalayas",
-              url: "https://thenorthhimalayas.com",
-              logo: "https://thenorthhimalayas.com/logo.png",
-              image: "https://thenorthhimalayas.com/logo.png",
-              description:
-                "Plan your dream vacation with The North Himalayas. We offer Himachal, Ladakh, and Kashmir tour packages with affordable pricing and expert guides.",
-             
-              email: "hello@thenorthhimalayas.com",
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "Mall Road",
-                addressLocality: "Manali",
-                addressRegion: "Himachal Pradesh",
-                postalCode: "175131",
-                addressCountry: "IN",
-              },
-              openingHours: "Mo-Fr 09:00-18:00",
-              sameAs: [
-                "https://www.instagram.com/thenorthhimalayas",
-                "https://www.facebook.com/thenorthhimalayas",
-                "https://www.linkedin.com/in/the-north-himalayan",
-                "https://youtube.com/@thenorthhimalayas",
-                "https://x.com/northhimalayas"
-              ],
-              makesOffer: {
-                "@type": "OfferCatalog",
-                name: "Tour Packages",
-                itemListElement: [
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Trip",
-                      name: "Leh Ladakh Adventure Tour",
-                      description:
-                        "7-day adventure through Leh and Nubra Valley with breathtaking landscapes.",
-                      url: "https://thenorthhimalayas.com/tour-package/leh-ladakh",
-                    },
-                  },
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Trip",
-                      name: "Manali & Shimla Vacation",
-                      description:
-                        "5-day Himachal trip exploring Shimla, Kufri, and Manali with comfortable stays.",
-                      url: "https://thenorthhimalayas.com/tour-package/manali-shimla",
-                    },
-                  },
-                ],
-              },
-            }),
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "name": "The North Himalayas",
+  "url": "https://thenorthhimalayas.com",
+  "logo": "https://thenorthhimalayas.com/logo.png",  // after you fix the logo file
+  "image": "https://thenorthhimalayas.com/logo.png",
+  "description": "Plan your dream vacation with The North Himalayas. We offer Himachal, Ladakh, and Kashmir tour packages with affordable pricing and expert guides.",
+  "email": "hello@thenorthhimalayas.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Near Radisson Blu, Khaniyara Road",
+    "addressLocality": "Dharamshala",
+    "addressRegion": "Himachal Pradesh",
+    "postalCode": "176215",
+    "addressCountry": "IN"
+  },
+  "telephone": [
+    "+91 80915 35250"
+  ],
+  "openingHours": "Mo-Fr 09:00-18:00",
+  "sameAs": [
+    "https://www.instagram.com/thenorthhimalayas",
+    "https://www.facebook.com/thenorthhimalayas",
+    "https://www.linkedin.com/in/the-north-himalayan",
+    "https://youtube.com/@thenorthhimalayas",
+    "https://x.com/northhimalayas",
+    "https://wa.me/message/BVNBURX2Z2BCK1"
+  ],
+  "makesOffer": {
+    "@type": "OfferCatalog",
+    "name": "Tour Packages",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Trip",
+          "name": "Leh Ladakh Adventure Tour",
+          "description": "7-day adventure through Leh and Nubra Valley with breathtaking landscapes.",
+          "url": "https://thenorthhimalayas.com/tour-package/leh-ladakh"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Trip",
+          "name": "Manali & Shimla Vacation",
+          "description": "5-day Himachal trip exploring Shimla, Kufri, and Manali with comfortable stays.",
+          "url": "https://thenorthhimalayas.com/tour-package/manali-shimla"
+        }
+      }
+    ]
+  }
+}),
           }}
         />
       </head>

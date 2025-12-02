@@ -1,7 +1,7 @@
 export const tripsData = [
  {
   id: "1",
-  title: "Himalayan Experience - All Himachal Tour Package",
+  title: "Himalayan Experience - All Himachal  Tour Package",
   duration: "9 Nights / 10 Days",
   image: "/images/package/Dharamshala.jpg",
   shortDesc:
@@ -84,7 +84,7 @@ Explore Himachal Pradesh with 9 nights and 10 days covering Shimla, Manali, Dhar
   activities: "Sightseeing, Trekking, Adventure Sports, Cultural Exploration",
   theme: "Complete Himachal Circuit",
   price: "₹16,999 (indicative)",
-  place: "Himachal"
+  place: "dharamshala"
 },
 {
   id: "2",
@@ -262,7 +262,7 @@ Experience the magic of Kashmir with 5 nights and 6 days of breathtaking beauty,
     activities: "Sightseeing, Snow Trek, Monastery Visits, Photography",
     theme: "Winter & Adventure",
     price: "On Request",
-    place: "Spiti Valley"
+    place: "Spiti"
   },
 {
   id: "19",
