@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 
 export default function PlanMyTripPage() {
   const [destination, setDestination] = useState("");
@@ -10,7 +10,7 @@ export default function PlanMyTripPage() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState("");
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setResult("");

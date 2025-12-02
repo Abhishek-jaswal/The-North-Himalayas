@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     siteName: "The North Himalayas",
     images: [
       {
-        url: "/logo.png",
+        url: "https://thenorthhimalayas.com/logo.png",
         width: 800,
         height: 600,
         alt: "The North Himalayas Logo",
@@ -76,7 +76,7 @@ export default function RootLayout({
               image: "https://thenorthhimalayas.com/logo.png",
               description:
                 "Plan your dream vacation with The North Himalayas. We offer Himachal, Ladakh, and Kashmir tour packages with affordable pricing and expert guides.",
-              telephone: "+91 9876543210",
+             
               email: "hello@thenorthhimalayas.com",
               address: {
                 "@type": "PostalAddress",
@@ -90,7 +90,9 @@ export default function RootLayout({
               sameAs: [
                 "https://www.instagram.com/thenorthhimalayas",
                 "https://www.facebook.com/thenorthhimalayas",
-                "https://twitter.com/thenorthhimalayas",
+                "https://www.linkedin.com/in/the-north-himalayan",
+                "https://youtube.com/@thenorthhimalayas",
+                "https://x.com/northhimalayas"
               ],
               makesOffer: {
                 "@type": "OfferCatalog",
