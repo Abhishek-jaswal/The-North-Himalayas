@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import CreateSalespersonModal from "./components/CreateSalespersonModal";
+import CreateSalespersonModal from "../components/CreateSalespersonModal";
 
 export default function SalespersonsPage() {
   const [open, setOpen] = useState(false);
