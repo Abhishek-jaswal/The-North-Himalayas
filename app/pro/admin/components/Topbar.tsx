@@ -7,7 +7,7 @@ export default function Topbar() {
         const router = useRouter();
     const handleLogout = () => {
     pb.authStore.clear();
-    router.push("/pro/admin/login");
+    router.push("/pro/login");
   };
   return (
     <div className="w-full bg-white shadow flex items-center justify-between px-6 py-4">

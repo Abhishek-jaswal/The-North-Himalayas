@@ -1,16 +1,30 @@
 'use client';
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { pb } from "@/app/lib/pocketbase";
 import CreateSalespersonModal from "../components/CreateSalespersonModal";
 
 export default function SalespersonsPage() {
   const [open, setOpen] = useState(false);
+  const [salespersons, setSalespersons] = useState([]);
 
-  // TEMP DATA (PocketBase will come later)
-  const salespersons = [
-    { id: 1, name: "Rohan Mehta", email: "rohan@example.com", phone: "9876543210", status: "Active" },
-    { id: 2, name: "Simran Kaur", email: "simran@example.com", phone: "9123456780", status: "Active" },
-  ];
+  const loadSalespersons = async () => {
+    const data = await pb.collection("salespersons").getFullList({
+      sort: "-created",
+    });
+    setSalespersons(data);
+  };
+
+  useEffect(() => {
+    loadSalespersons();
+
+    // realtime updates
+    pb.collection("salespersons").subscribe("*", () => {
+      loadSalespersons();
+    });
+
+    return () => pb.collection("salespersons").unsubscribe("*");
+  }, []);
 
   return (
     <div>
@@ -19,13 +33,12 @@ export default function SalespersonsPage() {
 
         <button
           onClick={() => setOpen(true)}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700"
+          className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow"
         >
           + Add Salesperson
         </button>
       </div>
 
-      {/* Table */}
       <div className="bg-white shadow rounded-lg overflow-hidden">
         <table className="w-full text-left">
           <thead className="bg-gray-100">
@@ -34,7 +47,6 @@ export default function SalespersonsPage() {
               <th className="py-3 px-4">Email</th>
               <th className="py-3 px-4">Phone</th>
               <th className="py-3 px-4">Status</th>
-              <th className="py-3 px-4 text-right">Actions</th>
             </tr>
           </thead>
 
@@ -49,16 +61,12 @@ export default function SalespersonsPage() {
                     {user.status}
                   </span>
                 </td>
-                <td className="py-3 px-4 text-right">
-                  <button className="text-blue-600 hover:underline">View</button>
-                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
 
-      {/* Modal */}
       <CreateSalespersonModal open={open} onClose={() => setOpen(false)} />
     </div>
   );

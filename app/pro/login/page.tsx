@@ -15,9 +15,10 @@ export default function AdminLoginPage() {
     setError("");
 
     try {
-      await pb.admins.authWithPassword(email, password);
+      await pb.collection("admins").authWithPassword(email, password);
       router.push("/pro/admin");
     } catch (err) {
+      console.log(err);
       setError("Invalid email or password");
     }
   };

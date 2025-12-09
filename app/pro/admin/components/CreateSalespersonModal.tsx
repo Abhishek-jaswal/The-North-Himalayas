@@ -1,53 +1,69 @@
 'use client';
 
-type Props = {
-  open: boolean;
-  onClose: () => void;
-};
+import { useState } from "react";
+import { pb } from "@/app/lib/pocketbase";
 
-export default function CreateSalespersonModal({ open, onClose }: Props) {
+export default function CreateSalespersonModal({ open, onClose }) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+
+  const handleCreate = async () => {
+    try {
+      await pb.collection("salespersons").create({
+        name,
+        email,
+        phone,
+        status: "Active",
+      });
+
+      onClose(); 
+      setName("");
+      setEmail("");
+      setPhone("");
+
+    } catch (err) {
+      alert("Error: " + err.message);
+    }
+  };
+
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-      <div className="bg-white w-full max-w-lg rounded-lg shadow p-6">
-        <h2 className="text-2xl font-bold mb-4">Add New Salesperson</h2>
+    <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+      <div className="bg-white p-6 rounded shadow-lg w-96">
+        <h2 className="text-xl font-bold mb-4">Add Salesperson</h2>
 
-        <div className="flex flex-col gap-4">
-          <input
-            type="text"
-            placeholder="Full Name"
-            className="border p-3 rounded-lg"
-          />
+        <input
+          className="w-full mb-3 p-2 border rounded"
+          placeholder="Full Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
 
-          <input
-            type="email"
-            placeholder="Email Address"
-            className="border p-3 rounded-lg"
-          />
+        <input
+          className="w-full mb-3 p-2 border rounded"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-          <input
-            type="text"
-            placeholder="Phone Number"
-            className="border p-3 rounded-lg"
-          />
+        <input
+          className="w-full mb-3 p-2 border rounded"
+          placeholder="Phone Number"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        />
 
-          <input
-            type="password"
-            placeholder="Password"
-            className="border p-3 rounded-lg"
-          />
-        </div>
-
-        <div className="mt-6 flex justify-end gap-3">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 border rounded-lg"
-          >
+        <div className="flex justify-between mt-4">
+          <button onClick={onClose} className="px-4 py-2 bg-gray-300 rounded">
             Cancel
           </button>
 
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg">
+          <button
+            onClick={handleCreate}
+            className="px-4 py-2 bg-blue-600 text-white rounded"
+          >
             Save
           </button>
         </div>
