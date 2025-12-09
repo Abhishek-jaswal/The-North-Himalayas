@@ -7,6 +7,7 @@ export default function CreateSalespersonModal({ open, onClose }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleCreate = async () => {
     try {
@@ -14,13 +15,20 @@ export default function CreateSalespersonModal({ open, onClose }) {
         name,
         email,
         phone,
-        status: "Active",
+        password,
+        territory: "N/A",
+        is_active: false,
+        ast_active: "N/A",
+        total_assigned: 0,
+        total_converted: 0,
       });
 
-      onClose(); 
+      onClose();
+
       setName("");
       setEmail("");
       setPhone("");
+      setPassword("");
 
     } catch (err) {
       alert("Error: " + err.message);
@@ -53,6 +61,14 @@ export default function CreateSalespersonModal({ open, onClose }) {
           placeholder="Phone Number"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
+        />
+
+        <input
+          className="w-full mb-3 p-2 border rounded"
+          placeholder="Password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
 
         <div className="flex justify-between mt-4">

@@ -46,24 +46,43 @@ export default function SalespersonsPage() {
               <th className="py-3 px-4">Name</th>
               <th className="py-3 px-4">Email</th>
               <th className="py-3 px-4">Phone</th>
-              <th className="py-3 px-4">Status</th>
+              <th className="py-3 px-4">Active</th>
+              <th className="py-3 px-4">Assigned</th>
+              <th className="py-3 px-4">Converted</th>
             </tr>
           </thead>
 
-          <tbody>
-            {salespersons.map((user) => (
-              <tr key={user.id} className="border-b">
-                <td className="py-3 px-4">{user.name}</td>
-                <td className="py-3 px-4">{user.email}</td>
-                <td className="py-3 px-4">{user.phone}</td>
-                <td className="py-3 px-4">
-                  <span className="px-3 py-1 bg-green-100 text-green-600 rounded-full text-sm">
-                    {user.status}
-                  </span>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+         <tbody>
+  {salespersons.map((user) => (
+    <tr key={user.id} className="border-b">
+      <td className="py-3 px-4">{user.name}</td>
+      <td className="py-3 px-4">{user.email}</td>
+      <td className="py-3 px-4">{user.phone}</td>
+
+      {/* ACTIVE / INACTIVE DROPDOWN */}
+      <td className="py-3 px-4">
+        <select
+          className="border px-2 py-1 rounded"
+          value={user.is_active ? "active" : "inactive"}
+          onChange={async (e) => {
+            const newValue = e.target.value === "active";
+
+            await pb.collection("salespersons").update(user.id, {
+              is_active: newValue,
+            });
+          }}
+        >
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </td>
+
+      <td className="py-3 px-4">{user.total_assigned}</td>
+      <td className="py-3 px-4">{user.total_converted}</td>
+    </tr>
+  ))}
+</tbody>
+
         </table>
       </div>
 
