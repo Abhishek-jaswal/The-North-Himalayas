@@ -12,10 +12,12 @@ export default function CreateSalespersonModal({ open, onClose }) {
   const handleCreate = async () => {
     try {
       await pb.collection("salespersons").create({
-        name,
         email,
-        phone,
         password,
+        passwordConfirm: password,    // ✅ REQUIRED for AUTH COLLECTIONS
+
+        name,
+        phone,
         territory: "N/A",
         is_active: false,
         ast_active: "N/A",
@@ -23,15 +25,17 @@ export default function CreateSalespersonModal({ open, onClose }) {
         total_converted: 0,
       });
 
-      onClose();
-
+      // Reset after create
       setName("");
       setEmail("");
       setPhone("");
       setPassword("");
 
+      onClose();
+
     } catch (err) {
       alert("Error: " + err.message);
+      console.error(err);
     }
   };
 

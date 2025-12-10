@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState, FormEvent } from "react";
-import { pb } from "@/app/lib/pocketbase";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { pb } from "@/app/lib/pocketbase";
 
 export default function SalesLoginPage() {
   const router = useRouter();
@@ -10,56 +10,66 @@ export default function SalesLoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogin = async (e: FormEvent) => {
+  const handleLogin = async (e: any) => {
     e.preventDefault();
-    setError("");
 
     try {
-      const auth = await pb.collection("users").authWithPassword(email, password);
+      const authData = await pb
+        .collection("salespersons")
+        .authWithPassword(email, password);
 
-      // CHECK ROLE = SALESPERSON ONLY
-      if (auth.record.role !== "salesperson") {
-        setError("You are not allowed to access salesperson panel.");
+      const salesperson = authData.record;
+
+      // FIXED: check correct field
+      if (!salesperson.is_active) {
+        setError("Your account is inactive. Contact admin.");
         pb.authStore.clear();
         return;
       }
 
-      router.push("pro/sales/dashboard"); // REDIRECT TO SALESPERSON DASHBOARD
+      router.push("/pro/sales/dashboard");
+
     } catch (err: any) {
-      setError("Invalid email or password");
       console.log(err);
+      setError("Invalid email or password");
     }
   };
 
   return (
-    <div className="w-full min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-md w-96">
-        <h2 className="text-2xl font-bold text-center mb-4">Salesperson Login</h2>
+    <div className="flex items-center justify-center min-h-screen bg-gray-200">
+      <form
+        onSubmit={handleLogin}
+        className="bg-white p-6 rounded shadow-md w-full max-w-sm"
+      >
+        <h2 className="text-2xl font-bold mb-4">Salesperson Login</h2>
 
-        {error && <p className="text-red-500 text-center">{error}</p>}
+        {error && (
+          <p className="bg-red-200 text-red-800 p-2 mb-3 rounded">{error}</p>
+        )}
 
-        <form onSubmit={handleLogin} className="space-y-3">
-          <input
-            type="email"
-            placeholder="Email"
-            className="w-full p-2 border rounded"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+        <input
+          type="text"
+          placeholder="Email"
+          className="border w-full p-2 mb-3 rounded"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-          <input
-            type="password"
-            placeholder="Password"
-            className="w-full p-2 border rounded"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+        <input
+          type="password"
+          placeholder="Password"
+          className="border w-full p-2 mb-4 rounded"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-          <button className="w-full bg-blue-600 text-white p-2 rounded">
-            Login
-          </button>
-        </form>
-      </div>
+        <button
+          type="submit"
+          className="bg-blue-600 text-white w-full py-2 rounded"
+        >
+          Login
+        </button>
+      </form>
     </div>
   );
 }
