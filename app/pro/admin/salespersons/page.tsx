@@ -1,29 +1,71 @@
-'use client';
+"use client";
 
 import { useEffect, useState } from "react";
 import { pb } from "@/app/lib/pocketbase";
 import CreateSalespersonModal from "../components/CreateSalespersonModal";
 
+type Salesperson = {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  is_active: boolean;
+  total_assigned?: number;
+  total_converted?: number;
+};
+
 export default function SalespersonsPage() {
   const [open, setOpen] = useState(false);
-  const [salespersons, setSalespersons] = useState([]);
+  const [salespersons, setSalespersons] = useState<Salesperson[]>([]);
 
-  const loadSalespersons = async () => {
-    const data = await pb.collection("salespersons").getFullList({
+  const loadData = async () => {
+    // fetch salespersons
+    const sales = await pb.collection("salespersons").getFullList({
       sort: "-created",
     });
-    setSalespersons(data);
+
+    // fetch leads
+    const leads = await pb.collection("leads").getFullList({
+      fields: "assigned_to,status",
+    });
+
+    // calculate stats
+    const enrichedSales = sales.map((sp) => {
+      const assignedLeads = leads.filter(
+        (lead) => lead.assigned_to === sp.id
+      );
+
+      const convertedLeads = assignedLeads.filter(
+        (lead) => lead.status === "converted"
+      );
+
+      return {
+        id: sp.id,
+        name: sp.name,
+        email: sp.email,
+        phone: sp.phone,
+        is_active: sp.is_active,
+        total_assigned: assignedLeads.length,
+        total_converted: convertedLeads.length,
+      };
+    });
+
+    setSalespersons(enrichedSales);
   };
 
   useEffect(() => {
-    loadSalespersons();
+    (async () => {
+      await loadData();
+    })();
 
     // realtime updates
-    pb.collection("salespersons").subscribe("*", () => {
-      loadSalespersons();
-    });
+    pb.collection("salespersons").subscribe("*", loadData);
+    pb.collection("leads").subscribe("*", loadData);
 
-    return () => pb.collection("salespersons").unsubscribe("*");
+    return () => {
+      pb.collection("salespersons").unsubscribe("*");
+      pb.collection("leads").unsubscribe("*");
+    };
   }, []);
 
   return (
@@ -52,37 +94,41 @@ export default function SalespersonsPage() {
             </tr>
           </thead>
 
-         <tbody>
-  {salespersons.map((user) => (
-    <tr key={user.id} className="border-b">
-      <td className="py-3 px-4">{user.name}</td>
-      <td className="py-3 px-4">{user.email}</td>
-      <td className="py-3 px-4">{user.phone}</td>
+          <tbody>
+            {salespersons.map((user) => (
+              <tr key={user.id} className="border-b">
+                <td className="py-3 px-4">{user.name}</td>
+                <td className="py-3 px-4">{user.email}</td>
+                <td className="py-3 px-4">{user.phone}</td>
 
-      {/* ACTIVE / INACTIVE DROPDOWN */}
-      <td className="py-3 px-4">
-        <select
-          className="border px-2 py-1 rounded"
-          value={user.is_active ? "active" : "inactive"}
-          onChange={async (e) => {
-            const newValue = e.target.value === "active";
+                {/* ACTIVE / INACTIVE */}
+                <td className="py-3 px-4">
+                  <select
+                    className="border px-2 py-1 rounded"
+                    value={user.is_active ? "active" : "inactive"}
+                    onChange={async (e) => {
+                      await pb
+                        .collection("salespersons")
+                        .update(user.id, {
+                          is_active: e.target.value === "active",
+                        });
+                    }}
+                  >
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
+                </td>
 
-            await pb.collection("salespersons").update(user.id, {
-              is_active: newValue,
-            });
-          }}
-        >
-          <option value="active">Active</option>
-          <option value="inactive">Inactive</option>
-        </select>
-      </td>
+                <td className="py-3 px-4 font-medium">
+                  {user.total_assigned ?? 0}
+                </td>
 
-      <td className="py-3 px-4">{user.total_assigned}</td>
-      <td className="py-3 px-4">{user.total_converted}</td>
-    </tr>
-  ))}
-</tbody>
-
+                <td className="py-3 px-4 font-medium text-green-600">
+                  {user.total_converted ?? 0}
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
 

@@ -3,7 +3,12 @@
 import { useState } from "react";
 import { pb } from "@/app/lib/pocketbase";
 
-export default function CreateSalespersonModal({ open, onClose }) {
+interface CreateSalespersonModalProps {
+  open: boolean;
+  onClose: () => void;
+}
+
+export default function CreateSalespersonModal({ open, onClose }: CreateSalespersonModalProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -34,7 +39,8 @@ export default function CreateSalespersonModal({ open, onClose }) {
       onClose();
 
     } catch (err) {
-      alert("Error: " + err.message);
+      const errorMessage = err instanceof Error ? err.message : "Unknown error";
+      alert("Error: " + errorMessage);
       console.error(err);
     }
   };

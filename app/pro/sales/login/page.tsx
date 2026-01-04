@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { pb } from "@/app/lib/pocketbase";
 
@@ -10,7 +10,7 @@ export default function SalesLoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogin = async (e: any) => {
+  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -29,7 +29,7 @@ export default function SalesLoginPage() {
 
       router.push("/pro/sales/dashboard");
 
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.log(err);
       setError("Invalid email or password");
     }
