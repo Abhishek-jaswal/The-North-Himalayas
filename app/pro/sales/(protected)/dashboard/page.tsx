@@ -9,7 +9,7 @@ import StatCard from "../../components/StatCard";
 
 interface Salesperson {
   id: string;
-  [key: string]: unknown;
+  [key: string]: any;
 }
 
 interface Lead {
@@ -98,8 +98,8 @@ export default function SalesDashboard() {
     }
 
     setSalesperson(sp);
-    setLoading(false);
     fetchStats(sp.id);
+    setLoading(false);
   }, [router]);
 
   if (loading) {
