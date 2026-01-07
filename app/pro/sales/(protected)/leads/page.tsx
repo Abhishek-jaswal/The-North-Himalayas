@@ -3,31 +3,11 @@
 import React, { useEffect, useMemo, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { pb } from "@/app/lib/pocketbase";
+import { Lead } from "@/app/types/lead";
 
 import LeadRow from "./components/LeadRow";
 import LeadModal from "./components/LeadModal";
 
-/* =======================
-   TYPES
-======================= */
-type Lead = {
-  id: string;
-  name: string;
-  phone: string;
-  source?: string;
-  status?: string;
-  travel_date?: string;
-  days?: number;
-  nights?: number;
-  location?: string;
-  adults?: number;
-  kids?: number;
-  budget?: number;
-  notes?: string;
-  next_followup?: string;
-  assigned_to?: string;
-  created: string;
-};
 
 /* =======================
    PAGE
