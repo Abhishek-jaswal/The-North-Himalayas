@@ -57,22 +57,22 @@ export default function FollowUpsPage() {
       if (tab === "today") {
         filtered = res.items.filter(
           l => l.next_followup?.split("T")[0] === today
-        );
+        ) as unknown as Lead[];
       }
 
       if (tab === "overdue") {
         filtered = res.items.filter(
           l => l.next_followup!.split("T")[0] < today
-        );
+        ) as unknown as Lead[];
       }
 
       if (tab === "upcoming") {
         filtered = res.items.filter(
           l => l.next_followup!.split("T")[0] > today
-        );
+        ) as unknown as Lead[];
       }
 
-      setLeads(filtered as Lead[]);
+      setLeads(filtered);
     } catch (err) {
       console.error("Failed to load follow-ups", err);
     } finally {
