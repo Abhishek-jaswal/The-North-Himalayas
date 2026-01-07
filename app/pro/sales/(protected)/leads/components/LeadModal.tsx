@@ -68,7 +68,17 @@ export default function LeadModal({
           filter: `lead_id="${lead.id}"`,
           sort: "-created",
         });
-        setActivity(res.items as Activity[]);
+        const mapped: Activity[] = res.items.map((item) => ({
+  id: item.id,
+  lead_id: item.lead_id,
+  action: item.action,
+  actor: item.actor,
+  meta: item.meta,
+  created: item.created,
+}));
+
+setActivity(mapped);
+
       } catch (err) {
         console.error("Activity load error", err);
       }
