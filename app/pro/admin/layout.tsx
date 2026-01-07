@@ -10,15 +10,17 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const router = useRouter();
   const [checking, setChecking] = useState(true);
 
-  useEffect(() => {
-    const loggedIn = pb.authStore.isValid;
+useEffect(() => {
+  const loggedIn = pb.authStore.isValid;
 
-    if (!loggedIn) {
-      router.push("/pro/login");
-    } else {
-      setChecking(false);
-    }
-  }, []);
+  if (!loggedIn) {
+    router.push("/pro/login");
+  } else {
+    setChecking(false);
+  }
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
+
 
   if (checking) return null;
 
