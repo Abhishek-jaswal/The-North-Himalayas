@@ -1,16 +1,72 @@
-'use client';
+"use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { pb } from "@/app/lib/pocketbase";
 import CreateSalespersonModal from "../components/CreateSalespersonModal";
+
+type Salesperson = {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  is_active: boolean;
+  total_assigned?: number;
+  total_converted?: number;
+};
 
 export default function SalespersonsPage() {
   const [open, setOpen] = useState(false);
+  const [salespersons, setSalespersons] = useState<Salesperson[]>([]);
 
-  // TEMP DATA (PocketBase will come later)
-  const salespersons = [
-    { id: 1, name: "Rohan Mehta", email: "rohan@example.com", phone: "9876543210", status: "Active" },
-    { id: 2, name: "Simran Kaur", email: "simran@example.com", phone: "9123456780", status: "Active" },
-  ];
+  const loadData = async () => {
+    // fetch salespersons
+    const sales = await pb.collection("salespersons").getFullList({
+      sort: "-created",
+    });
+
+    // fetch leads
+    const leads = await pb.collection("leads").getFullList({
+      fields: "assigned_to,status",
+    });
+
+    // calculate stats
+    const enrichedSales = sales.map((sp) => {
+      const assignedLeads = leads.filter(
+        (lead) => lead.assigned_to === sp.id
+      );
+
+      const convertedLeads = assignedLeads.filter(
+        (lead) => lead.status === "converted"
+      );
+
+      return {
+        id: sp.id,
+        name: sp.name,
+        email: sp.email,
+        phone: sp.phone,
+        is_active: sp.is_active,
+        total_assigned: assignedLeads.length,
+        total_converted: convertedLeads.length,
+      };
+    });
+
+    setSalespersons(enrichedSales);
+  };
+
+  useEffect(() => {
+    (async () => {
+      await loadData();
+    })();
+
+    // realtime updates
+    pb.collection("salespersons").subscribe("*", loadData);
+    pb.collection("leads").subscribe("*", loadData);
+
+    return () => {
+      pb.collection("salespersons").unsubscribe("*");
+      pb.collection("leads").unsubscribe("*");
+    };
+  }, []);
 
   return (
     <div>
@@ -19,13 +75,12 @@ export default function SalespersonsPage() {
 
         <button
           onClick={() => setOpen(true)}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700"
+          className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow"
         >
           + Add Salesperson
         </button>
       </div>
 
-      {/* Table */}
       <div className="bg-white shadow rounded-lg overflow-hidden">
         <table className="w-full text-left">
           <thead className="bg-gray-100">
@@ -33,8 +88,9 @@ export default function SalespersonsPage() {
               <th className="py-3 px-4">Name</th>
               <th className="py-3 px-4">Email</th>
               <th className="py-3 px-4">Phone</th>
-              <th className="py-3 px-4">Status</th>
-              <th className="py-3 px-4 text-right">Actions</th>
+              <th className="py-3 px-4">Active</th>
+              <th className="py-3 px-4">Assigned</th>
+              <th className="py-3 px-4">Converted</th>
             </tr>
           </thead>
 
@@ -44,13 +100,31 @@ export default function SalespersonsPage() {
                 <td className="py-3 px-4">{user.name}</td>
                 <td className="py-3 px-4">{user.email}</td>
                 <td className="py-3 px-4">{user.phone}</td>
+
+                {/* ACTIVE / INACTIVE */}
                 <td className="py-3 px-4">
-                  <span className="px-3 py-1 bg-green-100 text-green-600 rounded-full text-sm">
-                    {user.status}
-                  </span>
+                  <select
+                    className="border px-2 py-1 rounded"
+                    value={user.is_active ? "active" : "inactive"}
+                    onChange={async (e) => {
+                      await pb
+                        .collection("salespersons")
+                        .update(user.id, {
+                          is_active: e.target.value === "active",
+                        });
+                    }}
+                  >
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
                 </td>
-                <td className="py-3 px-4 text-right">
-                  <button className="text-blue-600 hover:underline">View</button>
+
+                <td className="py-3 px-4 font-medium">
+                  {user.total_assigned ?? 0}
+                </td>
+
+                <td className="py-3 px-4 font-medium text-green-600">
+                  {user.total_converted ?? 0}
                 </td>
               </tr>
             ))}
@@ -58,7 +132,6 @@ export default function SalespersonsPage() {
         </table>
       </div>
 
-      {/* Modal */}
       <CreateSalespersonModal open={open} onClose={() => setOpen(false)} />
     </div>
   );
