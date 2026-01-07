@@ -73,7 +73,7 @@ export default function LeadModal({
           filter: `lead_id="${lead.id}"`,
           sort: "-created",
         });
-        setActivity(res.items);
+        setActivity(res.items as unknown as Activity[]);
       } catch (err) {
         console.error("Activity load error", err);
       }
@@ -103,9 +103,10 @@ export default function LeadModal({
       });
 
       onClose();
-    } catch (err: any) {
-      console.error("SAVE ERROR:", err);
-      alert(err?.message || "Save failed");
+    } catch (err: unknown) {
+      const error = err instanceof Error ? err : new Error(String(err));
+      console.error("SAVE ERROR:", error);
+      alert(error.message || "Save failed");
     } finally {
       setSaving(false);
     }
@@ -218,7 +219,7 @@ export default function LeadModal({
   ) : (
     <div className="space-y-6">
       {activity.map((a) => {
-        let meta: Record<string, any> = {};
+        let meta: Record<string, string | number | boolean | object> = {};
         try {
           meta = a.meta ? JSON.parse(a.meta) : {};
         } catch {}
