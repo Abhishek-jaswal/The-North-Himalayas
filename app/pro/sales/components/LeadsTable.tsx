@@ -1,10 +1,20 @@
+import { Lead } from "@/app/types/lead";
+
+/* =======================
+   PROPS
+======================= */
+interface LeadsTableProps {
+  leads: Lead[];
+  onView: (lead: Lead) => void;
+}
+
+/* =======================
+   COMPONENT
+======================= */
 export default function LeadsTable({
   leads,
   onView,
-}: {
-  leads: any[];
-  onView: (lead: any) => void;
-}) {
+}: LeadsTableProps) {
   if (!leads.length) {
     return <p className="text-gray-500">No leads assigned</p>;
   }
@@ -20,14 +30,15 @@ export default function LeadsTable({
           <th className="p-2 text-left">Action</th>
         </tr>
       </thead>
+
       <tbody>
         {leads.map((lead) => (
           <tr key={lead.id} className="border-t hover:bg-gray-50">
             <td className="p-2">{lead.name}</td>
             <td className="p-2">{lead.phone}</td>
-            <td className="p-2">{lead.message}</td>
+            <td className="p-2">{lead.notes ?? "-"}</td>
             <td className="p-2">
-              <StatusBadge status={lead.status} />
+              <StatusBadge status={lead.status ?? "New"} />
             </td>
             <td className="p-2">
               <button
@@ -44,13 +55,16 @@ export default function LeadsTable({
   );
 }
 
+/* =======================
+   STATUS BADGE
+======================= */
 function StatusBadge({ status }: { status: string }) {
   const color =
-    status === "converted"
+    status === "Converted"
       ? "bg-green-100 text-green-700"
-      : status === "lost"
+      : status === "Lost"
       ? "bg-red-100 text-red-700"
-      : status === "contacted"
+      : status === "Contacted"
       ? "bg-yellow-100 text-yellow-700"
       : "bg-blue-100 text-blue-700";
 
