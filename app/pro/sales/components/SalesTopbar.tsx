@@ -6,20 +6,15 @@ import { pb } from "@/app/lib/pocketbase";
 export default function SalesTopbar() {
   const [name, setName] = useState<string>("");
 
-  useEffect(() => {
-    if (pb.authStore.isValid) {
-      const user = pb.authStore.model;
+ useEffect(() => {
+  if (pb.authStore.isValid) {
+    const user = pb.authStore.model;
+    const displayName = user?.name || user?.username || user?.email || "";
+    setName(displayName);
+  }
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
 
-      // priority: name → username → email
-      const displayName =
-        user?.name ||
-        user?.username ||
-        user?.email ||
-        "";
-
-      setName(displayName);
-    }
-  }, []);
 
   return (
     <div className="bg-white rounded shadow flex items-center justify-between ml-0 md:ml-64 p-4">
