@@ -64,36 +64,131 @@ export default function LeadRow({
     }
   };
 
+  /* ================= DESKTOP TABLE ROW ================= */
   return (
-    <tr className="border-t">
-      <td className="p-3">{lead.name || "—"}</td>
-      <td className="p-3">{lead.phone || "—"}</td>
-      <td className="p-3">{lead.source || "—"}</td>
-      <td className="p-3">
-        <span
-          className={`px-3 py-1 rounded-full text-sm ${statusColor(lead.status)}`}
-        >
-          {lead.status || "New"}
-        </span>
-      </td>
-      <td className="p-3">{lead.assigned_to || "Unassigned"}</td>
-      <td className="p-3">
-        {lead.next_followup ? new Date(lead.next_followup).toLocaleDateString() : "—"}
-      </td>
-      <td className="p-3 flex gap-2">
-        <button className="px-3 py-1 border rounded" onClick={onView}>
-          View
-        </button>
-        <button className="px-2 py-1 border rounded" onClick={() => callNumber(lead.phone)}>
-          📞
-        </button>
-        <button className="px-2 py-1 border rounded" onClick={() => openWhatsApp(lead.phone)}>
-          💬
-        </button>
-        <button className="px-2 py-1 border rounded text-red-600" onClick={markLost}>
-          ❌
-        </button>
-      </td>
-    </tr>
+    <>
+      <tr className="hidden md:table-row border-t hover:bg-gray-50 transition">
+        <td className="p-3 font-medium">{lead.name || "—"}</td>
+        <td className="p-3">{lead.phone || "—"}</td>
+        <td className="p-3">{lead.source || "—"}</td>
+
+        <td className="p-3">
+          <span
+            className={`px-3 py-1 rounded-full text-xs font-semibold ${statusColor(
+              lead.status
+            )}`}
+          >
+            {lead.status || "New"}
+          </span>
+        </td>
+
+        <td className="p-3">{lead.assigned_to || "Unassigned"}</td>
+
+        <td className="p-3">
+          {lead.next_followup
+            ? new Date(lead.next_followup).toLocaleDateString()
+            : "—"}
+        </td>
+
+        <td className="p-3">
+          <div className="flex gap-2">
+            <button
+              onClick={onView}
+              className="px-3 py-1 text-sm border rounded hover:bg-gray-100"
+            >
+              View
+            </button>
+            <button
+              onClick={() => callNumber(lead.phone)}
+              className="px-2 py-1 border rounded hover:bg-gray-100"
+            >
+              📞
+            </button>
+            <button
+              onClick={() => openWhatsApp(lead.phone)}
+              className="px-2 py-1 border rounded hover:bg-gray-100"
+            >
+              💬
+            </button>
+            <button
+              onClick={markLost}
+              className="px-2 py-1 border rounded text-red-600 hover:bg-red-50"
+            >
+              ❌
+            </button>
+          </div>
+        </td>
+      </tr>
+
+     {/* ================= MOBILE CARD (PRO UX) ================= */}
+<div className="md:hidden bg-white rounded-xl border shadow-sm p-4 space-y-4">
+  {/* Header */}
+  <div className="flex justify-between items-start gap-2">
+    <div>
+      <h3 className="text-base font-semibold leading-tight">
+        {lead.name || "—"}
+      </h3>
+      <p className="text-sm text-gray-600 mt-1">
+        {lead.phone || "—"}
+      </p>
+      <p className="text-xs text-gray-500">
+        Source: {lead.source || "—"}
+      </p>
+    </div>
+
+    <span
+      className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap ${statusColor(
+        lead.status
+      )}`}
+    >
+      {lead.status || "New"}
+    </span>
+  </div>
+
+  {/* Meta */}
+  <div className="text-sm text-gray-600 flex justify-between">
+    <span>
+      Follow-up:
+      <strong className="ml-1 text-gray-800">
+        {lead.next_followup
+          ? new Date(lead.next_followup).toLocaleDateString()
+          : "None"}
+      </strong>
+    </span>
+  </div>
+
+  {/* Actions */}
+  <div className="grid grid-cols-2 gap-3 pt-2">
+    <button
+      onClick={onView}
+      className="h-11 rounded-lg border text-sm font-medium hover:bg-gray-100"
+    >
+      View
+    </button>
+
+    <button
+      onClick={() => callNumber(lead.phone)}
+      className="h-11 rounded-lg border text-sm hover:bg-gray-100"
+    >
+      📞 Call
+    </button>
+
+    <button
+      onClick={() => openWhatsApp(lead.phone)}
+      className="h-11 rounded-lg border text-sm hover:bg-gray-100"
+    >
+      💬 WhatsApp
+    </button>
+
+    <button
+      onClick={markLost}
+      className="h-11 rounded-lg border text-sm text-red-600 hover:bg-red-50"
+    >
+      ❌ Mark Lost
+    </button>
+  </div>
+</div>
+
+    </>
   );
 }
