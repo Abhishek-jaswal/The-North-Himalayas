@@ -107,42 +107,85 @@ export default function FollowUpsPage() {
       </div>
 
       {/* TABLE */}
-      <div className="bg-white rounded shadow overflow-hidden">
-        {leads.length === 0 ? (
-          <p className="p-4 text-gray-500">No follow-ups</p>
-        ) : (
-          <table className="w-full text-sm">
-            <thead className="bg-gray-100">
-              <tr>
-                <th className="p-2 text-left">Name</th>
-                <th>Phone</th>
-                <th>Source</th>
-                <th>Status</th>
-                <th>Follow-up Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {leads.map((lead) => (
-                <tr
-                  key={lead.id}
-                  className="hover:bg-gray-50 cursor-pointer"
-                  onClick={() =>
-                    router.push(`/pro/sales/leads/${lead.id}`)
-                  }
-                >
-                  <td className="p-2 font-medium">{lead.name}</td>
-                  <td>{lead.phone}</td>
-                  <td className="capitalize">{lead.source}</td>
-                  <td className="capitalize">{lead.status}</td>
-                  <td className="text-red-600">
-                    {lead.next_followup?.split("T")[0]}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
+    {/* LIST */}
+<div className="bg-white rounded shadow overflow-hidden">
+  {leads.length === 0 ? (
+    <p className="p-4 text-gray-500">No follow-ups</p>
+  ) : (
+    <>
+      {/* ================= DESKTOP TABLE ================= */}
+      <table className="hidden md:table w-full text-sm">
+        <thead className="bg-gray-100">
+          <tr>
+            <th className="p-2 text-left">Name</th>
+            <th>Phone</th>
+            <th>Source</th>
+            <th>Status</th>
+            <th>Follow-up Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {leads.map((lead) => (
+            <tr
+              key={lead.id}
+              className="hover:bg-gray-50 cursor-pointer"
+              onClick={() =>
+                router.push(`/pro/sales/leads/${lead.id}`)
+              }
+            >
+              <td className="p-2 font-medium">{lead.name}</td>
+              <td>{lead.phone}</td>
+              <td className="capitalize">{lead.source}</td>
+              <td className="capitalize">{lead.status}</td>
+              <td className="text-red-600">
+                {lead.next_followup?.split("T")[0]}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {/* ================= MOBILE CARDS ================= */}
+      <div className="md:hidden divide-y">
+        {leads.map((lead) => (
+          <div
+            key={lead.id}
+            onClick={() => router.push(`/pro/sales/leads/${lead.id}`)}
+            className="p-4 space-y-3 active:bg-gray-50"
+          >
+            {/* Top */}
+            <div className="flex justify-between items-start">
+              <div>
+                <h3 className="font-semibold text-gray-900">
+                  {lead.name || "—"}
+                </h3>
+                <p className="text-sm text-gray-600">
+                  {lead.phone || "—"}
+                </p>
+              </div>
+
+              <span className="text-xs px-3 py-1 rounded-full bg-gray-100 capitalize">
+                {lead.status}
+              </span>
+            </div>
+
+            {/* Meta */}
+            <div className="flex justify-between text-sm text-gray-600">
+              <span className="capitalize">
+                Source: <strong>{lead.source || "—"}</strong>
+              </span>
+
+              <span className="text-red-600 font-medium">
+                {lead.next_followup?.split("T")[0]}
+              </span>
+            </div>
+          </div>
+        ))}
       </div>
+    </>
+  )}
+</div>
+
 
     </div>
   );
