@@ -1,7 +1,7 @@
 import PocketBase from "pocketbase";
 
 export const pb = new PocketBase(
-  process.env.NEXT_PUBLIC_POCKETBASE_URL || "http://13.48.55.10:8090"
+process.env.NEXT_PUBLIC_POCKETBASE_URL || "https://api.thenorthhimalayas.com"
 );
 
 // 🔴 THIS LINE FIXES AbortError IN NEXT.JS
