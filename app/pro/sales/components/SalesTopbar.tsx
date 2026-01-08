@@ -12,13 +12,13 @@ export default function SalesTopbar() {
     const displayName = user?.name || user?.username || user?.email || "";
     setName(displayName);
   }
-// eslint-disable-next-line react-hooks/exhaustive-deps
+//  eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
 
 
   return (
     <div className="bg-white rounded shadow flex items-center justify-between ml-0 md:ml-64 p-4">
-      <h3 className="text-xl font-bold">
+      <h3 className="text-xl font-bold ml-8">
         Welcome{name ? `, ${name}` : ""}
       </h3>
 
