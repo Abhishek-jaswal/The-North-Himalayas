@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import PocketBase, { type RecordModel } from "pocketbase";
 
 const pb = new PocketBase(
-  process.env.NEXT_PUBLIC_POCKETBASE_URL ?? "http://127.0.0.1:8090"
+  process.env.NEXT_PUBLIC_POCKETBASE_URL ?? "https://api.thenorthhimalayas.com"
 );
 
 /* ======================
