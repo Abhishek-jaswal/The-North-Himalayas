@@ -1,162 +1,88 @@
-// app/api/whatsapp/route.ts
-import { NextResponse } from "next/server";
-import PocketBase, { type RecordModel } from "pocketbase";
+import { NextRequest, NextResponse } from "next/server";
+import PocketBase from "pocketbase";
 
 const pb = new PocketBase(
-  process.env.NEXT_PUBLIC_POCKETBASE_URL ?? "https://api.thenorthhimalayas.com"
+  process.env.NEXT_PUBLIC_POCKETBASE_URL!
 );
 
-/* ======================
-   TYPES
-====================== */
-interface WhatsAppMessage {
-  from: string;
-  type: string;
-  text?: { body: string };
-  button?: { text: string };
+/* =========================
+   GET → META VERIFICATION
+========================= */
+export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+
+  const mode = searchParams.get("hub.mode");
+  const token = searchParams.get("hub.verify_token");
+  const challenge = searchParams.get("hub.challenge");
+
+  if (
+    mode === "subscribe" &&
+    token === process.env.WHATSAPP_VERIFY_TOKEN
+  ) {
+    return new NextResponse(challenge, { status: 200 });
+  }
+
+  return new NextResponse("Forbidden", { status: 403 });
 }
 
-interface WebhookPayload {
-  entry?: Array<{
-    changes?: Array<{
-      value?: {
-        messages?: WhatsAppMessage[];
-      };
-    }>;
-  }>;
-}
-
-/* ======================
-   WHATSAPP SEND
-====================== */
-async function sendWhatsAppReply(to: string, text: string): Promise<void> {
-  const token = process.env.WHATSAPP_TOKEN;
-  const phoneId = process.env.WHATSAPP_PHONE_ID;
-
-  if (!token || !phoneId) return;
-
-  await fetch(`https://graph.facebook.com/v18.0/${phoneId}/messages`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      messaging_product: "whatsapp",
-      to,
-      type: "text",
-      text: { body: text },
-    }),
-  });
-}
-
-/* ======================
-   POST HANDLER
-====================== */
-export async function POST(req: Request) {
+/* =========================
+   POST → RECEIVE MESSAGE
+========================= */
+export async function POST(req: NextRequest) {
   try {
-    /* === WEBHOOK SECURITY === */
-    const headerSecret = req.headers.get("x-webhook-secret");
-    if (headerSecret !== process.env.WHATSAPP_WEBHOOK_SECRET) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    // Admin auth (server-side only)
+    await pb.admins.authWithPassword(
+      process.env.PB_ADMIN_EMAIL!,
+      process.env.PB_ADMIN_PASSWORD!
+    );
 
-    /* === POCKETBASE ADMIN AUTH === */
-    const adminEmail = process.env.PB_ADMIN_EMAIL;
-    const adminPassword = process.env.PB_ADMIN_PASSWORD;
-
-    if (!adminEmail || !adminPassword) {
-      return NextResponse.json(
-        { error: "Server misconfigured" },
-        { status: 500 }
-      );
-    }
-
-    await pb.admins.authWithPassword(adminEmail, adminPassword);
-
-    /* === PARSE PAYLOAD SAFELY === */
-    const payload = (await req.json()) as WebhookPayload;
+    const body = await req.json();
 
     const message =
-      payload.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
+      body.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
 
     if (!message) {
-      return NextResponse.json({ success: true });
+      return NextResponse.json({ ok: true });
     }
 
     const phone = message.from;
-    const messageText =
-      message.text?.body ??
-      (message.type === "button" ? message.button?.text : "") ??
-      "";
+    const text = message.text?.body || "No text";
 
-    const name = `WhatsApp:${phone}`;
-
-    /* === FETCH ACTIVE SALESPERSONS === */
-    const salespersons = (await pb
-      .collection("salespersons")
-      .getFullList({
-        filter: "is_active = true",
-        sort: "created",
-      })) as RecordModel[];
-
-    if (salespersons.length === 0) {
-      return NextResponse.json(
-        { error: "No active salespersons" },
-        { status: 400 }
-      );
-    }
-
-    /* === ROUND ROBIN ASSIGNMENT === */
-    const settings = await pb
-      .collection("settings")
-      .getFirstListItem("");
-
-    const lastId = settings.last_salesperson_id as string | null;
-
-    const lastIndex = salespersons.findIndex(
-      (s) => s.id === lastId
-    );
-
-    const nextIndex =
-      lastIndex === -1
-        ? 0
-        : (lastIndex + 1) % salespersons.length;
-
-    const assigned = salespersons[nextIndex];
-
-    /* === CREATE LEAD === */
+    // Save lead
     await pb.collection("leads").create({
-      name,
+      name: `WhatsApp ${phone}`,
       phone,
-      message: messageText,
+      message: text,
       source: "whatsapp",
-      assigned_to: assigned.id,
       status: "new",
     });
 
-    /* === UPDATE POINTER === */
-    await pb.collection("settings").update(settings.id, {
-      last_salesperson_id: assigned.id,
-    });
-
-    /* === AUTO REPLY === */
-    await sendWhatsAppReply(
-      phone,
-      "Thanks for contacting The North Himalayas! Our Team will contact you shortly."
+    // Auto-reply
+    await fetch(
+      `https://graph.facebook.com/v18.0/${process.env.WHATSAPP_PHONE_ID}/messages`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${process.env.WHATSAPP_TOKEN}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          messaging_product: "whatsapp",
+          to: phone,
+          type: "text",
+          text: {
+            body:
+              "Thanks for contacting The North Himalayas! Our team will reach you shortly.",
+          },
+        }),
+      }
     );
 
-    return NextResponse.json({
-      success: true,
-      salesperson_id: assigned.id,
-      assigned_to: assigned.get("name"),
-    });
-  } catch (error: unknown) {
-    const message =
-      error instanceof Error ? error.message : "Unknown error";
-
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error("Webhook error:", err);
     return NextResponse.json(
-      { error: "Internal server error", details: message },
+      { error: "Internal error" },
       { status: 500 }
     );
   }
