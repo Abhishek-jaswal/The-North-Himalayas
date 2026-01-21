@@ -64,13 +64,54 @@ export async function POST(req: NextRequest) {
     await ensurePBAuth();
 
     // Save ONLY incoming client message
-    await pb.collection("leads").create({
-      name: "WhatsApp Client",
-      phone,
-      message: text,
-      source: "whatsapp",
-      status: "new",
-    });
+ // Authenticate PB once
+await ensurePBAuth();
+
+// 🔍 Check if lead already exists by phone
+let existingLead = null;
+
+try {
+  existingLead = await pb
+    .collection("leads")
+    .getFirstListItem(`phone="${phone}"`);
+} catch (err) {
+  existingLead = null;
+}
+
+// 🟢 If lead exists → UPDATE
+if (existingLead) {
+  const oldMessages = existingLead.messages || [];
+
+  await pb.collection("leads").update(existingLead.id, {
+    messages: [
+      ...oldMessages,
+      {
+        text,
+        time: new Date().toISOString(),
+      },
+    ],
+    last_message: text,
+    last_message_at: new Date().toISOString(),
+  });
+}
+// 🔵 If lead does not exist → CREATE
+else {
+  await pb.collection("leads").create({
+    name:text,
+    phone,
+    source: "whatsapp",
+    status: "new",
+    messages: [
+      {
+        text,
+        time: new Date().toISOString(),
+      },
+    ],
+    last_message: text,
+    last_message_at: new Date().toISOString(),
+  });
+}
+
 
     return NextResponse.json({ success: true });
   } catch (error) {
