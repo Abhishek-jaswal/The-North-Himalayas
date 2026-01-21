@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { pb } from "@/app/lib/pocketbase";
 import { useRouter } from "next/navigation";
 import type { RecordModel } from "pocketbase";
-import { Users, CheckCircle, PhoneCall, Flame } from "lucide-react";
+import { Users, CheckCircle, PhoneCall, Flame, Delete } from "lucide-react";
 
 import StatCard from "../../components/StatCard";
 
@@ -138,49 +138,38 @@ useEffect(() => {
   ======================= */
   return (
     <div className="flex min-h-screen bg-gray-100">
-      <div className="flex-1 ml-0 md:ml-64 p-4">
+      <div className="flex-1 ml-0 md:ml-40 p-4">
 
         {/* STATS */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
-          <StatCard title="Assigned Leads" value={stats.assigned} icon={<Users />} />
-          <StatCard title="Converted" value={stats.converted} icon={<CheckCircle />} />
-          <StatCard title="Today's Leads" value={stats.todayAssigned} icon={<Flame />} />
-          <StatCard title="Today's Follow-ups" value={stats.todayFollowups} icon={<PhoneCall />} />
+                    <div className="bg-pink-200  rounded-xl  shadow hover:shadow-lg transition">
+
+          <StatCard title="Total Leads" value={stats.assigned} icon={<Users />} /></div>
+           <div className="bg-gray-400  rounded-xl  shadow hover:shadow-lg transition">
+          <StatCard  title="Monthly Leads" value={stats.converted} icon={<CheckCircle />} /></div>
+                     <div className="bg-yellow-200  rounded-xl  shadow hover:shadow-lg transition">
+
+          <StatCard title="Today's Leads" value={stats.todayAssigned} icon={<Flame />} /></div>
+                     <div className="bg-blue-200  rounded-xl  shadow hover:shadow-lg transition">
+
+          <StatCard title="Today's Follow-ups" value={stats.todayFollowups} icon={<PhoneCall />} /></div>
+                     <div className="bg-purple-600  rounded-xl  shadow hover:shadow-lg transition">
+
+            <StatCard title="Total Converted" value={stats.todayAssigned} icon={<Flame />} /></div>
+                       <div className="bg-green-200  rounded-xl  shadow hover:shadow-lg transition">
+
+          <StatCard title="Booked" value={stats.todayFollowups} icon={<PhoneCall />} /></div>
+                     <div className="bg-gray-200  rounded-xl  shadow hover:shadow-lg transition">
+
+           <StatCard title="Pending Leads" value={stats.todayAssigned} icon={<Flame />} /></div>
+                      <div className="bg-red-300  rounded-xl  shadow hover:shadow-lg transition">
+
+          <StatCard title="Lost" value={stats.todayFollowups} icon={<Delete />} /></div>
+
         </div>
 
-        {/* RECENT LEADS */}
-        <div className="bg-white p-4 rounded shadow mt-6">
-          <h3 className="text-lg font-bold mb-3">Recent Leads</h3>
-
-          {recentLeads.length === 0 ? (
-            <p className="text-gray-500">No leads assigned yet</p>
-          ) : (
-            <table className="w-full text-sm">
-              <thead className="bg-gray-100">
-                <tr>
-                  <th className="p-2 text-left">Name</th>
-                  <th>Phone</th>
-                  <th>message</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {recentLeads.map((lead) => (
-                  <tr
-                    key={lead.id}
-                    className="hover:bg-gray-50 cursor-pointer"
-                    onClick={() => router.push(`/pro/sales/leads/${lead.id}`)}
-                  >
-                    <td className="p-2">{lead.name}</td>
-                    <td>{lead.phone}</td>
-                    <td className="capitalize">{lead.message}</td>
-                    <td className="capitalize">{lead.status}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-        </div>
+       
+      
 
       </div>
     </div>
