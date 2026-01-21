@@ -41,77 +41,56 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
-    // 🔥 DEBUG (remove later if you want)
     console.log("WHATSAPP WEBHOOK:", JSON.stringify(body, null, 2));
 
-    const message =
-      body.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
+    const value = body.entry?.[0]?.changes?.[0]?.value;
+    const messageObj = value?.messages?.[0];
 
-    // Ignore non-message events (statuses, etc.)
-    if (!message) {
+    if (!messageObj || messageObj.type !== "text") {
       return NextResponse.json({ ok: true });
     }
 
-    // Only text messages
-    if (message.type !== "text") {
-      return NextResponse.json({ ok: true });
-    }
+    const phone = messageObj.from;
+    const text = messageObj.text?.body ?? "";
 
-    const phone = message.from;
-    const text = message.text?.body ?? "";
+    // ✅ WhatsApp profile name
+    const contactName =
+      value?.contacts?.[0]?.profile?.name || "WhatsApp Client";
 
-    // Authenticate PB once
     await ensurePBAuth();
 
-    // Save ONLY incoming client message
- // Authenticate PB once
-await ensurePBAuth();
+    // 🔍 Check if lead exists
+    let existingLead = null;
 
-// 🔍 Check if lead already exists by phone
-let existingLead = null;
+    try {
+      existingLead = await pb
+        .collection("leads")
+        .getFirstListItem(`phone="${phone}"`);
+    } catch {
+      existingLead = null;
+    }
 
-try {
-  existingLead = await pb
-    .collection("leads")
-    .getFirstListItem(`phone="${phone}"`);
-} catch (err) {
-  existingLead = null;
-}
+    // 🟢 UPDATE lead → append message
+    if (existingLead) {
+      const updatedMessage = existingLead.message
+        ? `${existingLead.message}\n${text}`
+        : text;
 
-// 🟢 If lead exists → UPDATE
-if (existingLead) {
-  const oldMessages = existingLead.messages || [];
+      await pb.collection("leads").update(existingLead.id, {
+        name: existingLead.name || contactName,
+        message: updatedMessage,
+      });
+    }
 
-  await pb.collection("leads").update(existingLead.id, {
-    messages: [
-      ...oldMessages,
-      {
-        text,
-        time: new Date().toISOString(),
-      },
-    ],
-    last_message: text,
-    last_message_at: new Date().toISOString(),
-  });
-}
-// 🔵 If lead does not exist → CREATE
-else {
-  await pb.collection("leads").create({
-    name:text,
-    phone,
-    source: "whatsapp",
-    status: "new",
-    messages: [
-      {
-        text,
-        time: new Date().toISOString(),
-      },
-    ],
-    last_message: text,
-    last_message_at: new Date().toISOString(),
-  });
-}
-
+    // 🔵 CREATE new lead
+    else {
+      await pb.collection("leads").create({
+        name: contactName,
+        phone,
+        message: text,
+        source: "whatsapp",
+      });
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {
