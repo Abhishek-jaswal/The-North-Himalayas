@@ -16,6 +16,7 @@ interface Lead {
   name: string;
   phone: string;
   source: string;
+  message: string;
   status: string;
   created: string;
   assigned_to: string;
@@ -159,7 +160,7 @@ useEffect(() => {
                 <tr>
                   <th className="p-2 text-left">Name</th>
                   <th>Phone</th>
-                  <th>Source</th>
+                  <th>message</th>
                   <th>Status</th>
                 </tr>
               </thead>
@@ -172,7 +173,7 @@ useEffect(() => {
                   >
                     <td className="p-2">{lead.name}</td>
                     <td>{lead.phone}</td>
-                    <td className="capitalize">{lead.source}</td>
+                    <td className="capitalize">{lead.message}</td>
                     <td className="capitalize">{lead.status}</td>
                   </tr>
                 ))}
