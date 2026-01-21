@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
 
     // Save ONLY incoming client message
     await pb.collection("leads").create({
-      name: "WhatsApp Client",
+      name,
       phone,
       message: text,
       source: "whatsapp",
