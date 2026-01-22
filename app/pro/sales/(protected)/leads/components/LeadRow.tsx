@@ -8,6 +8,7 @@ interface Lead {
   phone?: string;
   source?: string;
   status?: string;
+  message?: string;
   assigned_to?: string;
   next_followup?: string;
 }
@@ -67,58 +68,55 @@ export default function LeadRow({
   /* ================= DESKTOP TABLE ROW ================= */
   return (
     <>
-      <tr className="hidden md:table-row border-t hover:bg-gray-50 transition">
-        <td className="p-3 font-medium">{lead.name || "—"}</td>
-        <td className="p-3">{lead.phone || "—"}</td>
-        <td className="p-3">{lead.source || "—"}</td>
+      <tr className="hidden md:table-row border-t border-gray-300 hover:bg-gray-50 transition">
+  <td className="p-4 font-medium">{lead.name || "—"}</td>
+  <td className="p-4 text-gray-600">{lead.phone || "—"}</td>
+  <td className="p-4 text-gray-600">{lead.source || "—"}</td>
 
-        <td className="p-3">
-          <span
-            className={`px-3 py-1 rounded-full text-xs font-semibold ${statusColor(
-              lead.status
-            )}`}
-          >
-            {lead.status || "New"}
-          </span>
-        </td>
+  <td className="p-4">
+    <span
+      className={`px-3 py-1 rounded-full text-xs font-semibold ${statusColor(
+        lead.status
+      )}`}
+    >
+      {lead.status || "New"}
+    </span>
+  </td>
 
-        <td className="p-3">{lead.assigned_to || "Unassigned"}</td>
+  <td className="p-4 text-gray-600">
+   {lead.message || "—"}
+  </td>
 
-        <td className="p-3">
-          {lead.next_followup
-            ? new Date(lead.next_followup).toLocaleDateString()
-            : "—"}
-        </td>
+  <td className="p-4">
+    <div className="flex justify-end gap-2 ">
+      <button
+        onClick={onView}
+        className="px-3 py-1  cursor-pointer text-xs border border-gray-400 rounded-md hover:bg-gray-100"
+      >
+        View
+      </button>
+      <button
+        onClick={() => callNumber(lead.phone)}
+        className="h-8 w-8 flex items-center justify-center border border-gray-400  cursor-pointer rounded-md hover:bg-gray-100"
+      >
+        📞
+      </button>
+      <button
+        onClick={() => openWhatsApp(lead.phone)}
+        className="h-8 w-8 flex items-center justify-center border border-gray-400 rounded-md hover:bg-gray-100 cursor-pointer"
+      >
+        💬
+      </button>
+      <button
+        onClick={markLost}
+        className="h-8 w-8 flex items-center justify-center cursor-pointer border border-gray-400 rounded-md text-red-600 hover:bg-red-50"
+      >
+        🗑
+      </button>
+    </div>
+  </td>
+</tr>
 
-        <td className="p-3">
-          <div className="flex gap-2">
-            <button
-              onClick={onView}
-              className="px-3 py-1 text-sm border rounded hover:bg-gray-100"
-            >
-              View
-            </button>
-            <button
-              onClick={() => callNumber(lead.phone)}
-              className="px-2 py-1 border rounded hover:bg-gray-100"
-            >
-              📞
-            </button>
-            <button
-              onClick={() => openWhatsApp(lead.phone)}
-              className="px-2 py-1 border rounded hover:bg-gray-100"
-            >
-              💬
-            </button>
-            <button
-              onClick={markLost}
-              className="px-2 py-1 border rounded text-red-600 hover:bg-red-50"
-            >
-              ❌
-            </button>
-          </div>
-        </td>
-      </tr>
 
      {/* ================= MOBILE CARD (PRO UX) ================= */}
 <div className="md:hidden bg-white rounded-xl border shadow-sm p-4 space-y-4">
@@ -150,9 +148,7 @@ export default function LeadRow({
     <span>
       Follow-up:
       <strong className="ml-1 text-gray-800">
-        {lead.next_followup
-          ? new Date(lead.next_followup).toLocaleDateString()
-          : "None"}
+        {lead.message}
       </strong>
     </span>
   </div>

@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { pb } from "@/app/lib/pocketbase";
+import Image from "next/image";
+
 
 export default function SalesTopbar() {
   const [name, setName] = useState<string>("");
@@ -17,15 +19,21 @@ export default function SalesTopbar() {
 
 
   return (
-    <div className="bg-white rounded shadow flex items-center justify-between ml-0 md:ml-64 p-4">
+    <div className="bg-white rounded  flex items-center justify-between ml-0 md:ml-64 p-2 bg-gray-50 border-b border-gray-200 mt-12 md:mt-0">
       <h3 className="text-xl font-bold ml-8">
         Welcome{name ? `, ${name}` : ""}
-      </h3>
-
+      
+       <p className="text-sm text-gray-500 ">
+        Here’s what’s happening with your sales today.
+      </p></h3>
       <div className="flex items-center gap-3">
-        <span className="text-gray-500 text-sm">
-          Sales Dashboard
-        </span>
+        <Image
+                      src="/images/logos/logo_5.jpg"
+                      alt="The North Himalayas logo"
+                      width={60}
+                      height={40}
+                      className="rounded-sm"
+                    />
       </div>
     </div>
   );

@@ -85,59 +85,70 @@ export default function LeadsPage() {
  return (
   <div className="flex-1 ml-0 md:ml-64 p-3 md:p-6 space-y-5">
     {/* ================= HEADER ================= */}
-    <div className="space-y-3">
-      <h2 className="text-xl md:text-2xl font-semibold">My Leads</h2>
+ {/* ================= HEADER ================= */}
+<div className="space-y-4">
+  <div className="flex items-center justify-between">
+    <h2 className="text-xl md:text-2xl font-semibold">My Leads</h2>
 
-      {/* Filters */}
-      <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
-        <input
-          className="border rounded-lg px-3 py-2 w-full sm:w-56 text-sm"
-          placeholder="Search name or phone"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
+    <p className="text-sm text-gray-500">
+      Showing {filteredLeads.length} lead
+      {filteredLeads.length !== 1 && "s"}
+    </p>
+  </div>
 
-        <select
-          className="border rounded-lg px-3 py-2 w-full sm:w-48 text-sm"
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
-        >
-          <option value="All">All Status</option>
-          <option value="New">New</option>
-          <option value="Contacted">Contacted</option>
-          <option value="Qualified">Qualified</option>
-          <option value="Converted">Converted</option>
-          <option value="Lost">Lost</option>
-        </select>
+  {/* Filters */}
+  <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+    <input
+      className="border border-gray-300 rounded-lg px-3 py-2 w-full sm:w-64 text-sm focus:ring-2 focus:ring-indigo-500 outline-none"
+      placeholder="Search name or phone"
+      value={query}
+      onChange={(e) => setQuery(e.target.value)}
+    />
 
-        <button
-          disabled={loading}
-          onClick={fetchLeads}
-          className={`w-full sm:w-auto px-4 py-2 rounded-lg text-sm font-medium text-white ${
-            loading
-              ? "bg-indigo-400 cursor-not-allowed"
-              : "bg-indigo-600 hover:bg-indigo-700"
-          }`}
-        >
-          {loading ? "Refreshing..." : "Refresh"}
-        </button>
-      </div>
-    </div>
+    <select
+      className="border border-gray-300 rounded-lg px-3 py-2 w-full sm:w-48 text-sm focus:ring-2 focus:ring-indigo-500 outline-none"
+      value={statusFilter}
+      onChange={(e) => setStatusFilter(e.target.value)}
+    >
+      <option value="All">All Status</option>
+      <option value="New">New</option>
+      <option value="Contacted">Contacted</option>
+      <option value="Qualified">Qualified</option>
+      <option value="Converted">Converted</option>
+      <option value="Lost">Lost</option>
+    </select>
+
+    <button
+      disabled={loading}
+      onClick={fetchLeads}
+      className={`px-4 py-2 rounded-lg text-sm font-medium text-white flex items-center gap-2 ${
+        loading
+          ? "bg-indigo-400 cursor-not-allowed"
+          : "bg-indigo-600 hover:bg-indigo-700"
+      }`}
+    >
+       Refresh
+    </button>
+  </div>
+</div>
+
 
     {/* ================= LIST / TABLE ================= */}
-    <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
-      <table className="w-full table-auto">
+   <div className="bg-white rounded-xl shadow-sm border border-gray-300 overflow-hidden">
+  <table className="w-full border-collapse">
+
         {/* Desktop header only */}
-        <thead className="hidden md:table-header-group bg-gray-50 text-left text-sm">
-          <tr>
-            <th className="p-3">Name</th>
-            <th className="p-3">Phone</th>
-            <th className="p-3">Source</th>
-            <th className="p-3">Status</th>
-            <th className="p-3">Next Follow-up</th>
-            <th className="p-3 text-right">Actions</th>
-          </tr>
-        </thead>
+     <thead className="hidden md:table-header-group bg-gray-50 text-xs text-gray-500 uppercase">
+  <tr>
+    <th className="p-4 font-medium">Name</th>
+    <th className="p-4 font-medium">Phone</th>
+    <th className="p-4 font-medium">Source</th>
+    <th className="p-4 font-medium">Status</th>
+    <th className="p-4 font-medium">Message</th>
+    <th className="p-4 font-medium text-right">Actions</th>
+  </tr>
+</thead>
+
 
         <tbody className="text-sm">
           {loading && (
