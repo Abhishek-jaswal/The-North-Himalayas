@@ -244,47 +244,26 @@ setActivity(mapped);
         </div>
 
         {/* FOOTER */}
-        <div className="border-t p-4 flex justify-between">
-          <div className="flex gap-2">
-            <button
-              onClick={save}
-              disabled={saving}
-              className="px-5 py-2 bg-indigo-600 text-white rounded-lg"
-            >
-              {saving ? "Saving..." : "Save"}
-            </button>
+       {/* FOOTER */}
+<div className="border-t bg-gray-50 p-4 flex justify-center">
+  <div className="flex gap-3">
+    <button
+      onClick={save}
+      disabled={saving}
+      className="px-6 py-2 rounded-lg bg-indigo-600 text-white text-sm font-medium disabled:opacity-60"
+    >
+      {saving ? "Saving..." : "Save Changes"}
+    </button>
 
-            <button
-              onClick={markContacted}
-              disabled={saving}
-              className="px-4 py-2 border rounded-lg"
-            >
-              Mark Contacted
-            </button>
+    <button
+      onClick={onClose}
+      className="px-6 py-2 rounded-lg border border-gray-400 text-gray-600 text-sm hover:bg-gray-100"
+    >
+      Close
+    </button>
+  </div>
+</div>
 
-            <button
-              onClick={() => {
-                pb.collection("lead_activity").create({
-                  lead_id: lead.id,
-                  action: "Opened WhatsApp",
-                  actor: pb.authStore.model?.email ?? "unknown",
-                });
-
-                window.open(
-                  `https://wa.me/${(lead.phone || "").replace(/[^\d]/g, "")}`,
-                  "_blank"
-                );
-              }}
-              className="px-4 py-2 border rounded-lg"
-            >
-              WhatsApp
-            </button>
-          </div>
-
-          <button onClick={onClose} className="text-sm text-gray-500">
-            Close
-          </button>
-        </div>
       </div>
     </div>
   );

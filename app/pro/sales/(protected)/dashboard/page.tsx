@@ -4,173 +4,179 @@ import { useEffect, useState } from "react";
 import { pb } from "@/app/lib/pocketbase";
 import { useRouter } from "next/navigation";
 import type { RecordModel } from "pocketbase";
-import { Users, CheckCircle, PhoneCall, Flame, Delete } from "lucide-react";
+import type { Lead } from "@/app/pro/types/lead";
+import {
+  Users,
+  CheckCircle,
+  PhoneCall,
+  Flame,
+  XCircle,
+  CalendarCheck,
+} from "lucide-react";
 
 import StatCard from "../../components/StatCard";
 
-/* =======================
-   TYPES
-======================= */
-interface Lead {
-  id: string;
-  name: string;
-  phone: string;
-  source: string;
-  message: string;
-  status: string;
-  created: string;
-  assigned_to: string;
-  next_followup?: string;
-}
-
-/* =======================
-   PAGE
-======================= */
 export default function SalesDashboard() {
   const router = useRouter();
-
-  // ✅ FIX: RecordModel is correct PocketBase auth type
+  const [loading, setLoading] = useState(true);
   const [salesperson, setSalesperson] = useState<RecordModel | null>(null);
 
   const [stats, setStats] = useState({
-    assigned: 0,
+    total: 0,
+    monthly: 0,
+    today: 0,
+    followups: 0,
     converted: 0,
-    todayAssigned: 0,
-    todayFollowups: 0,
+    booked: 0,
+    pending: 0,
+    lost: 0,
+    monthlyPercent: 0,
   });
 
-  const [recentLeads, setRecentLeads] = useState<Lead[]>([]);
-  const [loading, setLoading] = useState(true);
+  /* ================= DATE HELPERS ================= */
+  const today = new Date();
+  const todayStr = today.toISOString().split("T")[0];
 
-  /* =======================
-     DATE HELPER (IST SAFE)
-  ======================= */
-  const getLocalDate = () => {
-    const d = new Date();
-    d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
-    return d.toISOString().split("T")[0];
+  const monthStart = new Date(today.getFullYear(), today.getMonth(), 1);
+  const lastMonthStart = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+  const lastMonthEnd = new Date(today.getFullYear(), today.getMonth(), 0);
+
+  /* ================= FETCH DATA ================= */
+  const loadDashboard = async (userId: string) => {
+    const res = await pb.collection("leads").getFullList({
+      filter: `assigned_to="${userId}"`,
+      sort: "-created",
+    });
+
+    const leads = res as unknown as Lead[];
+
+    const total = leads.length;
+
+    const monthly = leads.filter(
+      (l) => new Date(l.created) >= monthStart
+    ).length;
+
+    const lastMonth = leads.filter(
+      (l) =>
+        new Date(l.created) >= lastMonthStart &&
+        new Date(l.created) <= lastMonthEnd
+    ).length;
+
+    const monthlyPercent =
+      lastMonth === 0 ? 100 : ((monthly - lastMonth) / lastMonth) * 100;
+
+    const todayLeads = leads.filter(
+      (l) => l.created.split("T")[0] === todayStr
+    ).length;
+
+    const followups = leads.filter(
+      (l) =>
+        l.next_followup &&
+        l.next_followup.split("T")[0] === todayStr &&
+        !["converted", "lost"].includes(l.status)
+    ).length;
+
+    const converted = leads.filter((l) => l.status === "converted").length;
+    const booked = leads.filter((l) => l.status === "booked").length;
+    const lost = leads.filter((l) => l.status === "lost").length;
+    const pending = total - converted - lost - booked;
+
+    setStats({
+      total,
+      monthly,
+      today: todayLeads,
+      followups,
+      converted,
+      booked,
+      pending,
+      lost,
+      monthlyPercent: Math.round(monthlyPercent),
+    });
   };
 
-  /* =======================
-     FETCH STATS
-  ======================= */
-  const fetchStats = async (salespersonId: string) => {
-    try {
-      const res = await pb.collection("leads").getList(1, 100, {
-        filter: `assigned_to = "${salespersonId}"`,
-        sort: "-created",
-      });
-
-      const leads = res.items as unknown as Lead[];
-      const today = getLocalDate();
-
-      const assigned = res.totalItems;
-
-      const converted = leads.filter(
-        (l) => l.status?.toLowerCase() === "converted"
-      ).length;
-
-      const todayAssigned = leads.filter(
-        (l) => l.created?.split("T")[0] === today
-      ).length;
-
-      const todayFollowups = leads.filter(
-        (l) =>
-          l.next_followup &&
-          l.next_followup.split("T")[0] === today &&
-          !["converted", "lost"].includes(l.status?.toLowerCase())
-      ).length;
-
-      setStats({
-        assigned,
-        converted,
-        todayAssigned,
-        todayFollowups,
-      });
-
-      setRecentLeads(leads.slice(0, 5));
-    } catch (err) {
-      console.error("Failed to load leads:", err);
-    }
-  };
-
-  /* =======================
-     AUTH + INIT
-  ======================= */
-useEffect(() => {
-  const init = async () => {
+  /* ================= INIT ================= */
+  useEffect(() => {
     if (!pb.authStore.isValid) {
       router.push("/pro/sales/login");
       return;
     }
 
-    const sp = pb.authStore.model;
-
-    if (!sp?.id) {
-      pb.authStore.clear();
+    const user = pb.authStore.model;
+    if (!user?.id) {
       router.push("/pro/sales/login");
       return;
     }
 
-    setSalesperson(sp);
-    await fetchStats(sp.id);
-    setLoading(false);
-  };
+    setSalesperson(user);
+    loadDashboard(user.id).finally(() => setLoading(false));
+  }, [router]);
 
-  init();
-// eslint-disable-next-line react-hooks/exhaustive-deps
-}, [router]);
-
-
-  /* =======================
-     LOADING
-  ======================= */
   if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        Loading dashboard...
-      </div>
-    );
+    return <div className="p-10">Loading dashboard...</div>;
   }
 
-  /* =======================
-     RENDER
-  ======================= */
+  /* ================= RENDER ================= */
   return (
-    <div className="flex min-h-screen bg-gray-100">
-      <div className="flex-1 ml-0 md:ml-40 p-4">
+    <div className="flex-1 ml-0 md:ml-64 p-6 bg-gray-50 min-h-screen">
+    
 
-        {/* STATS */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
-                    <div className="bg-pink-200  rounded-xl  shadow hover:shadow-lg transition">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+        <StatCard
+          title="Total Leads"
+          value={stats.total}
+          percent={stats.monthlyPercent}
+          icon={<Users size={18} />}
+          color="bg-indigo-50"
+        />
 
-          <StatCard title="Total Leads" value={stats.assigned} icon={<Users />} /></div>
-           <div className="bg-gray-400  rounded-xl  shadow hover:shadow-lg transition">
-          <StatCard  title="Monthly Leads" value={stats.converted} icon={<CheckCircle />} /></div>
-                     <div className="bg-yellow-200  rounded-xl  shadow hover:shadow-lg transition">
+        <StatCard
+          title="Monthly Leads"
+          value={stats.monthly}
+          icon={<CalendarCheck size={18} />}
+          color="bg-purple-50"
+        />
 
-          <StatCard title="Today's Leads" value={stats.todayAssigned} icon={<Flame />} /></div>
-                     <div className="bg-blue-200  rounded-xl  shadow hover:shadow-lg transition">
+        <StatCard
+          title="Today's Leads"
+          value={stats.today}
+          icon={<Flame size={18} />}
+          color="bg-yellow-50"
+        />
 
-          <StatCard title="Today's Follow-ups" value={stats.todayFollowups} icon={<PhoneCall />} /></div>
-                     <div className="bg-purple-600  rounded-xl  shadow hover:shadow-lg transition">
+        <StatCard
+          title="Today's Follow-ups"
+          value={stats.followups}
+          icon={<PhoneCall size={18} />}
+          color="bg-teal-50"
+        />
 
-            <StatCard title="Total Converted" value={stats.todayAssigned} icon={<Flame />} /></div>
-                       <div className="bg-green-200  rounded-xl  shadow hover:shadow-lg transition">
+        <StatCard
+          title="Total Converted"
+          value={stats.converted}
+          icon={<CheckCircle size={18} />}
+          color="bg-green-50"
+        />
 
-          <StatCard title="Booked" value={stats.todayFollowups} icon={<PhoneCall />} /></div>
-                     <div className="bg-gray-200  rounded-xl  shadow hover:shadow-lg transition">
+        <StatCard
+          title="Booked"
+          value={stats.booked}
+          icon={<CalendarCheck size={18} />}
+          color="bg-blue-50"
+        />
 
-           <StatCard title="Pending Leads" value={stats.todayAssigned} icon={<Flame />} /></div>
-                      <div className="bg-red-300  rounded-xl  shadow hover:shadow-lg transition">
+        <StatCard
+          title="Pending Leads"
+          value={stats.pending}
+          icon={<Users size={18} />}
+          color="bg-orange-50"
+        />
 
-          <StatCard title="Lost" value={stats.todayFollowups} icon={<Delete />} /></div>
-
-        </div>
-
-       
-      
-
+        <StatCard
+          title="Lost"
+          value={stats.lost}
+          icon={<XCircle size={18} />}
+          color="bg-red-50"
+        />
       </div>
     </div>
   );
