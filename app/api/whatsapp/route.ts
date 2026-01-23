@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
     try {
       existingLead = await pb
         .collection("leads")
-        .getFirstListItem(`phone="${phone}"`);
+        .getFirstListItem(`phone="+${phone}"`);
     } catch {
       existingLead = null;
     }
