@@ -16,6 +16,14 @@ interface Activity {
   created: string;
 }
 
+const metaLabels: Record<string, string> = {
+  status: "Status",
+  assignedTo: "Assigned To",
+  leadId: "Lead ID",
+  notes: "Notes",
+  next_followup: "Next Follow-up",
+};
+
 /* =======================
    COMPONENT
 ======================= */
@@ -39,10 +47,10 @@ export default function LeadModal({
     adults: lead.adults ?? 0,
     kids: lead.kids ?? 0,
     budget: lead.budget ?? 0,
-    notes: lead.notes || "",
+    notes: "",
     status: lead.status || "New",
     next_followup: lead.next_followup
-      ? lead.next_followup.split("T")[0]
+      ? lead.next_followup.slice(0, 16) // ✅ datetime-local format
       : "",
   });
 
@@ -68,17 +76,17 @@ export default function LeadModal({
           filter: `lead_id="${lead.id}"`,
           sort: "-created",
         });
-        const mapped: Activity[] = res.items.map((item) => ({
-  id: item.id,
-  lead_id: item.lead_id,
-  action: item.action,
-  actor: item.actor,
-  meta: item.meta,
-  created: item.created,
-}));
 
-setActivity(mapped);
-
+        setActivity(
+          res.items.map((item) => ({
+            id: item.id,
+            lead_id: item.lead_id,
+            action: item.action,
+            actor: item.actor,
+            meta: item.meta,
+            created: item.created,
+          }))
+        );
       } catch (err) {
         console.error("Activity load error", err);
       }
@@ -104,37 +112,16 @@ setActivity(mapped);
         lead_id: lead.id,
         action: "Lead Updated",
         actor: pb.authStore.model?.email ?? "unknown",
-        meta: JSON.stringify(form),
+        meta: JSON.stringify({
+          notes: form.notes,
+          next_followup: form.next_followup,
+        }),
       });
 
       onClose();
     } catch (err) {
       console.error(err);
       alert("Save failed");
-    } finally {
-      setSaving(false);
-    }
-  };
-
-  /* Mark contacted */
-  const markContacted = async () => {
-    setSaving(true);
-    try {
-      await pb.collection("leads").update(lead.id, {
-        status: "Contacted",
-      });
-
-      await pb.collection("lead_activity").create({
-        lead_id: lead.id,
-        action: "Marked Contacted",
-        actor: pb.authStore.model?.email ?? "unknown",
-        meta: JSON.stringify({ status: "Contacted" }),
-      });
-
-      onClose();
-    } catch (err) {
-      console.error(err);
-      alert("Failed to update status");
     } finally {
       setSaving(false);
     }
@@ -150,9 +137,17 @@ setActivity(mapped);
             <div className="text-sm text-gray-500">{form.phone}</div>
           </div>
 
-          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-gray-200">
-            {form.status}
-          </span>
+          <select
+            className="rounded-lg border px-3 py-2 text-sm"
+            value={form.status}
+            onChange={(e) => handleChange("status", e.target.value)}
+          >
+            <option>New</option>
+            <option>Contacted</option>
+            <option>Qualified</option>
+            <option>Converted</option>
+            <option>Lost</option>
+          </select>
         </div>
 
         {/* BODY */}
@@ -172,10 +167,17 @@ setActivity(mapped);
               <Input label="Budget" type="number" value={form.budget} onChange={(v) => handleChange("budget", v)} />
             </Section>
 
-            <Section title="Notes">
+            <Section title="Follow-up">
+              <Input
+                label="Next Follow-up (Date & Time)"
+                type="datetime-local"
+                value={form.next_followup}
+                onChange={(v) => handleChange("next_followup", v)}
+              />
               <textarea
                 className="w-full rounded-lg border px-3 py-2 text-sm"
                 rows={4}
+                placeholder="Add follow-up notes..."
                 value={form.notes}
                 onChange={(e) => handleChange("notes", e.target.value)}
               />
@@ -183,28 +185,7 @@ setActivity(mapped);
           </div>
 
           {/* RIGHT */}
-          <div className="space-y-5">
-            <Section title="Status">
-              <select
-                className="w-full rounded-lg border px-3 py-2 text-sm"
-                value={form.status}
-                onChange={(e) => handleChange("status", e.target.value)}
-              >
-                <option>New</option>
-                <option>Contacted</option>
-                <option>Qualified</option>
-                <option>Converted</option>
-                <option>Lost</option>
-              </select>
-
-              <Input
-                label="Next Follow-up"
-                type="date"
-                value={form.next_followup}
-                onChange={(v) => handleChange("next_followup", v)}
-              />
-            </Section>
-
+          <div className="space-y-8">
             <Section title="Activity Timeline">
               {activity.length === 0 ? (
                 <div className="text-sm text-gray-400 text-center py-4">
@@ -219,21 +200,21 @@ setActivity(mapped);
                     } catch {}
 
                     return (
-                      <div key={a.id} className="text-xs border rounded-lg p-3">
-                        <div className="font-semibold">{a.action}</div>
-                        <div className="text-gray-400">
-                          {new Date(a.created).toLocaleString()} • {a.actor}
-                        </div>
-                        {Object.keys(meta).length > 0 && (
-                          <div className="mt-2 space-y-1">
-                            {Object.entries(meta).map(([k, v]) => (
-                              <div key={k} className="flex justify-between">
-                                <span className="text-gray-500">{k}</span>
-                                <span>{String(v)}</span>
-                              </div>
-                            ))}
-                          </div>
-                        )}
+                      <div key={a.id} className="inline-block  flex max-w-full text-xs  border-gray-300 rounded-lg p-3">
+                        <div className="font-semibold mb-1">{a.action}</div>
+
+                        {Object.entries(meta)
+                          .filter(([key]) => key in metaLabels)
+                          .map(([k, v]) => (
+                            <div key={k} className=" justify-between gap-2">
+                              <span className="text-gray-500">{metaLabels[k]}</span>
+                              <span>
+                                {k === "next_followup"
+                                  ? new Date(String(v)).toLocaleString()
+                                  : String(v)}
+                              </span>
+                            </div>
+                          ))}
                       </div>
                     );
                   })}
@@ -244,26 +225,19 @@ setActivity(mapped);
         </div>
 
         {/* FOOTER */}
-       {/* FOOTER */}
-<div className="border-t bg-gray-50 p-4 flex justify-center">
-  <div className="flex gap-3">
-    <button
-      onClick={save}
-      disabled={saving}
-      className="px-6 py-2 rounded-lg bg-indigo-600 text-white text-sm font-medium disabled:opacity-60"
-    >
-      {saving ? "Saving..." : "Save Changes"}
-    </button>
+        <div className="border-t p-4 flex justify-between">
+          <button
+            onClick={save}
+            disabled={saving}
+            className="px-5 py-2 bg-indigo-600 text-white rounded-lg"
+          >
+            {saving ? "Saving..." : "Submit"}
+          </button>
 
-    <button
-      onClick={onClose}
-      className="px-6 py-2 rounded-lg border border-gray-400 text-gray-600 text-sm hover:bg-gray-100"
-    >
-      Close
-    </button>
-  </div>
-</div>
-
+          <button onClick={onClose} className="px-5 py-2 bg-gray-200 rounded-lg">
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -273,13 +247,7 @@ setActivity(mapped);
    UI HELPERS
 ======================= */
 
-function Section({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="rounded-xl border bg-gray-50 p-4">
       <h4 className="text-xs font-semibold uppercase mb-3">{title}</h4>
