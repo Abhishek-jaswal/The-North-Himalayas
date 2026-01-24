@@ -119,7 +119,7 @@ export default function LeadRow({
 
 
      {/* ================= MOBILE CARD (PRO UX) ================= */}
-     <div className=" md:hidden bg-white rounded-xl border shadow-sm p-4 space-y-4">
+     <div className="bg-white rounded-xl border shadow-sm p-4 space-y-4 md:hidden ">
   {/* Header */}
   <div className="flex justify-between items-start gap-2">
     <div>
@@ -171,14 +171,14 @@ export default function LeadRow({
 
     <button
       onClick={() => openWhatsApp(lead.phone)}
-      className="h-11 rounded-lg border text-sm hover:bg-gray-100"
+      className="h-11 rounded-lg  text-sm hover:bg-green-400 bg-green-700 "
     >
-      💬 WhatsApp
+       WhatsApp
     </button>
 
     <button
       onClick={markLost}
-      className="h-11 rounded-lg border text-sm text-red-600 hover:bg-red-50"
+      className="h-11 rounded-lg bg-red-600 text-sm text-gray-900 hover:bg-red-50"
     >
       ❌ Mark Lost
     </button>
