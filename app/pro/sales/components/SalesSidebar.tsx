@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
-import { Menu, X, LayoutDashboard, Users, PhoneCall, LogOut } from "lucide-react";
+import { Menu,  LayoutDashboard, Users, PhoneCall, LogOut } from "lucide-react";
 import { pb } from "@/app/lib/pocketbase";
 
 const menu = [
