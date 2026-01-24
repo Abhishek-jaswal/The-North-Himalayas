@@ -119,7 +119,7 @@ export default function LeadRow({
 
 
      {/* ================= MOBILE CARD (PRO UX) ================= */}
-<div className="md:hidden bg-white rounded-xl border shadow-sm p-4 space-y-4">
+     <div className=" md:hidden bg-white rounded-xl border shadow-sm p-4 space-y-4">
   {/* Header */}
   <div className="flex justify-between items-start gap-2">
     <div>
