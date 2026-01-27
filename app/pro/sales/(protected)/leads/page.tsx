@@ -113,7 +113,8 @@ export default function LeadsPage() {
       <option value="All">All Status</option>
       <option value="New">New</option>
       <option value="Contacted">Contacted</option>
-      <option value="Qualified">Qualified</option>
+      <option>Interested</option>
+      <option>In Progress</option>
       <option value="Converted">Converted</option>
       <option value="Lost">Lost</option>
     </select>

@@ -144,7 +144,8 @@ export default function LeadModal({
           >
             <option>New</option>
             <option>Contacted</option>
-            <option>Qualified</option>
+            <option>Interested</option>
+             <option>In Progress</option>
             <option>Converted</option>
             <option>Lost</option>
           </select>
