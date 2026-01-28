@@ -25,6 +25,41 @@ const metaLabels: Record<string, string> = {
 };
 
 /* =======================
+   DATE HELPERS (UI ONLY)
+======================= */
+function getFollowUpLabel(value?: string) {
+  if (!value) return null;
+
+  const d = new Date(value);
+  const today = new Date();
+  const tomorrow = new Date();
+
+  today.setHours(0, 0, 0, 0);
+  tomorrow.setDate(today.getDate() + 1);
+  tomorrow.setHours(0, 0, 0, 0);
+
+  const compare = new Date(d);
+  compare.setHours(0, 0, 0, 0);
+
+  if (compare.getTime() === today.getTime()) return "Today";
+  if (compare.getTime() === tomorrow.getTime()) return "Tomorrow";
+
+  return null;
+}
+
+function formatDateTimeWithLabel(value?: string) {
+  if (!value) return "—";
+
+  const label = getFollowUpLabel(value);
+  const formatted = new Date(value).toLocaleString("en-IN", {
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
+
+  return label ? `${label} • ${formatted}` : formatted;
+}
+
+/* =======================
    COMPONENT
 ======================= */
 export default function LeadModal({
@@ -50,7 +85,7 @@ export default function LeadModal({
     notes: "",
     status: lead.status || "New",
     next_followup: lead.next_followup
-      ? lead.next_followup.slice(0, 16) // ✅ datetime-local format
+      ? lead.next_followup.slice(0, 16) // datetime-local
       : "",
   });
 
@@ -100,7 +135,9 @@ export default function LeadModal({
       await pb.collection("leads").update(lead.id, {
         ...form,
         travel_date: form.travel_date || null,
-        next_followup: form.next_followup || null,
+        next_followup: form.next_followup
+          ? new Date(form.next_followup).toISOString()
+          : null,
         days: Number(form.days),
         nights: Number(form.nights),
         adults: Number(form.adults),
@@ -145,7 +182,7 @@ export default function LeadModal({
             <option>New</option>
             <option>Contacted</option>
             <option>Interested</option>
-             <option>In Progress</option>
+            <option>In Progress</option>
             <option>Converted</option>
             <option>Lost</option>
           </select>
@@ -175,6 +212,9 @@ export default function LeadModal({
                 value={form.next_followup}
                 onChange={(v) => handleChange("next_followup", v)}
               />
+
+            
+
               <textarea
                 className="w-full rounded-lg border px-3 py-2 text-sm"
                 rows={4}
@@ -201,17 +241,17 @@ export default function LeadModal({
                     } catch {}
 
                     return (
-                      <div key={a.id} className="inline-block  flex max-w-full text-xs  border-gray-300 rounded-lg p-3">
-                        <div className="font-semibold mb-1">{a.action}</div>
+                      <div key={a.id} className="text-xs border rounded-lg p-3 space-y-1">
+                        <div className="font-semibold">{a.action}</div>
 
                         {Object.entries(meta)
                           .filter(([key]) => key in metaLabels)
                           .map(([k, v]) => (
-                            <div key={k} className=" justify-between gap-2">
+                            <div key={k} className="flex justify-between gap-2">
                               <span className="text-gray-500">{metaLabels[k]}</span>
                               <span>
                                 {k === "next_followup"
-                                  ? new Date(String(v)).toLocaleString()
+                                  ? formatDateTimeWithLabel(String(v))
                                   : String(v)}
                               </span>
                             </div>
@@ -247,7 +287,6 @@ export default function LeadModal({
 /* =======================
    UI HELPERS
 ======================= */
-
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="rounded-xl border bg-gray-50 p-4">

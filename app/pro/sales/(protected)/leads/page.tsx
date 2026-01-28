@@ -135,20 +135,9 @@ export default function LeadsPage() {
 
 
     {/* ================= LIST / TABLE ================= */}
-   <div className="bg-white rounded-xl shadow-sm border border-gray-300 overflow-hidden">
+   <div className=" overflow-hidden">
   <table className="w-full border-collapse">
 
-        {/* Desktop header only */}
-     <thead className="hidden md:table-header-group bg-gray-50 text-xs text-gray-500 uppercase">
-  <tr>
-    <th className="p-4 font-medium">Name</th>
-    <th className="p-4 font-medium">Phone</th>
-    <th className="p-4 font-medium">Source</th>
-    <th className="p-4 font-medium">Status</th>
-    <th className="p-4 font-medium">Message</th>
-    <th className="p-4 font-medium text-right">Actions</th>
-  </tr>
-</thead>
 
 
         <tbody className="text-sm">
