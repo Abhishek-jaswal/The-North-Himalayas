@@ -22,6 +22,8 @@ export default function SalesSidebar() {
     router.push("/pro/sales/login");
   };
 
+  
+
   return (
     <>
       {/* ================= MOBILE TOP BAR ================= */}
