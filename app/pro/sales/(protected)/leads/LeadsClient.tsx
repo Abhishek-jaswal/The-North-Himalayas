@@ -156,6 +156,17 @@ export default function LeadsClient() {
           <option value="Converted">Converted</option>
           <option value="Lost">Lost</option>
         </select>
+            <button
+      disabled={loading}
+      onClick={fetchLeads}
+      className={`px-4 py-2 rounded-lg text-sm font-medium text-white flex items-center gap-2 ${
+        loading
+          ? "bg-indigo-400 cursor-not-allowed"
+          : "bg-indigo-600 hover:bg-indigo-700"
+      }`}
+    >
+       Refresh
+    </button>
       </div>
 
       <table className="w-full">
