@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
-import { Menu, X, LayoutDashboard, Users, PhoneCall, LogOut } from "lucide-react";
+import { Menu,  LayoutDashboard, Users, PhoneCall, LogOut } from "lucide-react";
 import { pb } from "@/app/lib/pocketbase";
 
 const menu = [
@@ -21,6 +21,8 @@ export default function SalesSidebar() {
     pb.authStore.clear();
     router.push("/pro/sales/login");
   };
+
+  
 
   return (
     <>
@@ -81,15 +83,7 @@ export default function SalesSidebar() {
 
         {/* User + Logout */}
         <div className="px-4 py-4 border-t border-white/10">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="h-9 w-9 rounded-full bg-indigo-600 flex items-center justify-center text-sm font-semibold">
-              A
-            </div>
-            <div className="leading-tight">
-              <p className="text-sm font-medium">Abhi</p>
-              <p className="text-xs text-gray-400">Sales Manager</p>
-            </div>
-          </div>
+          
 
           <button
             onClick={logout}
