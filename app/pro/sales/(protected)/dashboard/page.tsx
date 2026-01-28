@@ -122,8 +122,13 @@ const loadDashboard = async (userId: string) => {
       return;
     }
 
-    setSalesperson(user);
-    loadDashboard(user.id).finally(() => setLoading(false));
+    const fetchDashboard = async () => {
+      await loadDashboard(user.id);
+      setSalesperson(user);
+      setLoading(false);
+    };
+
+    fetchDashboard();
   }, [router]);
 
   if (loading) {

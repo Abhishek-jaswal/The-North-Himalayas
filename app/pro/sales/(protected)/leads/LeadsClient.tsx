@@ -156,10 +156,36 @@ export default function LeadsClient() {
           <option value="Converted">Converted</option>
           <option value="Lost">Lost</option>
         </select>
+            <button
+      disabled={loading}
+      onClick={fetchLeads}
+      className={`px-4 py-2 rounded-lg text-sm font-medium text-white flex items-center gap-2 ${
+        loading
+          ? "bg-indigo-400 cursor-not-allowed"
+          : "bg-indigo-600 hover:bg-indigo-700"
+      }`}
+    >
+       Refresh
+    </button>
       </div>
 
-      <table className="w-full">
+      <table className="w-full bg-gray-200 rounded-xl overflow-hidden">
         <tbody>
+         {loading && (
+           <tr>
+            <td colSpan={6} className="p-8 text-center text-gray-500">
+              Loading your leads...
+               </td>
+             </tr>
+           )}
+
+           {!loading && filteredLeads.length === 0 && (
+             <tr>
+               <td colSpan={6} className="p-8 text-center text-gray-500">
+                 No leads assigned yet.
+               </td>
+             </tr>
+           )} 
           {!loading &&
             filteredLeads.map((lead) => (
               <LeadRow
@@ -184,3 +210,30 @@ export default function LeadsClient() {
     </div>
   );
 }
+//  <tbody className="text-sm">
+//           {loading && (
+//             <tr>
+//               <td colSpan={6} className="p-8 text-center text-gray-500">
+//                 Loading your leads...
+//               </td>
+//             </tr>
+//           )}
+
+//           {!loading && filteredLeads.length === 0 && (
+//             <tr>
+//               <td colSpan={6} className="p-8 text-center text-gray-500">
+//                 No leads assigned yet.
+//               </td>
+//             </tr>
+//           )}
+
+//           {!loading &&
+//             filteredLeads.map((lead) => (
+//               <LeadRow
+//                 key={lead.id}
+//                 lead={lead}
+//                 onView={() => setSelectedLead(lead)}
+//                 onRefresh={fetchLeads}
+//               />
+//             ))}
+//         </tbody>
