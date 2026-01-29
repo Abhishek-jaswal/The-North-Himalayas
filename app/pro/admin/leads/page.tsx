@@ -1,5 +1,7 @@
 import PocketBase from "pocketbase";
 
+export const dynamic = "force-dynamic"; // 👈 IMPORTANT
+
 type Lead = {
   id: string;
   name: string;
@@ -41,26 +43,19 @@ export default async function LeadsPage() {
               <th className="p-3">Phone</th>
               <th className="p-3">Source</th>
               <th className="p-3">Status</th>
-              <th className="p-3 hidden md:table-cell">
-                Message
-              </th>
+              <th className="p-3 hidden md:table-cell">Message</th>
               <th className="p-3">Date</th>
             </tr>
           </thead>
 
           <tbody>
             {leads.map((lead) => (
-              <tr
-                key={lead.id}
-                className="border-t hover:bg-gray-50"
-              >
+              <tr key={lead.id} className="border-t hover:bg-gray-50">
                 <td className="p-3 font-medium">
                   {lead.name || "—"}
                 </td>
                 <td className="p-3">{lead.phone}</td>
-                <td className="p-3 capitalize">
-                  {lead.source}
-                </td>
+                <td className="p-3 capitalize">{lead.source}</td>
                 <td className="p-3">
                   <span
                     className={`px-2 py-1 rounded-full text-xs ${
