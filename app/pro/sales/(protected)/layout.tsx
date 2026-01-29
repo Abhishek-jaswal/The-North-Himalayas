@@ -2,6 +2,7 @@
 
 import SalesSidebar from "../components/SalesSidebar";
 import SalesTopbar from "../components/SalesTopbar";
+import NotificationInit from "./NotificationInit";
 
 export default function SalesLayout({
   children,
@@ -10,6 +11,7 @@ export default function SalesLayout({
 }) {
   return (
     <div className="flex h-screen bg-gray-100">
+   <NotificationInit />
       {/* Sidebar */}
       <SalesSidebar />
 

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+
+
 // ✅ Load fonts
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -61,6 +63,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+      <link rel="manifest" href="/manifest.json" />
+<meta name="theme-color" content="#0F1021" />
+
         {/* ✅ Google Tag Manager */}
         <script
           dangerouslySetInnerHTML={{
@@ -147,7 +152,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             style={{ display: "none", visibility: "hidden" }}
           ></iframe>
         </noscript>
-
         {children}
       </body>
     </html>
