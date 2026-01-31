@@ -89,6 +89,7 @@ export async function POST(req: NextRequest) {
         phone,
         message: text,
         source: "whatsapp",
+        status: "New",
       });
     }
 
