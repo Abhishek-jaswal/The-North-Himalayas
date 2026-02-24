@@ -1,6 +1,6 @@
-
 import { pb } from "@/app/lib/pocketbase";
 import StatCard from "./components/admin/StatCard";
+import { Target, UserCheck, Sparkles, Bell } from "lucide-react";
 
 export default async function AdminDashboardClient() {
   const leads = await pb.collection("leads").getFullList();
@@ -17,17 +17,44 @@ export default async function AdminDashboardClient() {
   };
 
   return (
-    <div className="p-6 space-y-6">
-      <h1 className="text-2xl font-semibold">Admin Dashboard</h1>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <StatCard title="Total Leads" value={stats.total} />
-        <StatCard title="Assigned Leads" value={stats.assigned} />
-        <StatCard title="New Today" value={stats.newToday} />
-        <StatCard title="Follow-ups" value={stats.followups} />
+    <div className="space-y-6">
+      {/* Header */}
+      <div>
+        <h1 className="text-xl font-bold text-slate-800">Dashboard</h1>
+        <p className="text-sm text-slate-500 mt-0.5">Overview of your CRM activity</p>
       </div>
 
-      
+      {/* Stat Cards */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <StatCard
+          title="Total Leads"
+          value={stats.total}
+          icon={Target}
+          accent="bg-violet-500"
+          sub="All time"
+        />
+        <StatCard
+          title="Assigned"
+          value={stats.assigned}
+          icon={UserCheck}
+          accent="bg-blue-500"
+          sub="Active leads"
+        />
+        <StatCard
+          title="New Today"
+          value={stats.newToday}
+          icon={Sparkles}
+          accent="bg-emerald-500"
+          sub="Last 24 hours"
+        />
+        <StatCard
+          title="Follow-ups"
+          value={stats.followups}
+          icon={Bell}
+          accent="bg-amber-500"
+          sub="Scheduled"
+        />
+      </div>
     </div>
   );
 }

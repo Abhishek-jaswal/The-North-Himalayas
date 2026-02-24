@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { pb } from "@/app/lib/pocketbase";
+import { Phone, MessageCircle, X, ChevronRight } from "lucide-react";
 
 interface Lead {
   id: string;
@@ -10,106 +11,57 @@ interface Lead {
   status?: string;
   message?: string;
   assigned_to?: string;
-  next_followup?: string; // ISO string
-  created?: string; // PocketBase default
+  next_followup?: string;
+  created?: string;
 }
 
-/* ================= STATUS COLORS ================= */
-function statusColor(status?: string) {
+const statusStyle = (status?: string): { bg: string; text: string; dot: string } => {
   switch (status) {
-    case "new":
-      return "bg-blue-100 text-blue-700";
-    case "Contacted":
-      return "bg-yellow-100 text-yellow-700";
-    case "Interested":
-      return "bg-purple-100 text-purple-700";
-    case "In Progress":
-      return "bg-blue-100 text-blue-700";
-    case "Converted":
-      return "bg-green-100 text-green-700";
-    case "Lost":
-      return "bg-red-100 text-red-700";
-    default:
-      return "bg-gray-100 text-gray-700";
+    case "Contacted":  return { bg: "bg-amber-50",   text: "text-amber-700",   dot: "bg-amber-500" };
+    case "Interested": return { bg: "bg-purple-50",  text: "text-purple-700",  dot: "bg-purple-500" };
+    case "In Progress":return { bg: "bg-blue-50",    text: "text-blue-700",    dot: "bg-blue-500" };
+    case "Converted":  return { bg: "bg-emerald-50", text: "text-emerald-700", dot: "bg-emerald-500" };
+    case "Lost":       return { bg: "bg-red-50",     text: "text-red-700",     dot: "bg-red-400" };
+    default:           return { bg: "bg-slate-100",  text: "text-slate-600",   dot: "bg-slate-400" };
   }
-}
+};
 
-/* ================= DATE HELPERS ================= */
 const formatDateTime = (value?: string) => {
   if (!value) return "—";
-  const d = new Date(value);
-  return d.toLocaleString("en-IN", {
-    dateStyle: "medium",
-    timeStyle: "short",
-  });
+  return new Date(value).toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" });
 };
 
 const getFollowUpText = (value?: string) => {
   if (!value) return null;
-
   const follow = new Date(value);
   const now = new Date();
-
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const tomorrow = new Date(today);
-  tomorrow.setDate(tomorrow.getDate() + 1);
+  const tomorrow = new Date(today); tomorrow.setDate(tomorrow.getDate() + 1);
+  const dayAfterTomorrow = new Date(tomorrow); dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 1);
 
-  const dayAfterTomorrow = new Date(tomorrow);
-  dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 1);
-
-  if (follow < today) return "Overdue";
-
-  if (follow >= today && follow < tomorrow) {
-    return `Today, ${follow.toLocaleTimeString("en-IN", {
-      hour: "numeric",
-      minute: "2-digit",
-    })}`;
-  }
-
-  if (follow >= tomorrow && follow < dayAfterTomorrow) {
-    return `Tomorrow, ${follow.toLocaleTimeString("en-IN", {
-      hour: "numeric",
-      minute: "2-digit",
-    })}`;
-  }
-
-  return formatDateTime(value);
+  if (follow < today) return { text: "Overdue", color: "text-red-600" };
+  if (follow >= today && follow < tomorrow)
+    return { text: `Today, ${follow.toLocaleTimeString("en-IN", { hour: "numeric", minute: "2-digit" })}`, color: "text-indigo-600" };
+  if (follow >= tomorrow && follow < dayAfterTomorrow)
+    return { text: `Tomorrow, ${follow.toLocaleTimeString("en-IN", { hour: "numeric", minute: "2-digit" })}`, color: "text-slate-600" };
+  return { text: formatDateTime(value), color: "text-slate-500" };
 };
 
-const followUpTextColor = (value?: string) => {
-  if (!value) return "text-gray-600";
-  if (new Date(value) < new Date()) return "text-red-600 font-semibold";
-  return "text-gray-700 font-medium";
-};
+export default function LeadRow({ lead, onView, onRefresh }: { lead: Lead; onView: () => void; onRefresh: () => void }) {
+  const st = statusStyle(lead.status);
+  const followUp = getFollowUpText(lead.next_followup);
 
-/* ================= COMPONENT ================= */
-export default function LeadRow({
-  lead,
-  onView,
-  onRefresh,
-}: {
-  lead: Lead;
-  onView: () => void;
-  onRefresh: () => void;
-}) {
-  const callNumber = (num?: string) => {
-    if (!num) return;
-    window.open(`tel:${num}`);
-  };
-
+  const callNumber = (num?: string) => { if (!num) return; window.open(`tel:${num}`); };
   const openWhatsApp = (num?: string) => {
     if (!num) return;
-    const phone = num.replace(/[^\d]/g, "");
-    window.open(`https://wa.me/${phone}`, "_blank");
+    window.open(`https://wa.me/${num.replace(/[^\d]/g, "")}`, "_blank");
   };
 
   const markLost = async () => {
     try {
       await pb.collection("leads").update(lead.id, { status: "Lost" });
       await pb.collection("lead_activity").create({
-        lead_id: lead.id,
-        action: "Marked Lost",
-        actor: pb.authStore.model?.email ?? "unknown",
+        lead_id: lead.id, action: "Marked Lost", actor: pb.authStore.model?.email ?? "unknown",
       });
       onRefresh();
     } catch (err) {
@@ -119,91 +71,58 @@ export default function LeadRow({
   };
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200 shadow-sm px-4 py-3 space-y-3 mb-1">
-      {/* TOP ROW */}
-      <div className="flex justify-between items-start border-b pb-3 border-gray-200">
-        <div className="flex gap-3">
-          {/* Avatar */}
-          <div className="h-8 w-8 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center font-semibold text-sm">
-            {lead.name?.charAt(0) || "?"}
+    <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 space-y-3">
+      {/* Top Row */}
+      <div className="flex items-start justify-between">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-sm shrink-0">
+            {(lead.name || "?").charAt(0).toUpperCase()}
           </div>
-
-          {/* Name + Meta */}
           <div>
-            <p className="font-semibold text-sm text-gray-900">
-              {lead.name || "—"}
-            </p>
-            <p className="text-xs text-gray-500">
-              {lead.phone || "—"}
-            </p>
-
-            <p className="text-[11px] text-gray-400 mt-1 flex gap-2 flex-wrap">
-              <span>
-                SOURCE:{" "}
-                <span className="text-gray-600">
-                  {lead.source || "—"}
-                </span>
-              </span>
-
-              {lead.next_followup && (
-                <span>
-                  FOLLOW-UP:{" "}
-                  <span className={followUpTextColor(lead.next_followup)}>
-                    {getFollowUpText(lead.next_followup)}
-                  </span>
-                </span>
-              )}
-            </p>
+            <p className="font-bold text-slate-800 text-sm leading-tight">{lead.name || "—"}</p>
+            <p className="text-xs text-slate-500 font-mono">{lead.phone || "—"}</p>
+            {followUp && (
+              <p className={`text-[11px] font-medium mt-0.5 ${followUp.color}`}>
+                ⏰ {followUp.text}
+              </p>
+            )}
           </div>
         </div>
 
-        {/* Status + Created */}
-        <div className="text-right">
-          <span
-            className={`px-3 py-1 rounded-full text-xs font-semibold ${statusColor(
-              lead.status
-            )}`}
-          >
+        <div className="text-right shrink-0">
+          <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-bold ${st.bg} ${st.text}`}>
+            <span className={`w-1.5 h-1.5 rounded-full ${st.dot}`} />
             {lead.status || "New"}
           </span>
-
-          <div className="text-[11px] text-gray-600 mt-1">
-            Assign On:{" "}
-            <span className="text-gray-700 font-medium">
-              {formatDateTime(lead.created)}
-            </span>
-          </div>
+          <p className="text-[10px] text-slate-400 mt-1 capitalize">{lead.source || "—"}</p>
         </div>
       </div>
 
-      {/* ACTION ROW */}
-      <div className="flex justify-end gap-2">
+      {/* Actions */}
+      <div className="flex gap-2 pt-1 border-t border-slate-50">
         <button
           onClick={onView}
-          className="w-full border border-gray-300 rounded-lg py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center justify-center gap-2"
+          className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white text-xs font-semibold transition-all"
         >
-          <span className="text-gray-400">›</span> View Details
+          View Details <ChevronRight size={13} />
         </button>
-
         <button
           onClick={() => callNumber(lead.phone)}
-          className="h-9 w-9 flex items-center justify-center border border-gray-200 rounded-lg hover:bg-gray-100"
+          className="w-9 h-9 flex items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 hover:bg-emerald-100 active:scale-95 transition-all border border-emerald-100"
         >
-          📞
+          <Phone size={15} />
         </button>
-
         <button
           onClick={() => openWhatsApp(lead.phone)}
-          className="h-9 w-9 flex items-center justify-center border border-gray-200 rounded-lg hover:bg-gray-100"
+          className="w-9 h-9 flex items-center justify-center rounded-xl bg-green-50 text-green-600 hover:bg-green-100 active:scale-95 transition-all border border-green-100"
         >
-          💬
+          <MessageCircle size={15} />
         </button>
-
         <button
           onClick={markLost}
-          className="h-9 w-9 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-100"
+          className="w-9 h-9 flex items-center justify-center rounded-xl bg-red-50 text-red-500 hover:bg-red-100 active:scale-95 transition-all border border-red-100"
         >
-          ✕
+          <X size={15} />
         </button>
       </div>
     </div>
