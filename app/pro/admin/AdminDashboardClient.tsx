@@ -18,6 +18,7 @@ interface Lead {
   message?: string;
   assigned_to?: string;
   created: string;
+  next_followup?: string;
 }
 interface Salesperson {
   id: string;
@@ -56,11 +57,11 @@ function StatCard({
 /* ─── Status Badge ───────────────────────────── */
 function StatusBadge({ status }: { status: string }) {
   const map: Record<string, string> = {
-    new:        "bg-blue-50 text-blue-600 border-blue-200",
-    assigned:   "bg-amber-50 text-amber-600 border-amber-200",
-    converted:  "bg-emerald-50 text-emerald-600 border-emerald-200",
-    lost:       "bg-red-50 text-red-500 border-red-200",
-    contacted:  "bg-purple-50 text-purple-600 border-purple-200",
+    new: "bg-blue-50 text-blue-600 border-blue-200",
+    assigned: "bg-amber-50 text-amber-600 border-amber-200",
+    converted: "bg-emerald-50 text-emerald-600 border-emerald-200",
+    lost: "bg-red-50 text-red-500 border-red-200",
+    contacted: "bg-purple-50 text-purple-600 border-purple-200",
     interested: "bg-indigo-50 text-indigo-600 border-indigo-200",
   };
   const cls = map[status?.toLowerCase()] ?? "bg-slate-50 text-slate-500 border-slate-200";
@@ -148,11 +149,11 @@ export default function AdminDashboardClient() {
   /* ─── Stats ──────────────────────────────── */
   const today = new Date().toDateString();
   const stats = {
-    total:      leads.length,
-    assigned:   leads.filter((l) => l.assigned_to).length,
+    total: leads.length,
+    assigned: leads.filter((l) => l.assigned_to).length,
     unassigned: leads.filter((l) => !l.assigned_to).length,
-    newToday:   leads.filter((l) => new Date(l.created).toDateString() === today).length,
-    followups:  leads.filter((l) => l.next_followup).length,
+    newToday: leads.filter((l) => new Date(l.created).toDateString() === today).length,
+    followups: leads.filter((l) => l.next_followup).length,
   };
 
   /* ─── Filtered leads ─────────────────────── */
@@ -191,10 +192,10 @@ export default function AdminDashboardClient() {
 
       {/* ─── Stat Cards ─────────────────────── */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <StatCard title="Total Leads"   value={stats.total}      sub="All time records"       icon={Target}     gradient="bg-gradient-to-br from-slate-600 to-slate-800" />
-        <StatCard title="Assigned"      value={stats.assigned}   sub="Active assignments"     icon={UserCheck}  gradient="bg-gradient-to-br from-amber-400 to-orange-500" change={`${stats.unassigned} left`} />
-        <StatCard title="New Today"     value={stats.newToday}   sub="Last 24 hours"          icon={Sparkles}   gradient="bg-gradient-to-br from-emerald-400 to-teal-500" />
-        <StatCard title="Follow-ups"    value={stats.followups}  sub="Scheduled callbacks"    icon={Bell}       gradient="bg-gradient-to-br from-violet-500 to-indigo-600" />
+        <StatCard title="Total Leads" value={stats.total} sub="All time records" icon={Target} gradient="bg-gradient-to-br from-slate-600 to-slate-800" />
+        <StatCard title="Assigned" value={stats.assigned} sub="Active assignments" icon={UserCheck} gradient="bg-gradient-to-br from-amber-400 to-orange-500" change={`${stats.unassigned} left`} />
+        <StatCard title="New Today" value={stats.newToday} sub="Last 24 hours" icon={Sparkles} gradient="bg-gradient-to-br from-emerald-400 to-teal-500" />
+        <StatCard title="Follow-ups" value={stats.followups} sub="Scheduled callbacks" icon={Bell} gradient="bg-gradient-to-br from-violet-500 to-indigo-600" />
       </div>
 
       {/* ─── Two Column: Assign Panel + Team ── */}
@@ -219,11 +220,10 @@ export default function AdminDashboardClient() {
                 <button
                   key={f}
                   onClick={() => setFilter(f)}
-                  className={`px-3 py-1.5 rounded-lg text-[11px] font-bold capitalize transition-all ${
-                    filter === f
+                  className={`px-3 py-1.5 rounded-lg text-[11px] font-bold capitalize transition-all ${filter === f
                       ? "bg-white text-slate-800 shadow-sm"
                       : "text-slate-500 hover:text-slate-700"
-                  }`}
+                    }`}
                 >
                   {f}
                   {f === "unassigned" && (
@@ -257,9 +257,8 @@ export default function AdminDashboardClient() {
                 return (
                   <div
                     key={lead.id}
-                    className={`px-5 py-3.5 transition-colors ${
-                      isSuccess ? "bg-emerald-50" : "hover:bg-slate-50/70"
-                    }`}
+                    className={`px-5 py-3.5 transition-colors ${isSuccess ? "bg-emerald-50" : "hover:bg-slate-50/70"
+                      }`}
                   >
                     <div className="flex items-center gap-3">
                       {/* Avatar */}
@@ -372,11 +371,10 @@ export default function AdminDashboardClient() {
                   <div key={sp.id} className="px-5 py-3.5 hover:bg-slate-50/60 transition-colors">
                     <div className="flex items-center gap-3 mb-2">
                       {/* Rank */}
-                      <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-black shrink-0 ${
-                        i === 0 ? "bg-amber-100 text-amber-600" :
-                        i === 1 ? "bg-slate-100 text-slate-500" :
-                        "bg-slate-50 text-slate-400"
-                      }`}>
+                      <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-black shrink-0 ${i === 0 ? "bg-amber-100 text-amber-600" :
+                          i === 1 ? "bg-slate-100 text-slate-500" :
+                            "bg-slate-50 text-slate-400"
+                        }`}>
                         {i + 1}
                       </div>
 
@@ -430,9 +428,9 @@ export default function AdminDashboardClient() {
       {/* ─── Quick Stats Row ─────────────────── */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
-          { label: "Unassigned",  value: stats.unassigned,                                         icon: Clock,         color: "text-amber-600",  bg: "bg-amber-50"  },
-          { label: "Assigned",    value: stats.assigned,                                            icon: UserCheck,     color: "text-emerald-600",bg: "bg-emerald-50"},
-          { label: "Active Team", value: activeSalespeople.length,                                  icon: Users,         color: "text-violet-600", bg: "bg-violet-50" },
+          { label: "Unassigned", value: stats.unassigned, icon: Clock, color: "text-amber-600", bg: "bg-amber-50" },
+          { label: "Assigned", value: stats.assigned, icon: UserCheck, color: "text-emerald-600", bg: "bg-emerald-50" },
+          { label: "Active Team", value: activeSalespeople.length, icon: Users, color: "text-violet-600", bg: "bg-violet-50" },
           { label: "Assign Rate", value: stats.total > 0 ? Math.round((stats.assigned / stats.total) * 100) : 0, icon: TrendingUp, color: "text-indigo-600", bg: "bg-indigo-50", suffix: "%" },
         ].map(({ label, value, icon: Icon, color, bg, suffix }) => (
           <div key={label} className="bg-white rounded-2xl border border-slate-100 px-4 py-3 flex items-center gap-3 shadow-sm">
