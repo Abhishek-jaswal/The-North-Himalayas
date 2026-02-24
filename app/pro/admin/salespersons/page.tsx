@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { pb } from "@/app/lib/pocketbase";
 import CreateSalespersonModal from "../components/CreateSalespersonModal";
+import { UserPlus } from "lucide-react";
 
 type Salesperson = {
   id: string;
@@ -19,26 +20,12 @@ export default function SalespersonsPage() {
   const [salespersons, setSalespersons] = useState<Salesperson[]>([]);
 
   const loadData = async () => {
-    // fetch salespersons
-    const sales = await pb.collection("salespersons").getFullList({
-      sort: "-created",
-    });
+    const sales = await pb.collection("salespersons").getFullList({ sort: "-created" });
+    const leads = await pb.collection("leads").getFullList({ fields: "assigned_to,status" });
 
-    // fetch leads
-    const leads = await pb.collection("leads").getFullList({
-      fields: "assigned_to,status",
-    });
-
-    // calculate stats
     const enrichedSales = sales.map((sp) => {
-      const assignedLeads = leads.filter(
-        (lead) => lead.assigned_to === sp.id
-      );
-
-      const convertedLeads = assignedLeads.filter(
-        (lead) => lead.status === "converted"
-      );
-
+      const assignedLeads = leads.filter((lead) => lead.assigned_to === sp.id);
+      const convertedLeads = assignedLeads.filter((lead) => lead.status === "converted");
       return {
         id: sp.id,
         name: sp.name,
@@ -54,128 +41,149 @@ export default function SalespersonsPage() {
   };
 
   useEffect(() => {
-    (async () => {
-      await loadData();
-    })();
-
-    // realtime updates
+    (async () => { await loadData(); })();
     pb.collection("salespersons").subscribe("*", loadData);
     pb.collection("leads").subscribe("*", loadData);
-
     return () => {
       pb.collection("salespersons").unsubscribe("*");
       pb.collection("leads").unsubscribe("*");
     };
   }, []);
 
- return (
-  <div>
-    {/* Header */}
-    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-6">
-      <h1 className="text-3xl font-bold">Salespersons</h1>
-
-      <button
-        onClick={() => setOpen(true)}
-        className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow w-full sm:w-auto"
-      >
-        + Add Salesperson
-      </button>
-    </div>
-
-    {/* ================= DESKTOP TABLE ================= */}
-    <div className="hidden md:block bg-white shadow rounded-lg overflow-hidden">
-      <table className="w-full text-left">
-        <thead className="bg-gray-100">
-          <tr>
-            <th className="py-3 px-4">Name</th>
-            <th className="py-3 px-4">Email</th>
-            <th className="py-3 px-4">Phone</th>
-            <th className="py-3 px-4">Active</th>
-            <th className="py-3 px-4">Assigned</th>
-            <th className="py-3 px-4">Converted</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {salespersons.map((user) => (
-            <tr key={user.id} className="border-b">
-              <td className="py-3 px-4">{user.name}</td>
-              <td className="py-3 px-4">{user.email}</td>
-              <td className="py-3 px-4">{user.phone}</td>
-
-              <td className="py-3 px-4">
-                <select
-                  className="border px-2 py-1 rounded"
-                  value={user.is_active ? "active" : "inactive"}
-                  onChange={async (e) => {
-                    await pb.collection("salespersons").update(user.id, {
-                      is_active: e.target.value === "active",
-                    });
-                  }}
-                >
-                  <option value="active">Active</option>
-                  <option value="inactive">Inactive</option>
-                </select>
-              </td>
-
-              <td className="py-3 px-4 font-medium">
-                {user.total_assigned ?? 0}
-              </td>
-
-              <td className="py-3 px-4 font-medium text-green-600">
-                {user.total_converted ?? 0}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-
-    {/* ================= MOBILE CARDS ================= */}
-    <div className="md:hidden space-y-4">
-      {salespersons.map((user) => (
-        <div
-          key={user.id}
-          className="bg-white shadow rounded-lg p-4 space-y-2"
-        >
-          <div>
-            <h2 className="text-lg font-semibold">{user.name}</h2>
-            <p className="text-sm text-gray-600">{user.email}</p>
-            <p className="text-sm text-gray-600">{user.phone}</p>
-          </div>
-
-          <div className="flex justify-between items-center">
-            <span className="text-sm font-medium">Status</span>
-            <select
-              className="border px-2 py-1 rounded text-sm"
-              value={user.is_active ? "active" : "inactive"}
-              onChange={async (e) => {
-                await pb.collection("salespersons").update(user.id, {
-                  is_active: e.target.value === "active",
-                });
-              }}
-            >
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
-            </select>
-          </div>
-
-          <div className="flex justify-between text-sm">
-            <span>
-              Assigned:{" "}
-              <strong>{user.total_assigned ?? 0}</strong>
-            </span>
-            <span className="text-green-600">
-              Converted:{" "}
-              <strong>{user.total_converted ?? 0}</strong>
-            </span>
-          </div>
+  return (
+    <div className="space-y-5">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-xl font-bold text-slate-800">Salespersons</h1>
+          <p className="text-sm text-slate-500 mt-0.5">{salespersons.length} team members</p>
         </div>
-      ))}
+        <button
+          onClick={() => setOpen(true)}
+          className="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 active:scale-95 text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-sm shadow-violet-200"
+        >
+          <UserPlus size={15} />
+          Add Salesperson
+        </button>
+      </div>
+
+      {/* Desktop Table */}
+      <div className="hidden md:block bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-slate-100 bg-slate-50">
+              {["Name", "Email", "Phone", "Status", "Assigned", "Converted"].map(h => (
+                <th key={h} className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wider px-5 py-3.5">{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-50">
+            {salespersons.map((user) => (
+              <tr key={user.id} className="hover:bg-slate-50/60 transition-colors">
+                <td className="px-5 py-3.5">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs font-bold">
+                      {user.name.charAt(0).toUpperCase()}
+                    </div>
+                    <span className="font-medium text-slate-800">{user.name}</span>
+                  </div>
+                </td>
+                <td className="px-5 py-3.5 text-slate-500 text-xs">{user.email}</td>
+                <td className="px-5 py-3.5 text-slate-500 font-mono text-xs">{user.phone}</td>
+                <td className="px-5 py-3.5">
+                  <select
+                    className={`text-xs font-semibold px-2.5 py-1.5 rounded-lg border cursor-pointer focus:outline-none ${
+                      user.is_active
+                        ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                        : "bg-red-50 text-red-600 border-red-200"
+                    }`}
+                    value={user.is_active ? "active" : "inactive"}
+                    onChange={async (e) => {
+                      await pb.collection("salespersons").update(user.id, {
+                        is_active: e.target.value === "active",
+                      });
+                    }}
+                  >
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
+                </td>
+                <td className="px-5 py-3.5">
+                  <span className="inline-flex items-center gap-1 text-sm font-bold text-slate-700">
+                    {user.total_assigned ?? 0}
+                    <span className="text-xs text-slate-400 font-normal">leads</span>
+                  </span>
+                </td>
+                <td className="px-5 py-3.5">
+                  <span className="inline-flex items-center gap-1 text-sm font-bold text-emerald-600">
+                    {user.total_converted ?? 0}
+                    <span className="text-xs text-emerald-400 font-normal">done</span>
+                  </span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {salespersons.length === 0 && (
+          <div className="py-16 text-center text-slate-400 text-sm">No salespersons yet</div>
+        )}
+      </div>
+
+      {/* Mobile Cards */}
+      <div className="md:hidden space-y-3">
+        {salespersons.map((user) => (
+          <div key={user.id} className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 space-y-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold">
+                  {user.name.charAt(0).toUpperCase()}
+                </div>
+                <div>
+                  <p className="font-semibold text-slate-800">{user.name}</p>
+                  <p className="text-xs text-slate-500">{user.email}</p>
+                </div>
+              </div>
+              <select
+                className={`text-xs font-semibold px-2 py-1.5 rounded-lg border cursor-pointer focus:outline-none ${
+                  user.is_active
+                    ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                    : "bg-red-50 text-red-600 border-red-200"
+                }`}
+                value={user.is_active ? "active" : "inactive"}
+                onChange={async (e) => {
+                  await pb.collection("salespersons").update(user.id, {
+                    is_active: e.target.value === "active",
+                  });
+                }}
+              >
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+            </div>
+            <p className="text-xs text-slate-500 font-mono">{user.phone}</p>
+            <div className="flex gap-4 pt-2 border-t border-slate-50 text-sm">
+              <div>
+                <p className="text-xs text-slate-400">Assigned</p>
+                <p className="font-bold text-slate-700">{user.total_assigned ?? 0}</p>
+              </div>
+              <div>
+                <p className="text-xs text-slate-400">Converted</p>
+                <p className="font-bold text-emerald-600">{user.total_converted ?? 0}</p>
+              </div>
+              <div>
+                <p className="text-xs text-slate-400">Rate</p>
+                <p className="font-bold text-indigo-600">
+                  {user.total_assigned
+                    ? Math.round(((user.total_converted ?? 0) / user.total_assigned) * 100)
+                    : 0}%
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <CreateSalespersonModal open={open} onClose={() => setOpen(false)} />
     </div>
-
-    <CreateSalespersonModal open={open} onClose={() => setOpen(false)} />
-  </div>
-);
-
+  );
 }
