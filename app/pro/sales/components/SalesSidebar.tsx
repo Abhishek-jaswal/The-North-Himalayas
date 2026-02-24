@@ -7,19 +7,14 @@ import { Menu, X, LayoutDashboard, Users, PhoneCall, LogOut, TrendingUp, Chevron
 import { pb } from "@/app/lib/pocketbase";
 
 const menu = [
-  { name: "Dashboard",  path: "/pro/sales/dashboard",  icon: LayoutDashboard },
-  { name: "Leads",      path: "/pro/sales/leads",      icon: Users },
+  { name: "Dashboard", path: "/pro/sales/dashboard", icon: LayoutDashboard },
+  { name: "Leads", path: "/pro/sales/leads", icon: Users },
   { name: "Follow-ups", path: "/pro/sales/follow-ups", icon: PhoneCall },
 ];
 
-export default function SalesSidebar() {
-  const pathname = usePathname();
-  const router = useRouter();
-  const [open, setOpen] = useState(false);
-
-  const logout = () => { pb.authStore.clear(); router.push("/pro/sales/login"); };
-
-  const SidebarContent = () => (
+// ⭐ Moved OUTSIDE (no logic change)
+function SidebarContent({ pathname, setOpen, logout }: { pathname: string; setOpen: (open: boolean) => void; logout: () => void }) {
+  return (
     <div className="flex flex-col h-full">
       {/* Logo */}
       <div className="px-6 py-6">
@@ -49,19 +44,21 @@ export default function SalesSidebar() {
               key={item.path}
               href={item.path}
               onClick={() => setOpen(false)}
-              className={`group flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-150 relative ${
-                active
-                  ? "bg-gradient-to-r from-indigo-500/20 to-violet-500/10 text-indigo-400"
-                  : "text-slate-500 hover:text-slate-200 hover:bg-white/5"
-              }`}
+              className={`group flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-150 relative ${active
+                ? "bg-gradient-to-r from-indigo-500/20 to-violet-500/10 text-indigo-400"
+                : "text-slate-500 hover:text-slate-200 hover:bg-white/5"
+                }`}
             >
-              {active && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-gradient-to-b from-indigo-400 to-violet-500 rounded-full" />}
+              {active && (
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-gradient-to-b from-indigo-400 to-violet-500 rounded-full" />
+              )}
               <Icon size={16} className={`shrink-0 ${active ? "text-indigo-400" : "text-slate-600 group-hover:text-slate-300"}`} />
               <span className="text-[13px] font-medium flex-1">{item.name}</span>
-              {active
-                ? <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
-                : <ChevronRight size={13} className="opacity-0 group-hover:opacity-40 transition-opacity" />
-              }
+              {active ? (
+                <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
+              ) : (
+                <ChevronRight size={13} className="opacity-0 group-hover:opacity-40 transition-opacity" />
+              )}
             </Link>
           );
         })}
@@ -79,6 +76,17 @@ export default function SalesSidebar() {
       </div>
     </div>
   );
+}
+
+export default function SalesSidebar() {
+  const pathname = usePathname();
+  const router = useRouter();
+  const [open, setOpen] = useState(false);
+
+  const logout = () => {
+    pb.authStore.clear();
+    router.push("/pro/sales/login");
+  };
 
   return (
     <>
@@ -95,17 +103,25 @@ export default function SalesSidebar() {
         </button>
       </div>
 
-      {open && <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 md:hidden" onClick={() => setOpen(false)} />}
+      {open && (
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 md:hidden" onClick={() => setOpen(false)} />
+      )}
 
-      <div className={`fixed top-0 left-0 h-full w-64 bg-[#0c111d] z-50 md:hidden transform transition-transform duration-200 ease-out border-r border-slate-800/60 ${open ? "translate-x-0" : "-translate-x-full"}`}>
-        <button onClick={() => setOpen(false)} className="absolute top-4 right-4 text-slate-500 hover:text-white p-1.5 rounded-lg hover:bg-white/5">
+      <div
+        className={`fixed top-0 left-0 h-full w-64 bg-[#0c111d] z-50 md:hidden transform transition-transform duration-200 ease-out border-r border-slate-800/60 ${open ? "translate-x-0" : "-translate-x-full"
+          }`}
+      >
+        <button
+          onClick={() => setOpen(false)}
+          className="absolute top-4 right-4 text-slate-500 hover:text-white p-1.5 rounded-lg hover:bg-white/5"
+        >
           <X size={18} />
         </button>
-        <SidebarContent />
+        <SidebarContent pathname={pathname} setOpen={setOpen} logout={logout} />
       </div>
 
       <aside className="hidden md:flex w-[220px] shrink-0 bg-[#0c111d] border-r border-slate-800/60 h-full flex-col">
-        <SidebarContent />
+        <SidebarContent pathname={pathname} setOpen={setOpen} logout={logout} />
       </aside>
 
       <div className="md:hidden h-14 shrink-0" />
