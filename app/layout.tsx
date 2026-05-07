@@ -63,8 +63,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-      <link rel="manifest" href="/manifest.json" />
-<meta name="theme-color" content="#0F1021" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#0F1021" />
 
         {/* ✅ Google Tag Manager */}
         <script
@@ -77,6 +77,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           }}
         />
 
+        {/* <!-- Google tag (gtag.js) --> */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17159780538"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17159780538');`,
+          }}
+        />
         {/* ✅ JSON-LD Structured Data for SEO */}
         <script
           type="application/ld+json"
