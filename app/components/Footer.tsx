@@ -35,7 +35,7 @@ export default function Footer() {
           <h3 className="text-lg font-semibold text-white mb-3">Quick Links</h3>
           <ul className="space-y-2 text-sm">
             <li><a href="#" className="hover:underline">Cancellation Policy & T&Cs</a></li>
-            <li><a href="#" className="hover:underline">Privacy Policy</a></li>
+            <li><a href="/privacy-policy" className="hover:underline">Privacy Policy</a></li>
             <li><a href="#" className="hover:underline">Trip Payments</a></li>
             <li><a href="#" className="hover:underline">Customer Support</a></li>
             <li><a href="#" className="hover:underline">Reviews</a></li>
