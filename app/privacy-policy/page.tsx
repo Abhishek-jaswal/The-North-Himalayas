@@ -1,6 +1,6 @@
 export default function Page() {
     return (
-        <main style={{ padding: "40px", maxWidth: "800px", margin: "auto" }}>
+        <main style={{ padding: "40px", maxWidth: "800px", margin: "auto", color: "#ffff", fontFamily: "Arial, sans-serif" }}>
             <h1>Privacy Policy</h1>
 
             <p>
